@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "repository": {
     "type": "git",
@@ -16,7 +19,11 @@
     "url": "https://github.com/melindachang/site/issues"
   },
   "homepage": "https://github.com/melindachang/site#readme",
-  "dependencies": {
+  "devDependencies": {
+    "sass": "^1.49.8",
     "vite": "^2.8.4"
+  },
+  "dependencies": {
+    "gsap": "^3.9.1"
   }
 }
