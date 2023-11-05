@@ -1,13 +1,43 @@
 <script>
-  export let title, pathName, types;
-  let innertext, imageWrapper, item, itemLeft, itemTop, imageWidth, imageHeight;
+  // TODO: SOME KIND OF SVELTE STORE THAT NOTES WHICH CONTEXTS ARE OPEN AND CLOSED
+
+  export let i, title, pathName, types, context;
+  let innertext,
+    imageWrapper,
+    item,
+    itemLeft,
+    itemTop,
+    itemHeight,
+    imageWidth,
+    imageHeight,
+    contextComponent;
   import gsap from "gsap";
   import { onMount } from "svelte";
+  import ContextMenu from "./ContextMenu.svelte";
+  import { eventFired, activeContexts } from "$lib/store.js";
 
   $: itemLeft = item && item.offsetLeft;
   $: itemTop = item && item.offsetTop;
 
   onMount(() => {
+    activeContexts.update((currentData) => {
+      currentData[i] = true;
+      return currentData;
+    });
+    eventFired.update((currentData) => {
+      currentData[i] = { active: false, e: null };
+      return currentData;
+    });
+
+    eventFired.subscribe((value) => {
+      if (value[i].active && contextComponent) {
+        contextComponent.toggleContext(
+          value[i].e,
+          itemLeft,
+          itemTop + itemHeight
+        );
+      }
+    });
     gsap.timeline().from(innertext, {
       delay: 1,
       duration: 0.85,
@@ -61,10 +91,12 @@
 
 <div
   class="menu__item"
+  id={"item-" + i}
   bind:this={item}
   on:mousemove={onMouseMove}
   on:mouseenter={onMouseEnter}
   on:mouseleave={onMouseLeave}
+  bind:clientHeight={itemHeight}
 >
   <div
     class="menu__item-image_wrapper"
@@ -81,6 +113,10 @@
     <span class="menu__item-innertext-subtitle">[{types.join(" / ")}]</span>
   </span>
 </div>
+
+{#if context}
+  <ContextMenu {i} {context} bind:this={contextComponent} />
+{/if}
 
 <style lang="sass">
   
@@ -99,9 +135,9 @@
         height: 40rem
         pointer-events: none
         opacity: 0
-        -webkit-box-shadow:0px 0px 105px 36px rgba(255,255,255,0.05)
-        -moz-box-shadow: 0px 0px 105px 36px rgba(255,255,255,0.05)
-        box-shadow: 0px 0px 105px 36px rgba(255,255,255,0.05)
+        -webkit-box-shadow:0px 0px 105px 36px rgba(255,255,255,0.1)
+        -moz-box-shadow: 0px 0px 105px 36px rgba(255,255,255,0.1)
+        box-shadow: 0px 0px 105px 36px rgba(255,255,255,0.1)
       &, &_inner
         position: absolute
         left: 0
@@ -110,6 +146,7 @@
         width: 100%
         object-fit: cover
     &-text
+      z-index: 1
       position: relative
       font-family: variables.$font-huge
       font-weight: 700
@@ -128,6 +165,6 @@
       font-weight: 400
     &:hover &-text
       color: variables.$font-accent
-    &:hover &-image_wrapper
-      z-index: -2
+    // &:hover &-image_wrapper
+    //   z-index: 1
 </style>
