@@ -1,9 +1,11 @@
 <script>
-  import { onMount } from "svelte";
-  import { activeContexts } from "$lib/store.js";
+  import { scrollY } from "$lib/store.js";
   import Work from "$lib/components/Work.svelte";
   import NoiseOverlay from "../lib/components/NoiseOverlay.svelte";
 
+  let scroll;
+
+  $: scroll && scrollY.update(() => scroll);
 </script>
 
 <svelte:head>
@@ -13,6 +15,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </svelte:head>
 
+<svelte:window bind:scrollY={scroll} />
 
 <div class="body__container">
   <NoiseOverlay />

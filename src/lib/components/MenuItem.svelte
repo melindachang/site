@@ -34,7 +34,7 @@
         contextComponent.toggleContext(
           value[i].e,
           itemLeft,
-          itemTop + itemHeight
+          itemTop + itemHeight,
         );
       }
     });

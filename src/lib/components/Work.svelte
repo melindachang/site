@@ -64,8 +64,8 @@
     { title: "Steven Van", pathName: yass, types: ["Graphic"] },
     { title: "Clumsy", pathName: yass, types: ["Graphic"] },
     { title: "Andrew Foy", pathName: yass, types: ["Graphic"] },
-    { title: "Michaela", pathName: michaela, types: ["Web"] },
-    { title: "MixoFX", pathName: '', types: ["Web"] },
+    { title: "Michaela", pathName: michaela, types: ["Web"], url: "https://michaelachang-site.vercel.app" },
+    { title: "MixoFX", pathName: "", types: ["Web"] },
   ];
 
   onMount(() => {

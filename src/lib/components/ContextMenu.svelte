@@ -1,9 +1,11 @@
 <script>
   import gsap from "gsap";
-  import { eventFired, activeContexts } from "../store";
+  import { eventFired, activeContexts, scrollY } from "../store";
   import { onMount } from "svelte";
-  export let context, i;
+  export let context, i, scroll;
   let contextMenu, collapsed, animation;
+
+  scrollY.subscribe((value) => (scroll = value));
 
   activeContexts.subscribe((value) => {
     collapsed = value[i];
@@ -26,7 +28,7 @@
 
   export const toggleContext = (e, xOffset, yOffset) => {
     let x = e.clientX - xOffset,
-      y = e.clientY - yOffset;
+      y = e.clientY + scroll - yOffset;
 
     if (collapsed) {
       activeContexts.update((currentData) => {
