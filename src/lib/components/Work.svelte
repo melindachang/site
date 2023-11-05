@@ -66,7 +66,7 @@
     { title: "Clumsy", pathName: yass, types: ["Graphic"] },
     { title: "Andrew Foy", pathName: yass, types: ["Graphic"] },
     { title: "Michaela", pathName: michaela, types: ["Web"] },
-    { title: "MixoFX", pathName: mixo, types: ["Web"] },
+    { title: "MixoFX", pathName: "", types: ["Web"] },
   ];
 
   onMount(() => {
