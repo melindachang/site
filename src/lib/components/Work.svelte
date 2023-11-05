@@ -11,7 +11,6 @@
   import michaela from "$lib/assets/images/michaela.png";
   import covidheroes from "$lib/assets/images/covidheroes.png";
   import hackthewave from "$lib/assets/images/htw.png";
-  import mixo from "$lib/assets/images/mixo.png";
 
   import { onMount } from "svelte";
   import { activeContexts, eventFired } from "$lib/store.js";
@@ -66,7 +65,7 @@
     { title: "Clumsy", pathName: yass, types: ["Graphic"] },
     { title: "Andrew Foy", pathName: yass, types: ["Graphic"] },
     { title: "Michaela", pathName: michaela, types: ["Web"] },
-    { title: "MixoFX", pathName: "", types: ["Web"] },
+    { title: "MixoFX", pathName: '', types: ["Web"] },
   ];
 
   onMount(() => {
