@@ -57,6 +57,10 @@
       context: [
         { name: "2023 Wiki", url: "https://2023.igem.wiki/cca-san-diego" },
         { name: "2022 Wiki", url: "https://2022.igem.wiki/cca-san-diego" },
+        {
+          name: "Promo Video",
+          url: "https://video.igem.org/w/iENx4ZnHb9U6NZbVBt2MAD",
+        },
       ],
     },
     { title: "Hack the Wave", pathName: hackthewave, types: ["Graphic"] },
@@ -64,7 +68,12 @@
     { title: "Steven Van", pathName: yass, types: ["Graphic"] },
     { title: "Clumsy", pathName: yass, types: ["Graphic"] },
     { title: "Andrew Foy", pathName: yass, types: ["Graphic"] },
-    { title: "Michaela", pathName: michaela, types: ["Web"], url: "https://michaelachang-site.vercel.app" },
+    {
+      title: "Michaela",
+      pathName: michaela,
+      types: ["Web"],
+      url: "https://michaelachang-site.vercel.app",
+    },
     { title: "MixoFX", pathName: "", types: ["Web"] },
   ];
 
