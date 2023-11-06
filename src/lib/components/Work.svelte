@@ -9,7 +9,7 @@
   import sungha from "$lib/assets/images/sunghajung.png";
   import rycelabs from "$lib/assets/images/shu.png";
   import michaela from "$lib/assets/images/michaela.png";
-  import covidheroes from "$lib/assets/images/covidheroes.png";
+  import covidheroes from "$lib/assets/images/covid-heroes.png";
   import hackthewave from "$lib/assets/images/htw.png";
 
   import { onMount } from "svelte";
@@ -63,8 +63,18 @@
         },
       ],
     },
-    { title: "Hack the Wave", pathName: hackthewave, types: ["Graphic"] },
-    { title: "Sungha Jung", pathName: sungha, types: ["Web"] },
+    {
+      title: "Hack the Wave",
+      pathName: hackthewave,
+      types: ["Graphic"],
+      url: "https://www.behance.net/gallery/183945265/Hack-the-Wave",
+    },
+    {
+      title: "Sungha Jung",
+      pathName: sungha,
+      types: ["Web"],
+      url: "https://www.behance.net/gallery/183949489/Sungha-Jung-landing-page-concept",
+    },
     { title: "Steven Van", pathName: yass, types: ["Graphic"] },
     { title: "Clumsy", pathName: yass, types: ["Graphic"] },
     { title: "Andrew Foy", pathName: yass, types: ["Graphic"] },
@@ -104,7 +114,7 @@
 <svelte:window on:click|stopPropagation={handleClick} />
 
 <div class="menu" bind:this={menu}>
-  {#each items as { title, pathName, types, context }, i}
-    <MenuItem {i} {title} {pathName} {types} {context} />
+  {#each items as { title, pathName, types, context, url }, i}
+    <MenuItem {i} {title} {pathName} {types} {context} {url} />
   {/each}
 </div>

@@ -1,7 +1,7 @@
 <script>
   // TODO: SOME KIND OF SVELTE STORE THAT NOTES WHICH CONTEXTS ARE OPEN AND CLOSED
 
-  export let i, title, pathName, types, context;
+  export let i, title, pathName, types, context, url;
   let innertext,
     imageWrapper,
     item,
@@ -15,6 +15,7 @@
   import { onMount } from "svelte";
   import ContextMenu from "./ContextMenu.svelte";
   import { eventFired, activeContexts } from "$lib/store.js";
+  import MenuItemWrapper from "./MenuItemWrapper.svelte";
 
   $: itemLeft = item && item.offsetLeft;
   $: itemTop = item && item.offsetTop;
@@ -34,7 +35,7 @@
         contextComponent.toggleContext(
           value[i].e,
           itemLeft,
-          itemTop + itemHeight,
+          itemTop + itemHeight
         );
       }
     });
@@ -108,10 +109,12 @@
       <img src={pathName} class="menu__item-image" alt="" />
     </div>
   </div>
-  <span class="menu__item-text">
-    <span class="menu__item-innertext" bind:this={innertext}>{title}</span>
-    <span class="menu__item-innertext-subtitle">[{types.join(" / ")}]</span>
-  </span>
+  <MenuItemWrapper {url}>
+    <span class="menu__item-text">
+      <span class="menu__item-innertext" bind:this={innertext}>{title}</span>
+      <span class="menu__item-innertext-subtitle">[{types.join(" / ")}]</span>
+    </span>
+  </MenuItemWrapper>
 </div>
 
 {#if context}
