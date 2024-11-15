@@ -1,7 +1,7 @@
 <script>
   import { scrollY } from "$lib/store.js";
-  import NoiseOverlay from "../lib/components/NoiseOverlay.svelte";
-  import UnderConstruction from "../lib/components/UnderConstruction.svelte";
+  // import NoiseOverlay from "../lib/components/NoiseOverlay.svelte";
+  // import UnderConstruction from "../lib/components/UnderConstruction.svelte";
 
   let scroll;
 
@@ -18,9 +18,6 @@
 <svelte:window bind:scrollY={scroll} />
 
 <div class="body__container">
-  <NoiseOverlay />
-  <UnderConstruction />
-  <!-- <Work /> -->
 </div>
 
 <style lang="sass">
@@ -48,18 +45,18 @@
     background-color: variables.$font-color
     font-family: variables.$font-default
 
-  .body__container
-    padding: 0
-    margin: 0
-    width: 100%
-    height: 100%
-    border: variables.$border-standard
-    border-radius: 2rem
-    background-color: variables.$background-color
-    background-image: url('$lib/assets/images/dots.svg'), url('$lib/assets/images/dust-and-scratches.png')
-    background-size: auto auto
-    background-position: 50% 50%, 50% 50%
-    padding: 4em
+  // .body__container
+  //   padding: 0
+  //   margin: 0
+  //   width: 100%
+  //   height: 100%
+  //   border: variables.$border-standard
+  //   border-radius: 2rem
+  //   background-color: variables.$background-color
+  //   background-image: url('$lib/assets/images/dots.svg'), url('$lib/assets/images/dust-and-scratches.png')
+  //   background-size: auto auto
+  //   background-position: 50% 50%, 50% 50%
+  //   padding: 4em
 
 
 </style>
