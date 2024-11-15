@@ -1,7 +1,7 @@
 <script>
   import { scrollY } from "$lib/store.js";
-  import Work from "$lib/components/Work.svelte";
   import NoiseOverlay from "../lib/components/NoiseOverlay.svelte";
+  import UnderConstruction from "../lib/components/UnderConstruction.svelte";
 
   let scroll;
 
@@ -19,7 +19,8 @@
 
 <div class="body__container">
   <NoiseOverlay />
-  <Work />
+  <UnderConstruction />
+  <!-- <Work /> -->
 </div>
 
 <style lang="sass">
