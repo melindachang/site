@@ -1,5 +1,6 @@
 <script>
   import { scrollY } from "$lib/store.js";
+  import NavBar from "../lib/components/NavBar.svelte";
   // import NoiseOverlay from "../lib/components/NoiseOverlay.svelte";
   // import UnderConstruction from "../lib/components/UnderConstruction.svelte";
 
@@ -18,6 +19,12 @@
 <svelte:window bind:scrollY={scroll} />
 
 <div class="body__container">
+  <NavBar />
+  <!-- <p>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo ipsum eius
+    expedita qui velit perspiciatis consequuntur asperiores molestias, culpa
+    porro magnam earum totam delectus placeat quia neque nulla commodi quo.
+  </p> -->
 </div>
 
 <style lang="sass">
@@ -42,7 +49,7 @@
     font-size: 2.2rem
     // padding: 4em
     color: variables.$font-color
-    background-color: variables.$font-color
+    background-color: variables.$background-color
     font-family: variables.$font-default
 
   // .body__container
