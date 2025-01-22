@@ -6,10 +6,17 @@
 
   const pages = [
     {
+      name: "Home",
+      keypress: "H",
+      local: true,
+      href: "/",
+      active: false,
+    },
+    {
       name: "Writing",
       keypress: "W",
       local: true,
-      href: "/",
+      href: "/writing",
       active: false,
     },
     {
@@ -71,20 +78,25 @@
 <svelte:window on:keypress={(e) => handleKeypress(e)} bind:innerWidth />
 
 <div class="nav">
-  {#each pages as page, i}
-    <a
-      href={page.href}
-      target={!page.local ? "_blank" : null}
-      class:active={page.local ? page.active : null}
-      on:click={page.local ? () => toggleActive(i) : null}
-    >
-      {innerWidth >= 992 ? `[${page.keypress}] ${page.name}` : page.name}</a
-    >
-  {/each}
+  <div class="nav__content">
+    {#each pages as page, i}
+      <a
+        class="nav__link"
+        href={page.href}
+        target={!page.local ? "_blank" : null}
+        class:active={page.local ? page.active : null}
+        on:click={page.local ? () => toggleActive(i) : null}
+      >
+        {innerWidth >= 992 ? `[${page.keypress}] ${page.name}` : page.name}</a
+      >
+    {/each}
+  </div>
 </div>
 
 <style lang="sass">
-  @use '$lib/sass/_variables'
+  @use '../sass/_variables'
+  @use '../sass/_breakpoints'
+  @use 'sass:map'
 
   .nav
     position: fixed
@@ -94,28 +106,30 @@
     width: 100%
     padding: 1.2rem
     display: flex
-    // justify-content: space-between
-    a
+    justify-content: center
+    .nav__content
       display: flex
-      background: variables.$off-black-transparent
-      font-size: 1.2rem
-      line-height: 1.2
-      text-decoration: none
-      color: variables.$off-black
-      padding: .5rem .8rem
-      text-transform: uppercase
-      font-family: variables.$font-monospace
-      letter-spacing: -.3px
-      border-radius: 2px
-      &.active
-        background: variables.$off-black
-        color: variables.$off-white
-      &:hover
-        background: variables.$accent-bright
-      &:not(:last-child)
-        margin-right: .3rem
-      &:last-child
-        margin-left: auto
+      width: 100%
+      max-width: map.get(breakpoints.$breakpoints, xxl)
+      .nav__link
+        display: flex
+        background: variables.$background-color-lighter
+        font-size: 1.2rem
+        line-height: 1.2
+        text-decoration: none
+        color: variables.$text-color
+        padding: .5rem .8rem
+        text-transform: uppercase
+        font-family: variables.$font-monospace
+        letter-spacing: -.3px
+        border-radius: 2px
+        &.active, &:hover
+          background: variables.$text-color
+          color: variables.$background-color
+        &:not(:last-child)
+          margin-right: .3rem
+        &:last-child
+          margin-left: auto
 
 
 

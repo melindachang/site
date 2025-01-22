@@ -1,20 +1,19 @@
-
 @use '../sass/_variables'
 @use '../sass/_fonts'
 
-:global(*), :global(*::before), :global(*::after)
+*, *::before, *::after
   box-sizing: border-box
 
-:global(html)
+html
   font-size: 62.5%
 
-:global(body)
+body
   width: 100%
   position: relative
   margin: 0
   padding: 0
   overflow-x: hidden
   font-size: 1.6rem
-  color: variables.$off-black
-  background-color: variables.$off-white
-  font-family: variables.$font-default
+  color: variables.$text-color
+  background-color: variables.$background-color
+  font-family: variables.$font-sans-serif
