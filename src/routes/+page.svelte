@@ -1,12 +1,2 @@
-<script>
-  import SectionWithHeader from "../lib/components/SectionWithHeader.svelte";
-</script>
-
-<SectionWithHeader title="Writing">
-  <!-- <p>Test</p> -->
-</SectionWithHeader>
-
-<style lang="sass">
-  @use '$lib/sass/variables'
-
-</style>
+<h1>Welcome to SvelteKit</h1>
+<p>Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the documentation</p>
