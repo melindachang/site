@@ -3,7 +3,7 @@
 </script>
 
 <SectionWithHeader title="Writing">
-  <p>Test</p>
+  <!-- <p>Test</p> -->
 </SectionWithHeader>
 
 <style lang="sass">

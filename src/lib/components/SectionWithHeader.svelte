@@ -24,5 +24,5 @@
         font-weight: 400
         font-size: variables.$section-title-font-size
         letter-spacing: -.08em
-  
+
 </style>

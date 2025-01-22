@@ -1,90 +1,90 @@
-<script>
-  import { goto } from "$app/navigation";
+<script lang="ts">
+  import { goto } from '$app/navigation'
   import { onMount } from "svelte";
+
+  let innerWidth: number;
 
   const pages = [
     {
       name: "Writing",
       keypress: "W",
+      local: true,
       href: "/",
       active: false,
     },
     {
       name: "Projects",
       keypress: "P",
+      local: true,
       href: "/projects",
+      active: false,
+    },
+    {
+      name: "GitHub",
+      keypress: "G",
+      local: false,
+      href: "https://www.github.com/melindachang",
+      active: false,
+    },
+    {
+      name: "Linkedin",
+      keypress: "L",
+      local: false,
+      href: "https://linkedin.com/in/melindahchang",
+      active: false,
+    },
+    {
+      name: "Contact",
+      keypress: "C",
+      local: false,
+      href: "mailto:melinda@u.northwestern.edu",
       active: false,
     },
   ];
 
-  const external_links = [
-    {
-      keypress: "G",
-      href: "https://www.github.com/melindachang",
-    },
-    {
-      keypress: "L",
-      href: "https://www.linkedin.com/in/melindahchang",
-    },
-    {
-      keypress: "C",
-      href: "mailto:melindachang.hy@gmail.com",
-    },
-  ];
-
-  const toggleActive = (i) => {
+  const toggleActive = (i: number) => {
     pages.forEach((el) => (el.active = false));
-
     pages[i].active = true;
   };
 
-  const handleKeypress = (e) => {
+  const handleKeypress = (e: KeyboardEvent) => {
     pages.forEach((el, i) => {
       if (el.keypress === e.key.toUpperCase()) {
-        toggleActive(i);
-        goto(el.href);
+        if (el.local) {
+          toggleActive(i);
+          goto(el.href);
+        } else {
+          window.open(el.href, "_blank");
+        }
         return;
-      }
-    });
-
-    external_links.forEach((el) => {
-      if (el.keypress === e.key.toUpperCase()) {
-        window.open(el.href, "_blank");
       }
     });
   };
 
   onMount(() => {
     const currentPath = window.location.pathname;
-    console.log(currentPath);
     let i = pages.findIndex((el) => el.href === currentPath);
     toggleActive(i);
   });
 </script>
 
-<svelte:window on:keypress={(e) => handleKeypress(e)} />
+<svelte:window on:keypress={(e) => handleKeypress(e)} bind:innerWidth />
 
 <div class="nav__container">
-  <div class="nav__left">
-    {#each pages as page, i}
-      <a
-        href={page.href}
-        class:active={page.active}
-        on:click={() => toggleActive(i)}>[{page.keypress}] {page.name}</a
-      >
-    {/each}
-    <a href="https://www.github.com/melindachang" target="_blank">[G] GITHUB</a>
-    <a href="https://www.linkedin.com/in/melindahchang" target="_blank"
-      >[L] LINKEDIN</a
+  {#each pages as page, i}
+    <a
+      href={page.href}
+      target={!page.local ? "_blank" : null}
+      class:active={page.local ? page.active : null}
+      on:click={page.local ? () => toggleActive(i) : null}
     >
-  </div>
-  <div class="nav__right">
-    <a href="mailto:melindachang.hy@gmail.com">[C] CONTACT</a>
-  </div>
+      {innerWidth >= 992 ? `[${page.keypress}] ${page.name}` : page.name}</a
+    >
+  {/each}
 </div>
 
 <style lang="sass">
-  @use '$lib/sass/variables'
+  @use '$lib/sass/_variables'
 
   .nav__container
     position: fixed
@@ -94,24 +94,28 @@
     width: 100%
     padding: 1.2rem
     display: flex
-    justify-content: space-between
+    // justify-content: space-between
     a
-      background: variables.$nav-btn-bg
+      display: flex
+      background: variables.$off-black-transparent
       font-size: 1.2rem
-      line-height: 1
+      line-height: 1.2
       text-decoration: none
-      color: variables.$font-color
+      color: variables.$off-black
       padding: .5rem .8rem
       text-transform: uppercase
       font-family: variables.$font-monospace
+      letter-spacing: -.3px
       border-radius: 2px
       &.active
-        background: variables.$nav-btn-bg-active
-        color: variables.$nav-btn-color-active
+        background: variables.$off-black
+        color: variables.$off-white
       &:hover
-        background: variables.$nav-btn-bg-hover
+        background: variables.$accent-bright
       &:not(:last-child)
-        margin-right: .2rem
+        margin-right: .3rem
+      &:last-child
+        margin-left: auto
 
 
 

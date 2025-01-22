@@ -1,6 +1,9 @@
 <script>
   import { scrollY } from "$lib/store.js";
-  import NavBar from "../lib/components/NavBar.svelte";
+  import NavBar from "../lib/components/NavBar.svelte";\
+  
+  import '@sass/app.sass'
+
   // import NoiseOverlay from "../lib/components/NoiseOverlay.svelte";
   // import UnderConstruction from "../lib/components/UnderConstruction.svelte";
 
@@ -32,27 +35,6 @@
   @use '$lib/sass/fonts'
   @use '$lib/sass/variables'
 
-  :global(*), :global(*::before), :global(*::after)
-    box-sizing: border-box
-
-  :global(html)
-    font-size: 62.5%
-
-  :global(body)
-    width: 100%
-    position: relative
-    margin: 0
-    padding: 0
-    overflow-x: hidden
-    // display: flex
-    // justify-content: center
-    // align-items: center
-    font-size: 2.2rem
-    // padding: 4em
-    color: variables.$font-color
-    background-color: variables.$background-color
-    font-family: variables.$font-default
-
   .body__container
     position: relative
     padding: 1.2rem
@@ -62,7 +44,7 @@
   //   height: 100%
   //   border: variables.$border-standard
   //   border-radius: 2rem
-  //   background-color: variables.$background-color
+  //   background-color: variables.$off-white
   //   background-image: url('$lib/assets/images/dots.svg'), url('$lib/assets/images/dust-and-scratches.png')
   //   background-size: auto auto
   //   background-position: 50% 50%, 50% 50%
