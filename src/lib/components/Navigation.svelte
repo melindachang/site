@@ -1,81 +1,87 @@
 <script lang="ts">
-  import { goto } from "$app/navigation";
-  import { onMount } from "svelte";
+  import { goto, onNavigate } from '$app/navigation'
+  import { onMount } from 'svelte'
 
-  let innerWidth: number;
+  let innerWidth: number
 
   const pages = [
     {
-      name: "Home",
-      keypress: "H",
+      name: 'About',
+      keypress: 'A',
       local: true,
-      href: "/",
+      href: '/',
       active: false,
     },
     {
-      name: "Writing",
-      keypress: "W",
+      name: 'Writing',
+      keypress: 'W',
       local: true,
-      href: "/writing",
+      href: '/writing',
       active: false,
     },
     {
-      name: "Projects",
-      keypress: "P",
+      name: 'Projects',
+      keypress: 'P',
       local: true,
-      href: "/projects",
+      href: '/projects',
       active: false,
     },
     {
-      name: "GitHub",
-      keypress: "G",
+      name: 'GitHub',
+      keypress: 'G',
       local: false,
-      href: "https://www.github.com/melindachang",
+      href: 'https://www.github.com/melindachang',
       active: false,
     },
     {
-      name: "Linkedin",
-      keypress: "L",
+      name: 'Linkedin',
+      keypress: 'L',
       local: false,
-      href: "https://linkedin.com/in/melindahchang",
+      href: 'https://linkedin.com/in/melindahchang',
       active: false,
     },
     {
-      name: "Contact",
-      keypress: "C",
+      name: 'Contact',
+      keypress: 'C',
       local: false,
-      href: "mailto:melinda@u.northwestern.edu",
+      href: 'mailto:melinda@u.northwestern.edu',
       active: false,
     },
-  ];
+  ]
 
   const toggleActive = (i: number) => {
-    pages.forEach((el) => (el.active = false));
-    pages[i].active = true;
-  };
+    pages.forEach(el => (el.active = false))
+    pages[i].active = true
+  }
 
   const handleKeypress = (e: KeyboardEvent) => {
     pages.forEach((el, i) => {
       if (el.keypress === e.key.toUpperCase()) {
         if (el.local) {
-          toggleActive(i);
-          goto(el.href);
+          toggleActive(i)
+          goto(el.href)
         } else {
-          window.open(el.href, "_blank");
+          window.open(el.href, '_blank')
         }
-        return;
+        return
       }
-    });
-  };
+    })
+  }
 
   onMount(() => {
-    const currentPath = window.location.pathname;
-    let i = pages.findIndex((el) => el.href === currentPath);
-    toggleActive(i);
-  });
+    const currentPath = window.location.pathname
+    let i = pages.findIndex(el => el.href === currentPath)
+    toggleActive(i)
+  })
+
+  onNavigate(() => {
+    const currentPath = window.location.pathname
+    let i = pages.findIndex(el => el.href === currentPath)
+    toggleActive(i)
+  })
 </script>
 
-<svelte:window on:keypress={(e) => handleKeypress(e)} bind:innerWidth />
+<svelte:window on:keypress={e => handleKeypress(e)} bind:innerWidth />
 
 <div class="nav">
   <div class="nav__content">
@@ -83,7 +89,7 @@
       <a
         class="nav__link"
         href={page.href}
-        target={!page.local ? "_blank" : null}
+        target={!page.local ? '_blank' : null}
         class:active={page.local ? page.active : null}
         on:click={page.local ? () => toggleActive(i) : null}
       >

@@ -21,9 +21,7 @@
 <CrtLines />
 <main>
   <Navigation />
-  <div class="section">
-    {@render children()}
-  </div>
+  {@render children()}
 </main>
 
 <style lang="sass">
@@ -36,8 +34,4 @@
     margin: 0 auto
     width: 100%
     max-width: map.get(breakpoints.$breakpoints, xxl)
-    .section
-      padding: 9.3rem 1.2rem
-      display: flex
-      flex-direction: column
 </style>
