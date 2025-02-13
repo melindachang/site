@@ -6,6 +6,7 @@
 
 html
   font-size: 62.5%
+  scrollbar-gutter: stable
 
 body
   width: 100%
@@ -39,3 +40,13 @@ code
   border: 0.5px solid variables.$dotted-border-color
   border-radius: 4px
 
+::-webkit-scrollbar
+  width: 3px
+
+::-webkit-scrollbar
+  &-track
+    background: variables.$background-color
+  &-thumb
+    background: variables.$dotted-border-color
+    &:hover
+      background: variables.$text-color

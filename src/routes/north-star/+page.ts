@@ -1,5 +1,5 @@
 export const load = () => {
   return {
-    title: 'Projects',
-  }
-}
+    title: "North Star",
+  };
+};

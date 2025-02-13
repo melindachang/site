@@ -1,10 +1,10 @@
 <script lang="ts">
-  import { page } from "$app/state";
-  import CrtLines from "$lib/components/CrtLines.svelte";
-  import Navigation from "$lib/components/Navigation.svelte";
-  import "$lib/sass/app.sass";
+  import { page } from '$app/state'
+  import CrtLines from '$lib/components/CrtLines.svelte'
+  import Navigation from '$lib/components/Navigation.svelte'
+  import '$lib/sass/app.sass'
 
-  let { children } = $props();
+  let { children } = $props()
 </script>
 
 <svelte:head>

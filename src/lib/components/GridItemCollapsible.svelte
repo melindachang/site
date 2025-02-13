@@ -19,8 +19,7 @@
       height: `calc(36px + ${bodyHeight}px)`,
       duration: 0.3,
       ease: 'power1.inOut',
-    })
-    tl.to(
+    }).to(
       collapsible.querySelector('.grid__item__collapsible__body'),
       {
         opacity: 1,
