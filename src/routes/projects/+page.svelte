@@ -21,6 +21,11 @@
                 &mdash;
                 {pub.venue}
               </h3>
+              <div class="link-list__item__tags">
+                {#each pub.tags as tag}
+                  <span class="link-list__item__tag"># {tag}</span>
+                {/each}
+              </div>
             </div>
             <div class="link-list__item__actions">
               {#each pub.links as link}
@@ -75,18 +80,25 @@
     .link-list
       display: flex
       flex-direction: column
+      gap: 2.4rem
       .link-list__item
         display: flex
         flex-direction: column
         gap: 2.4rem
+        border-bottom: 0.5px solid variables.$text-color
+        padding-bottom: 2.4rem
         @include breakpoints.lg
           gap: 5.6rem
           flex-direction: row
         .link-list__item__info
+          display: flex
+          gap: 1.6rem
+          flex-direction: column
           @include breakpoints.lg
             flex: 3
           .link-list__item__title
             margin: 0
+            line-height: 100%
             letter-spacing: -.04em
             font-weight: 400
             @include breakpoints.lg
@@ -97,6 +109,20 @@
             font-weight: 400
             margin: 0
             font-size: calc(14px + ((21 - 14) * (100vw - 390px) / (1728 - 390)))
+          .link-list__item__tags
+            display: flex
+            flex-wrap: wrap
+            gap: 8px
+            .link-list__item__tag
+              text-decoration: none
+              font-size: 1.2rem
+              text-transform: uppercase
+              font-family: variables.$font-monospace
+              color: variables.$text-color
+              border: 0.5px dotted variables.$dotted-border-color
+              padding: 1px 4px 3px 4px
+              border-radius: 4px
+
         .link-list__item__actions
           display: flex
           flex-direction: column
@@ -108,7 +134,7 @@
             justify-content: space-between
             align-items: center
             padding: 1.6rem 0
-            font-size: 1.6rem
+            font-size: 1.4rem
             line-height: 100%
             text-transform: uppercase
             font-family: variables.$font-monospace
