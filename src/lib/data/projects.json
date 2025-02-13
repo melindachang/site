@@ -1,0 +1,26 @@
+{
+  "publications": [
+    {
+      "title": "A Theory of Scientific Programming Efficacy",
+      "authors": [
+        "Elizaveta Pertseva",
+        "Melinda Chang",
+        "Ulia Zaman",
+        "Michael Coblenz"
+      ],
+      "venue": "2024 International Conference on Software Engineering",
+      "links": [
+        {
+          "type": "online article",
+          "href": "https://www.computer.org/csdl/proceedings-article/icse/2024/021700c369/1WDJbZHLtrG"
+        },
+        {
+          "type": "PDF",
+          "href": "https://cseweb.ucsd.edu/~mcoblenz/assets/pdf/Scientific_Computing__ICSE_2024.pdf"
+        }
+      ],
+      "tags": ["human-computer interaction", "software engineering"]
+    }
+  ],
+  "software": [{}]
+}

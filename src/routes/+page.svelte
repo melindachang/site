@@ -19,12 +19,9 @@
       <em>The Sims 4</em>.
       <GridItemCollapsible title="Books I'm reading">
         <ul>
-          <li><em>Culture and Imperialism</em> by Edward Said</li>
-          <li>
-            <em>Camera Lucida: Reflections on Photography</em> by Roland Barthes
-          </li>
-          <li><em>Intercourse</em> by Andrea Dworkin</li>
-          <li><em>The Master and Margarita</em> by Mikhail Bulgakov</li>
+          <li><em>Beloved</em> by Toni Morrison</li>
+          <li><em>Committed: On Meaning and Madwomen</em> by Suzanne Scanlon</li>
+          <li><em>A Lover's Discourse: Fragments</em> by Roland Barthes</li>
         </ul>
       </GridItemCollapsible>
     </GridItem>
@@ -49,7 +46,7 @@
       </ul>
     </GridItem>
     <GridItem heading="What I'm doing">
-      Apart from research, I'm on the Tech Team of WildHacks, the biggest
+      Apart from research, I'm one of the organizers of WildHacks, the biggest
       hackathon at Northwestern; I'm a staff writer for our campus satire
       magazine, <em>The Flipside</em>; and I'm a member of the Responsible AI
       Student Organization (RAISO).
