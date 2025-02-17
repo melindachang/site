@@ -11,7 +11,8 @@
     <GridItem heading="Bio">
       Hello! I'm Melinda, a first-year student at Northwestern University
       double-majoring in <b>Computer Science</b>
-      and <b>English Literature</b> with a (prospective) minor in Philosophy.
+      and <b>English Literature</b> with a (prospective) minor in
+      <b>Art History</b>.
       <br />
       In my free time, I take pictures of Chicago,
       <a href="/writing">write about whatever I want</a>, and commit human
@@ -20,7 +21,9 @@
       <GridItemCollapsible title="Books I'm reading">
         <ul>
           <li><em>Beloved</em> by Toni Morrison</li>
-          <li><em>Committed: On Meaning and Madwomen</em> by Suzanne Scanlon</li>
+          <li>
+            <em>Committed: On Meaning and Madwomen</em> by Suzanne Scanlon
+          </li>
           <li><em>A Lover's Discourse: Fragments</em> by Roland Barthes</li>
         </ul>
       </GridItemCollapsible>
@@ -36,7 +39,7 @@
         </li>
         <li>
           <b>Digital humanities</b>: Building diverse computational solutions to
-          facilitate and/or augment humanities research
+          facilitate humanities scholarship, esp. in heritage science
         </li>
         <li>
           <b>AI ethics</b>: Exploring how creatives can live and work
@@ -51,9 +54,9 @@
       magazine, <em>The Flipside</em>; and I'm a member of the Responsible AI
       Student Organization (RAISO).
       <br />
-      The Internet can still be fun—I'm always
-      <a href="/projects">working on some project or another</a> to help us figure
-      that out.
+      The Internet isn't as fun as it used to be&mdash;most of the non-academic software
+      I write these days is in service of fixing that.
+      <a href="/projects">See what I'm working on</a>.
     </GridItem>
     <GridItem heading="Find me everywhere">
       You can reach me via email at <code>melinda [at] u.northwestern.edu</code

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { page } from '$app/state'
+  import { navigating, page } from '$app/state'
   import CrtLines from '$lib/components/CrtLines.svelte'
   import Navigation from '$lib/components/Navigation.svelte'
   import '$lib/sass/app.sass'
@@ -19,10 +19,14 @@
 </svelte:head>
 
 <CrtLines />
-<main>
-  <Navigation />
-  {@render children()}
-</main>
+{#if navigating == null}
+  Loading...
+{:else}
+  <main>
+    <Navigation />
+    {@render children()}
+  </main>
+{/if}
 
 <style lang="sass">
   @use '../lib/sass/_variables'
