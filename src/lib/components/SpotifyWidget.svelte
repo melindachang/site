@@ -2,29 +2,50 @@
   import { onMount } from 'svelte'
   import { DotLottieSvelte } from '@lottiefiles/dotlottie-svelte'
   import XIcon from '$lib/assets/icons/XIcon.svelte'
+  import { gsap } from 'gsap'
 
   let { song } = $props()
-
-  let player = $state()
   let closed = $state(false)
+  let artist: HTMLSpanElement | undefined = $state()
+  let visibleWidth: number | undefined = $state()
+  let fullWidth: number | undefined = $state()
+
+  let scrollAmt: number
+  $effect(() => {
+    if (song) {
+      scrollAmt = visibleWidth! - fullWidth!
+
+      tl.clear()
+      tl.to(artist!, {
+        marginLeft: scrollAmt < 0 ? `${scrollAmt}px` : '0px',
+        ease: 'linear',
+        duration: -(scrollAmt / 100),
+      })
+    }
+  })
 
   const closePlayer = () => {
     closed = true
   }
 
+  const tl = gsap.timeline({ paused: true })
+
   onMount(() => {
-    setInterval(async () => {
+    let updateSong = async () => {
       song = await fetch('/api/spotify').then(res => res.json())
-    }, 10000)
+    }
+
+    updateSong()
+    setInterval(updateSong, 10000)
   })
 </script>
 
 {#if !closed && song && song.isPlaying}
-  <div class="player" bind:this={player}>
+  <div class="player">
     <div class="player__heading">
-      <div class="player__heading__x" onclick={closePlayer}>
+      <button class="player__heading__x" onclick={closePlayer}>
         <XIcon />
-      </div>
+      </button>
       <span class="player__heading__title">Now Playing &mdash; Spotify</span>
       <div class="player__heading__icon">
         <DotLottieSvelte src="/now-playing.lottie" loop autoplay />
@@ -33,11 +54,22 @@
     <div class="player__background">
       <div
         class="player__img"
-        style={`background-color: gray; background-image: url(${song.albumImageUrl})`}
+        style={`background-color: gray; background-image: url('${song.albumImageUrl}')`}
       ></div>
       <div class="player__text">
-        <a href={song.songUrl} target="_blank" class="player__text__title">{song.title}</a>
-        <span class="player__text__artist">{song.artist}</span>
+        <a href={song.songUrl} target="_blank" class="player__text__title"
+          >{song.title}</a
+        >
+        <div
+          class="player__text__artist"
+          onmouseover={() => tl.play()}
+          onmouseleave={() => tl.seek(0) && tl.pause()}
+          bind:clientWidth={visibleWidth}
+        >
+          <span bind:this={artist} bind:clientWidth={fullWidth}
+            >{song.artist}</span
+          >
+        </div>
       </div>
     </div>
   </div>
@@ -56,7 +88,7 @@
     align-items: center
     gap: 6px
     padding: 4px
-    width: 20em
+    // width: 20em
     background: variables.$background-color
     border: 0.5px solid variables.$text-color
     @include breakpoints.lg
@@ -81,6 +113,8 @@
         line-height: 1
         width: 1.2rem
         margin-right: auto
+        background: none
+        border: none
         cursor: pointer
     .player__background
       position: relative
@@ -94,13 +128,11 @@
       .player__text
         display: flex
         flex-direction: column
+        gap: 0.25em
+        width: 12em
         justify-content: end
-        & > *
-          text-overflow: ellipsis
         .player__text__title
           text-decoration: none
-          &:hover
-            text-decoration: underline
           overflow: hidden
           text-overflow: ellipsis
           display: -webkit-box
@@ -108,15 +140,33 @@
           -webkit-line-clamp: 2
           line-height: 1.5em
           max-height: 3em
+          &:hover
+            text-decoration: underline
         .player__text__artist
           overflow: hidden
           color: variables.$dotted-border-color
-          text-overflow: ellipses
           display: -webkit-box
           -webkit-box-orient: vertical
           -webkit-line-clamp: 1
-          line-height: 1.5em
-          max-height: 1.5em
+          line-height: 1em
+          max-height: 1em
+          cursor: pointer
+          position: relative
+          span
+            display: inline-block
+            overflow: hidden
+            text-wrap: nowrap
+          &::before
+            content: ''
+            position: absolute
+            right: 0
+            top: 0
+            height: 100%
+            width: 2em
+            background-image: linear-gradient(to right, rgba(255,0,0,0), variables.$background-color)
+          &:hover
+            &::before
+              background: transparent
       .player__img
         height: 100%
         aspect-ratio: 1/1
