@@ -1,5 +1,4 @@
 <script lang="ts">
-  // import SpotifyIcon from '$lib/assets/icons/SpotifyIcon.svelte'
   import { onMount } from 'svelte'
   import { DotLottieSvelte } from '@lottiefiles/dotlottie-svelte'
   import XIcon from '$lib/assets/icons/XIcon.svelte'
@@ -26,7 +25,7 @@
       <div class="player__heading__x" onclick={closePlayer}>
         <XIcon />
       </div>
-      <span class="player__heading__title">Now Playing</span>
+      <span class="player__heading__title">Now Playing &mdash; Spotify</span>
       <div class="player__heading__icon">
         <DotLottieSvelte src="/now-playing.lottie" loop autoplay />
       </div>
@@ -37,7 +36,7 @@
         style={`background-color: gray; background-image: url(${song.albumImageUrl})`}
       ></div>
       <div class="player__text">
-        <a href={song.songUrl} class="player__text__title">{song.title}</a>
+        <a href={song.songUrl} target="_blank" class="player__text__title">{song.title}</a>
         <span class="player__text__artist">{song.artist}</span>
       </div>
     </div>
@@ -95,12 +94,13 @@
       .player__text
         display: flex
         flex-direction: column
-        // gap: .3em
         justify-content: end
         & > *
           text-overflow: ellipsis
         .player__text__title
           text-decoration: none
+          &:hover
+            text-decoration: underline
           overflow: hidden
           text-overflow: ellipsis
           display: -webkit-box
