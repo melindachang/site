@@ -40,38 +40,46 @@
   })
 </script>
 
-{#if !closed && song && song.isPlaying}
+<!-- svelte-ignore a11y_no_static_element_interactions -->
+<!-- svelte-ignore a11y_mouse_events_have_key_events -->
+{#if !closed}
   <div class="player">
     <div class="player__heading">
       <button class="player__heading__x" onclick={closePlayer}>
         <XIcon />
       </button>
-      <span class="player__heading__title">Now Playing &mdash; Spotify</span>
-      <div class="player__heading__icon">
-        <DotLottieSvelte src="/now-playing.lottie" loop autoplay />
-      </div>
+      <span class="player__heading__title"
+        >{song && song.isPlaying ? 'Now' : 'Not'} Playing &mdash; Spotify</span
+      >
+      {#if song && song.isPlaying}
+        <div class="player__heading__icon">
+          <DotLottieSvelte src="/now-playing.lottie" loop autoplay />
+        </div>
+      {/if}
     </div>
-    <div class="player__background">
-      <div
-        class="player__img"
-        style={`background-color: gray; background-image: url('${song.albumImageUrl}')`}
-      ></div>
-      <div class="player__text">
-        <a href={song.songUrl} target="_blank" class="player__text__title"
-          >{song.title}</a
-        >
+    {#if song && song.isPlaying}
+      <div class="player__background">
         <div
-          class="player__text__artist"
-          onmouseover={() => tl.play()}
-          onmouseleave={() => tl.seek(0) && tl.pause()}
-          bind:clientWidth={visibleWidth}
-        >
-          <span bind:this={artist} bind:clientWidth={fullWidth}
-            >{song.artist}</span
+          class="player__img"
+          style={`background-color: gray; background-image: url('${song.albumImageUrl}')`}
+        ></div>
+        <div class="player__text">
+          <a href={song.songUrl} target="_blank" class="player__text__title"
+            >{song.title}</a
           >
+          <div
+            class="player__text__artist"
+            onmouseover={() => tl.play()}
+            onmouseleave={() => tl.seek(0) && tl.pause()}
+            bind:clientWidth={visibleWidth}
+          >
+            <span bind:this={artist} bind:clientWidth={fullWidth}
+              >{song.artist}</span
+            >
+          </div>
         </div>
       </div>
-    </div>
+    {/if}
   </div>
 {/if}
 
@@ -106,6 +114,7 @@
         font-size: 1rem
         line-height: 1
         font-family: variables.$font-monospace
+        margin-left: 1em
       .player__heading__icon
         height: 1.4rem
       .player__heading__x
@@ -150,7 +159,7 @@
           -webkit-line-clamp: 1
           line-height: 1em
           max-height: 1em
-          cursor: pointer
+          // cursor: pointer
           position: relative
           span
             display: inline-block

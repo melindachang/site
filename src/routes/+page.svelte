@@ -10,7 +10,7 @@
   <div class="grid">
     <GridItem heading="Bio">
       Hello! I'm Melinda, a first-year student at Northwestern University
-      double-majoring in <b>Computer Science</b>
+      studying <b>Computer Science</b>
       and <b>English Literature</b> with a (prospective) minor in
       <b>Art History</b>.
       <br />
@@ -18,15 +18,12 @@
       <a href="/writing">write about whatever I want</a>, and commit human
       rights violations on
       <em>The Sims 4</em>.
-      <GridItemCollapsible title="Stuff I'm reading">
+      <!-- <GridItemCollapsible title="Stuff I'm looking forward to">
         <ul>
-          <li>
-            <em>Committed: On Meaning and Madwomen</em> by Suzanne Scanlon
-          </li>
-          <li><em>A Lover's Discourse: Fragments</em> by Roland Barthes</li>
-          <li><em>Les Fleurs du Mal</em> by Charles Baudelaire</li>
+          <li>Seeing FKA Twigs on the 'Eusexua' tour - March 2025</li>
+          <li>Seeing Ichiko Aoba in concert - May 2025</li>
         </ul>
-      </GridItemCollapsible>
+      </GridItemCollapsible> -->
     </GridItem>
     <GridItem heading="Research interests">
       <ul>
@@ -55,7 +52,7 @@
       Student Organization (RAISO).
       <br />
       A lot of people think the Internet isn't fun anymore&mdash;I like to write
-      software to show people that it still can be.
+      software to prove that it still can be.
       <a href="/projects">See what I'm working on</a>.
     </GridItem>
     <GridItem heading="Find me everywhere">
