@@ -3,10 +3,10 @@
   import GridItemCollapsible from '$lib/components/GridItemCollapsible.svelte'
   import Section from '$lib/components/Section.svelte'
 
-  // let { data } = $props();
+  let { data } = $props()
 </script>
 
-<Section title="About" numItems="4">
+<Section title="About" numItems={data.numItems}>
   <div class="grid">
     <GridItem heading="Bio">
       Hello! I'm Melinda, a first-year student at Northwestern University
@@ -18,13 +18,13 @@
       <a href="/writing">write about whatever I want</a>, and commit human
       rights violations on
       <em>The Sims 4</em>.
-      <GridItemCollapsible title="Books I'm reading">
+      <GridItemCollapsible title="Stuff I'm reading">
         <ul>
-          <li><em>Beloved</em> by Toni Morrison</li>
           <li>
             <em>Committed: On Meaning and Madwomen</em> by Suzanne Scanlon
           </li>
           <li><em>A Lover's Discourse: Fragments</em> by Roland Barthes</li>
+          <li><em>Les Fleurs du Mal</em> by Charles Baudelaire</li>
         </ul>
       </GridItemCollapsible>
     </GridItem>
@@ -54,8 +54,8 @@
       magazine, <em>The Flipside</em>; and I'm a member of the Responsible AI
       Student Organization (RAISO).
       <br />
-      The Internet isn't as fun as it used to be&mdash;most of the non-academic software
-      I write these days is in service of fixing that.
+      A lot of people think the Internet isn't fun anymore&mdash;I like to write
+      software to show people that it still can be.
       <a href="/projects">See what I'm working on</a>.
     </GridItem>
     <GridItem heading="Find me everywhere">

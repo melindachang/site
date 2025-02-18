@@ -21,6 +21,7 @@
 		"vite": "^6.0.0"
 	},
 	"dependencies": {
+		"@lottiefiles/dotlottie-svelte": "^0.4.6",
 		"gsap": "^3.12.7"
 	}
 }

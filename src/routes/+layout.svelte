@@ -2,9 +2,10 @@
   import { navigating, page } from '$app/state'
   import CrtLines from '$lib/components/CrtLines.svelte'
   import Navigation from '$lib/components/Navigation.svelte'
+  import SpotifyWidget from '$lib/components/SpotifyWidget.svelte'
   import '$lib/sass/app.sass'
 
-  let { children } = $props()
+  let { data, children } = $props()
 </script>
 
 <svelte:head>
@@ -26,6 +27,7 @@
     <Navigation />
     {@render children()}
   </main>
+  <SpotifyWidget song={data.song} />
 {/if}
 
 <style lang="sass">

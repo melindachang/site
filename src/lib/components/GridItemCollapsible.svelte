@@ -31,10 +31,8 @@
   })
 </script>
 
-<!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions (who gaf) -->
-
 <div class="grid__item__collapsible" bind:this={collapsible}>
-  <div
+  <button
     class="grid__item__collapsible__title"
     onclick={() => (expanded = !expanded)}
   >
@@ -44,7 +42,7 @@
       <MinusIcon />
     {/if}
     <span>{title}</span>
-  </div>
+  </button>
   <div class="grid__item__collapsible__body" bind:clientHeight={bodyHeight}>
     {@render children()}
   </div>
@@ -61,6 +59,11 @@
     height: calc(3 * 1.2rem)
     .grid__item__collapsible__title
       line-height: 1
+      background: none
+      color: variables.$text-color
+      border: none
+      display: block
+      width: 100%
       padding: 1.2rem
       cursor: pointer
       font-family: variables.$font-monospace

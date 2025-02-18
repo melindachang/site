@@ -1,5 +1,6 @@
 export const load = () => {
   return {
-    title: "Home",
-  };
-};
+    title: 'Home',
+    numItems: '4',
+  }
+}

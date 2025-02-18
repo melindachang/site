@@ -26,13 +26,13 @@
       href: '/writing',
       active: false,
     },
-    // {
-    //   name: 'North Star',
-    //   keypress: 'N',
-    //   local: true,
-    //   href: '/north-star',
-    //   active: false,
-    // },
+    {
+      name: 'Dashboard',
+      keypress: 'D',
+      local: true,
+      href: '/dashboard',
+      active: false,
+    },
     {
       name: 'Contact',
       keypress: 'C',
@@ -85,6 +85,7 @@
         target={!page.local ? '_blank' : null}
         class:active={page.local ? page.active : null}
         on:click={page.local ? () => toggleActive(i) : null}
+        data-sveltekit-preload-data
       >
         {innerWidth >= 992 ? `[${page.keypress}] ${page.name}` : page.name}</a
       >

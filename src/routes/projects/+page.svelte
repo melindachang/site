@@ -6,7 +6,7 @@
   let { data } = $props()
 </script>
 
-<Section title={data.title}>
+<Section title={data.title} numItems={data.numItems}>
   <div class="grid">
     <GridItem heading="Publications">
       <div class="link-list">
