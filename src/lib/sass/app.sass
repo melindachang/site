@@ -1,0 +1,52 @@
+@use '../sass/_variables'
+@use '../sass/_fonts'
+
+*, *::before, *::after
+  box-sizing: border-box
+
+html
+  font-size: 62.5%
+  scrollbar-gutter: stable
+
+body
+  width: 100%
+  position: relative
+  margin: 0
+  padding: 0
+  overflow-x: hidden
+  font-size: 1.6rem
+  color: variables.$text-color
+  background-color: variables.$background-color
+  font-family: variables.$font-sans-serif
+
+::selection
+  background: variables.$text-color
+  color: variables.$background-color
+
+br
+  display: block
+  content: ''
+  margin-bottom: .6em
+
+a
+  color: variables.$text-color
+
+code
+  font-family: variables.$font-monospace
+  background: variables.$background-color-lighter
+  font-size: 0.85em
+  padding: 1px 4px 3px 4px
+  margin: 0 2px
+  border: 0.5px solid variables.$dotted-border-color
+  border-radius: 4px
+
+::-webkit-scrollbar
+  width: 3px
+
+::-webkit-scrollbar
+  &-track
+    background: variables.$background-color
+  &-thumb
+    background: variables.$dotted-border-color
+    &:hover
+      background: variables.$text-color

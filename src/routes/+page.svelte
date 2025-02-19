@@ -1,65 +1,115 @@
-<script>
-  import { scrollY } from "$lib/store.js";
-  import NoiseOverlay from "../lib/components/NoiseOverlay.svelte";
-  import UnderConstruction from "../lib/components/UnderConstruction.svelte";
+<script lang="ts">
+  import GridItem from '$lib/components/GridItem.svelte'
+  import GridItemCollapsible from '$lib/components/GridItemCollapsible.svelte'
+  import Section from '$lib/components/Section.svelte'
 
-  let scroll;
-
-  $: scroll && scrollY.update(() => scroll);
+  let { data } = $props()
 </script>
 
-<svelte:head>
-  <title>Melinda Chang</title>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-</svelte:head>
-
-<svelte:window bind:scrollY={scroll} />
-
-<div class="body__container">
-  <NoiseOverlay />
-  <UnderConstruction />
-  <!-- <Work /> -->
-</div>
+<Section title="About" numItems={data.numItems}>
+  <div class="grid">
+    <GridItem heading="Bio">
+      Hello! I'm Melinda, a first-year student at Northwestern University
+      studying <b>Computer Science</b>
+      and <b>English Literature</b> with a (prospective) minor in
+      <b>Art History</b>.
+      <br />
+      In my free time, I take pictures of Chicago,
+      <a href="/writing">write about whatever I want</a>, and commit human
+      rights violations on
+      <em>The Sims 4</em>.
+      <!-- <GridItemCollapsible title="Stuff I'm looking forward to">
+        <ul>
+          <li>Seeing FKA Twigs on the 'Eusexua' tour - March 2025</li>
+          <li>Seeing Ichiko Aoba in concert - May 2025</li>
+        </ul>
+      </GridItemCollapsible> -->
+    </GridItem>
+    <GridItem heading="Research interests">
+      <ul>
+        <li>
+          The intersection between <b>programming languages</b>,
+          <b>systems</b>, and
+          <b>human-computer interaction</b>: Democratizing software engineering
+          such that everyone can leverage programming tools to their maximum
+          effect
+        </li>
+        <li>
+          <b>Digital humanities</b>: Building diverse computational solutions to
+          facilitate humanities scholarship, esp. in heritage science
+        </li>
+        <li>
+          <b>AI ethics</b>: Exploring how creatives can live and work
+          effectively within a generative information economy, developing
+          technologies to combat exploitative AI
+        </li>
+      </ul>
+    </GridItem>
+    <GridItem heading="What I'm doing">
+      Apart from research, I'm one of the organizers of WildHacks, the biggest
+      hackathon at Northwestern; I'm a staff writer for our campus satire
+      magazine, <em>The Flipside</em>; and I'm a member of the Responsible AI
+      Student Organization (RAISO).
+      <br />
+      A lot of people think the Internet isn't fun anymore&mdash;I like to write
+      software to prove that it still can be.
+      <a href="/projects">See what I'm working on</a>.
+    </GridItem>
+    <GridItem heading="Find me everywhere">
+      You can reach me via email at <code>melinda [at] u.northwestern.edu</code
+      >. If you want to watch me shout into the void, I'm also on
+      <a href="https://goodreads.com/hychang" target="_blank">Goodreads</a>
+      and
+      <a href="https://letterboxd.com/hychang" target="_blank">Letterboxd</a>.
+      <br />
+      <div class="grid__item__socials">
+        <a
+          class="grid__item__socials__link"
+          href="https://github.com/melindachang"
+          target="_blank"
+        >
+          GitHub
+        </a>
+        <a
+          class="grid__item__socials__link"
+          href="https://linkedin.com/in/melindahchang"
+          target="_blank"
+        >
+          Linkedin
+        </a>
+        <a
+          class="grid__item__socials__link"
+          href="https://instagram.com/changrybird"
+          target="_blank"
+        >
+          Instagram
+        </a>
+      </div>
+    </GridItem>
+  </div>
+</Section>
 
 <style lang="sass">
-  @use '$lib/sass/fonts'
-  @use '$lib/sass/variables'
+  @use '../lib/sass/_variables'
+  @use '../lib/sass/_breakpoints'
 
-  :global(*), :global(*::before), :global(*::after)
-    box-sizing: border-box
-
-  :global(html)
-    font-size: 62.5%
-
-  :global(body)
-    width: 100%
-    position: relative
-    margin: 0
-    padding: 0
-    overflow-x: hidden
-    // display: flex
-    // justify-content: center
-    // align-items: center
-    font-size: 2.2rem
-    // padding: 4em
-    color: variables.$font-color
-    background-color: variables.$font-color
-    font-family: variables.$font-default
-
-  .body__container
-    padding: 0
-    margin: 0
-    width: 100%
-    height: 100%
-    border: variables.$border-standard
-    border-radius: 2rem
-    background-color: variables.$background-color
-    background-image: url('$lib/assets/images/dots.svg'), url('$lib/assets/images/dust-and-scratches.png')
-    background-size: auto auto
-    background-position: 50% 50%, 50% 50%
-    padding: 4em
-
+  .grid
+    display: grid
+    gap: 5.6rem
+    @include breakpoints.lg
+      grid-template-columns: repeat(2, 1fr)
+    .grid__item__socials
+      .grid__item__socials__link
+        text-decoration: none
+        font-size: 1.2rem
+        text-transform: uppercase
+        font-family: variables.$font-monospace
+        color: variables.$text-color
+        border: 0.5px dotted variables.$dotted-border-color
+        padding: 1px 4px 3px 4px
+        border-radius: 4px
+        &:hover
+          color: variables.$background-color
+          background: variables.$text-color
 
 </style>
