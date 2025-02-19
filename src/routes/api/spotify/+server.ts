@@ -33,6 +33,7 @@ export const GET: RequestHandler = async () => {
   }
 
   const song = await res.json()
+  console.log(song)
   const isPlaying = song.is_playing
   const title = song.item.name
   const artist = song.item.artists
