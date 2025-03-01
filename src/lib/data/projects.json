@@ -11,11 +11,11 @@
       "venue": "2024 International Conference on Software Engineering",
       "links": [
         {
-          "type": "online article",
-          "href": "https://www.computer.org/csdl/proceedings-article/icse/2024/021700c369/1WDJbZHLtrG"
+          "type": "doi",
+          "href": "https://doi.org/10.1145/3597503.3639139"
         },
         {
-          "type": "PDF",
+          "type": "download pdf",
           "href": "https://cseweb.ucsd.edu/~mcoblenz/assets/pdf/Scientific_Computing__ICSE_2024.pdf"
         }
       ],

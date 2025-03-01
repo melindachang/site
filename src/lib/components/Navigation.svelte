@@ -12,27 +12,20 @@
       href: '/',
       active: false,
     },
-    {
-      name: 'Projects',
-      keypress: 'P',
-      local: true,
-      href: '/projects',
-      active: false,
-    },
-    {
-      name: 'Writing',
-      keypress: 'W',
-      local: true,
-      href: '/writing',
-      active: false,
-    },
-    {
-      name: 'Dashboard',
-      keypress: 'D',
-      local: true,
-      href: '/dashboard',
-      active: false,
-    },
+    // {
+    //   name: 'Writing',
+    //   keypress: 'W',
+    //   local: true,
+    //   href: '/writing',
+    //   active: false,
+    // },
+    // {
+    //   name: 'Dashboard',
+    //   keypress: 'D',
+    //   local: true,
+    //   href: '/dashboard',
+    //   active: false,
+    // },
     {
       name: 'Contact',
       keypress: 'C',
@@ -78,18 +71,23 @@
 
 <div class="nav">
   <div class="nav__content">
-    {#each pages as page, i}
-      <a
-        class="nav__link"
-        href={page.href}
-        target={!page.local ? '_blank' : null}
-        class:active={page.local ? page.active : null}
-        on:click={page.local ? () => toggleActive(i) : null}
-        data-sveltekit-preload-data
-      >
-        {innerWidth >= 992 ? `[${page.keypress}] ${page.name}` : page.name}</a
-      >
-    {/each}
+    <div class="nav__title">
+      Melinda Chang <span class="nav__title--darker">(she/her)</span>
+    </div>
+    <div class="nav__links">
+      {#each pages as page, i}
+        <a
+          class="nav__link"
+          href={page.href}
+          target={!page.local ? '_blank' : null}
+          class:active={page.local ? page.active : null}
+          on:click={page.local ? () => toggleActive(i) : null}
+          data-sveltekit-preload-data
+        >
+          {innerWidth >= 992 ? `[${page.keypress}] ${page.name}` : page.name}</a
+        >
+      {/each}
+    </div>
   </div>
 </div>
 
@@ -104,32 +102,42 @@
     top: 0
     left: 0
     width: 100%
-    padding: 1.2rem
+    padding: 1em
     display: flex
     justify-content: center
+    background-image: linear-gradient(to bottom, variables.$background-color, rgba(0,0,0,0))
     .nav__content
-      display: flex
       width: 100%
-      max-width: map.get(breakpoints.$breakpoints, xxl)
-      .nav__link
+      display: flex
+      .nav__title
+        flex: 2
+        &--darker
+          color: variables.$dotted-border-color
+      .nav__links
         display: flex
-        background: variables.$background-color-lighter
-        font-size: 1.2rem
-        line-height: 1.2
-        text-decoration: none
-        color: variables.$text-color
-        padding: .5rem .8rem
-        text-transform: uppercase
-        font-family: variables.$font-monospace
-        letter-spacing: -.3px
-        border-radius: 2px
-        &.active, &:hover
-          background: variables.$text-color
-          color: variables.$background-color
-        &:not(:last-child)
-          margin-right: .3rem
-        &:last-child
-          margin-left: auto
+        justify-content: end
+        @include breakpoints.lg
+          flex: 3
+          justify-content: start
+        .nav__link
+          display: flex
+          background: variables.$background-color-lighter
+          font-size: 1.2rem
+          line-height: 1.2
+          text-decoration: none
+          color: variables.$text-color
+          padding: .5rem .8rem
+          text-transform: uppercase
+          font-family: variables.$font-monospace
+          letter-spacing: -.3px
+          border-radius: 2px
+          &.active, &:hover
+            background: variables.$text-color
+            color: variables.$background-color
+          &:not(:last-child)
+            margin-right: .3rem
+          // &:last-child
+          //   margin-left: auto
 
 
 

@@ -87,19 +87,21 @@
   @use '../sass/_breakpoints'
 
   .player
-    position: fixed
-    bottom: 0.5em
-    right: 0.5em
-    display: none
+    // position: fixed
+    // bottom: 0.5em
+    // right: 0.5em
+    // display: none
+    margin: 1em 0 3em 0
+    display: flex
     flex-direction: column
     align-items: center
     gap: 6px
     padding: 4px
-    // width: 20em
+    max-width: 20em
     background: variables.$background-color
     border: 0.5px solid variables.$text-color
-    @include breakpoints.lg
-      display: flex
+    // @include breakpoints.lg
+    //   display: flex
     .player__heading
       color: variables.$text-color
       width: 100%

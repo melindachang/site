@@ -1,6 +1,7 @@
 <script lang="ts">
   import { navigating, page } from '$app/state'
   import CrtLines from '$lib/components/CrtLines.svelte'
+  import LocalTime from '$lib/components/LocalTime.svelte'
   import Navigation from '$lib/components/Navigation.svelte'
   import SpotifyWidget from '$lib/components/SpotifyWidget.svelte'
   import '$lib/sass/app.sass'
@@ -25,9 +26,14 @@
 {:else}
   <main>
     <Navigation />
-    {@render children()}
+    <aside class="content-left">
+      <LocalTime />
+      <SpotifyWidget song={data.song} />
+    </aside>
+    <div class="content-right">
+      {@render children()}
+    </div>
   </main>
-  <SpotifyWidget song={data.song} />
 {/if}
 
 <style lang="sass">
@@ -37,7 +43,18 @@
   
   main
     position: relative
-    margin: 0 auto
+    padding: 1em
     width: 100%
-    max-width: map.get(breakpoints.$breakpoints, xxl)
+    display: flex
+    flex-direction: column
+    position: relative
+    padding-top: 4em
+    @include breakpoints.lg
+      flex-direction: row
+    .content
+      &-left
+        flex: 2
+      &-right
+        flex: 3
+
 </style>
