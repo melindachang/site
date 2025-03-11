@@ -106,11 +106,16 @@
     padding: 1em
     justify-content: center
     background-image: linear-gradient(to bottom, variables.$background-color, rgba(0,0,0,0))
+    pointer-events: none
     .nav__content
       width: 100%
       display: grid
-      grid-template-columns: 1fr 1fr 3fr
-      gap: 5.6rem
+      grid-template-columns: 1fr 0fr 1fr
+      @include breakpoints.lg
+        gap: 5.6rem
+        grid-template-columns: 2fr 1fr 3fr
+      @include breakpoints.xl
+        grid-template-columns: 1fr 1fr 3fr
       .nav__title
         &--darker
           color: variables.$dotted-border-color
@@ -120,6 +125,7 @@
         @include breakpoints.lg
           justify-content: start
         .nav__link
+          pointer-events: auto
           display: flex
           background: variables.$background-color-lighter
           font-size: 1.2rem

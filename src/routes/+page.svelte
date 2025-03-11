@@ -101,8 +101,10 @@
 
   .grid
     display: grid
-    gap: 5.6rem
-    grid-template-columns: 1fr 3fr
+    grid-template-columns: 0 3fr
+    @include breakpoints.lg
+      gap: 5.6rem 
+      grid-template-columns: 1fr 3fr
     .grid__content
       display: grid
       line-height: 1.5

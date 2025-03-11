@@ -3,24 +3,24 @@
     {
       "isFailure": true,
       "date": "2025.02",
-      "title": "Rejected from 5/5 REUs I applied to",
+      "title": "Rejected from every REU I applied to",
       "summary": "Lorem ipsum dolor sit amet"
     },
     {
       "isFailure": false,
       "date": "2024.10 - Now",
-      "title": "Organizer on the WildHacks Tech Team",
+      "title": "Tech Organizer at WildHacks",
       "summary": "Lorem ipsum dolor sit amet"
     },
     {
       "isFailure": false,
       "date": "2024.09 - Now",
-      "title": "Undergraduate student at Northwestern",
+      "title": "Began undergrad at Northwestern",
       "summary": "Lorem ipsum dolor sit amet"
     },
     {
       "isFailure": true,
-      "date": "2024.01 - 05",
+      "date": "2024.05",
       "title": "Worst grades of my life; almost placed on academic probation",
       "summary": "Lorem ipsum dolor sit amet"
     },
@@ -57,7 +57,7 @@
     {
       "isFailure": false,
       "date": "2022.08 - 2023.04",
-      "title": "Built Albio.js, compiler-powered reactivity library",
+      "title": "Albio.js, compiler-powered reactivity library",
       "summary": "Lorem ipsum dolor sit amet"
     },
     {
@@ -76,6 +76,12 @@
       "isFailure": true,
       "date": "2022.04",
       "title": "Ignored or rejected by 38/40 professors I cold-emailed",
+      "summary": "Lorem ipsum dolor sit amet"
+    },
+    {
+      "isFailure": false,
+      "date": "2021.10 - 2024.08",
+      "title": "Outreach Volunteer at the San Diego Astronomy Association",
       "summary": "Lorem ipsum dolor sit amet"
     }
   ],

@@ -11,6 +11,6 @@ export const load = () => {
     title: 'Home',
     publications,
     work,
-    play
+    play,
   }
 }

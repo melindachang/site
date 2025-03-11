@@ -10,7 +10,7 @@
   <div class="timeline-item__title">
     <div class="timeline-item__date">
       <i
-        class={`timeline-item__date__icon${alert ? '--red' : ''} timeline-item__date__icon`}
+        class={`timeline-item__date__icon${alert ? '--red' : ''}`}
       ></i>
       <span class="timeline-item__date__text">{data.date}</span>
     </div>

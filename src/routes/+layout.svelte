@@ -43,13 +43,17 @@
     padding: 1em
     width: 100%
     display: grid
-    grid-template-columns: minmax(0, 1fr) minmax(0, 4fr)
-    gap: 5.6rem
     position: relative
     padding-top: 4em
+    @include breakpoints.lg
+      gap: 5.6rem
+      grid-template-columns: 1fr 2fr
+    @include breakpoints.xl
+      grid-template-columns: minmax(0, 1fr) minmax(0, 4fr)
     .content-left
       position: relative
-      height: calc(100vh - 6em)
+      @include breakpoints.lg
+        height: calc(100vh - 6em)
       .box
         width: 15vw
         height: 20vw
@@ -57,4 +61,7 @@
         position: absolute
         bottom: 0
         left: 0
+        display: none
+        @include breakpoints.lg
+          display: block
 </style>
