@@ -3,31 +3,61 @@
     {
       "isFailure": true,
       "date": "2025.02",
-      "title": "Rejected from both of my top-choice REUs",
+      "title": "Rejected from 5/5 REUs I applied to",
       "summary": "Lorem ipsum dolor sit amet"
     },
     {
       "isFailure": false,
-      "date": "2024.12.28",
-      "title": "Short paper accepted to ICSE 2024",
+      "date": "2024.10 - Now",
+      "title": "Organizer on the WildHacks Tech Team",
       "summary": "Lorem ipsum dolor sit amet"
     },
     {
       "isFailure": false,
-      "date": "2023.10.21",
-      "title": "Directed Hack the Wave 1.0",
+      "date": "2024.09 - Now",
+      "title": "Undergraduate student at Northwestern",
+      "summary": "Lorem ipsum dolor sit amet"
+    },
+    {
+      "isFailure": true,
+      "date": "2024.01 - 05",
+      "title": "Worst grades of my life; almost placed on academic probation",
       "summary": "Lorem ipsum dolor sit amet"
     },
     {
       "isFailure": false,
-      "date": "2023.06 - 12",
+      "date": "2024.04",
+      "title": "Attended ICSE 2024 in Lisbon",
+      "summary": "Lorem ipsum dolor sit amet"
+    },
+    {
+      "isFailure": false,
+      "date": "2023.06 - 2024.08",
       "title": "Student Researcher at the UCSD Programming Systems Group",
+      "summary": "Lorem ipsum dolor sit amet"
+    },
+    {
+      "isFailure": false,
+      "date": "2023.01 - 12",
+      "title": "Founded and directed Hack the Wave 1.0",
       "summary": "Lorem ipsum dolor sit amet"
     },
     {
       "isFailure": true,
       "date": "2023.04",
       "title": "Ignored or rejected by 19/20 professors I cold-emailed",
+      "summary": "Lorem ipsum dolor sit amet"
+    },
+    {
+      "isFailure": true,
+      "date": "2023.04",
+      "title": "Didn't qualify for ISEF",
+      "summary": "Lorem ipsum dolor sit amet"
+    },
+    {
+      "isFailure": false,
+      "date": "2022.08 - 2023.04",
+      "title": "Built Albio.js, compiler-powered reactivity library",
       "summary": "Lorem ipsum dolor sit amet"
     },
     {
@@ -38,7 +68,7 @@
     },
     {
       "isFailure": false,
-      "date": "2022.06 - 08",
+      "date": "2022.06 - 09",
       "title": "SWE Intern at the UCSD Lab for Computational Astrophysics",
       "summary": "Lorem ipsum dolor sit amet"
     },

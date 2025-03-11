@@ -2,14 +2,16 @@
   import MinusIcon from '$lib/assets/icons/MinusIcon.svelte'
   import PlusIcon from '$lib/assets/icons/PlusIcon.svelte'
 
-  let { data } = $props()
+  let { data, alert = false } = $props()
   let expanded = $state(false)
 </script>
 
 <div class="timeline-item">
   <div class="timeline-item__title">
     <div class="timeline-item__date">
-      <i class="timeline-item__date__icon"></i>
+      <i
+        class={`timeline-item__date__icon${alert ? '--red' : ''} timeline-item__date__icon`}
+      ></i>
       <span class="timeline-item__date__text">{data.date}</span>
     </div>
     <div class="timeline-item__header">
@@ -58,6 +60,8 @@
           background: variables.$text-color
           height: 0.6rem
           width: 0.6rem
+          &--red
+            background: variables.$accent-red
         .timeline-item__date__text
           line-height: 1
           font-family: variables.$font-monospace

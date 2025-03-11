@@ -6,7 +6,7 @@
 
 <div class="grid">
   <GridItem heading="Filters">Test</GridItem>
-  <GridItem heading="Highlights">Test</GridItem>
+  <GridItem heading="Highlights" noGap>Test</GridItem>
 </div>
 
 <style lang="sass">

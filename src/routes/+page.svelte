@@ -18,9 +18,10 @@
         >
         and <b>English Literature</b> with a minor in <b>Art History</b>.
         <br />My research interests include programming languages,
-        human-computer interaction, the computational humanities, and cultural
-        analytics. Elsewhere: 19th- and 20th-century European fiction,
-        aesthetics, cultural theory, global literary and cinematic modernism.
+        human-computer interaction, natural language processing, cultural
+        analytics, and the computational humanities. Elsewhere: 19th- and
+        20th-century European fiction, aesthetics, cultural theory, global
+        literary and cinematic modernism.
         <br />
         A lot of people think the Internet isn't fun anymore&mdash;I like to make
         software to prove that it still can be. I also take pictures of Chicago and
@@ -41,10 +42,15 @@
         {/each}
       </div>
     </GridItem>
-    <GridItem heading="Work" noGap>
+    <GridItem
+      heading="Work"
+      noGap
+      fn={() => (showFailures = !showFailures)}
+      fnName={showFailures ? 'Hide Failures' : 'Show Failures'}
+    >
       {#each data.work as el}
         {#if !el.isFailure || showFailures}
-          <TimelineItem data={el} />
+          <TimelineItem data={el} alert={el.isFailure} />
         {/if}
       {/each}
     </GridItem>

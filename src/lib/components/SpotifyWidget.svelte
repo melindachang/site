@@ -6,7 +6,7 @@
 
   let { song } = $props()
   let closed = $state(false)
-  let artist: HTMLDivElement
+  let artist: HTMLSpanElement
   let visibleWidth = $state(0)
   let fullWidth = $state(0)
   let scrollAmt = $derived(visibleWidth! - fullWidth!)
