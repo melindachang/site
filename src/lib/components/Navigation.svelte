@@ -19,13 +19,13 @@
     //   href: '/writing',
     //   active: false,
     // },
-    // {
-    //   name: 'Dashboard',
-    //   keypress: 'D',
-    //   local: true,
-    //   href: '/dashboard',
-    //   active: false,
-    // },
+    {
+      name: 'Highlights',
+      keypress: 'H',
+      local: true,
+      href: '/highlights',
+      active: false,
+    },
     {
       name: 'Contact',
       keypress: 'C',
@@ -74,6 +74,7 @@
     <div class="nav__title">
       Melinda Chang <span class="nav__title--darker">(she/her)</span>
     </div>
+    <aside class="spacer"></aside>
     <div class="nav__links">
       {#each pages as page, i}
         <a
@@ -103,21 +104,20 @@
     left: 0
     width: 100%
     padding: 1em
-    display: flex
     justify-content: center
     background-image: linear-gradient(to bottom, variables.$background-color, rgba(0,0,0,0))
     .nav__content
       width: 100%
-      display: flex
+      display: grid
+      grid-template-columns: 1fr 1fr 3fr
+      gap: 5.6rem
       .nav__title
-        flex: 2
         &--darker
           color: variables.$dotted-border-color
       .nav__links
         display: flex
         justify-content: end
         @include breakpoints.lg
-          flex: 3
           justify-content: start
         .nav__link
           display: flex

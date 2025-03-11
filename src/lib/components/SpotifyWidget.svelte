@@ -23,6 +23,11 @@
     }
   })
 
+  const resetArtist = () => {
+    tl.seek(0)
+    tl.pause()
+  }
+
   const closePlayer = () => {
     closed = true
   }
@@ -69,7 +74,7 @@
           <div
             class="player__text__artist"
             onmouseover={() => tl.play()}
-            onmouseleave={() => tl.seek(0) && tl.pause()}
+            onmouseleave={resetArtist}
             bind:clientWidth={visibleWidth}
           >
             <span bind:this={artist} bind:clientWidth={fullWidth}
@@ -97,7 +102,6 @@
     align-items: center
     gap: 6px
     padding: 4px
-    max-width: 20em
     background: variables.$background-color
     border: 0.5px solid variables.$text-color
     // @include breakpoints.lg
@@ -139,7 +143,7 @@
         display: flex
         flex-direction: column
         gap: 0.25em
-        width: 12em
+        width: calc(12em - 6px)
         justify-content: end
         .player__text__title
           text-decoration: none

@@ -14,22 +14,19 @@
   <meta charset="utf-8" />
   <meta http-equiv="x-ua-compatible" content="ie=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta
-    name="description"
-    content="18 y/o student researcher studying Computer Science and English Literature at Northwestern"
-  />
 </svelte:head>
 
 <CrtLines />
 {#if navigating == null}
   Loading...
 {:else}
+  <Navigation />
   <main>
-    <Navigation />
-    <aside class="content-left">
+    <div class="content-left">
       <LocalTime />
       <SpotifyWidget song={data.song} />
-    </aside>
+      <div class="box"></div>
+    </div>
     <div class="content-right">
       {@render children()}
     </div>
@@ -45,16 +42,19 @@
     position: relative
     padding: 1em
     width: 100%
-    display: flex
-    flex-direction: column
+    display: grid
+    grid-template-columns: minmax(0, 1fr) minmax(0, 4fr)
+    gap: 5.6rem
     position: relative
     padding-top: 4em
-    @include breakpoints.lg
-      flex-direction: row
-    .content
-      &-left
-        flex: 2
-      &-right
-        flex: 3
-
+    .content-left
+      position: relative
+      height: calc(100vh - 6em)
+      .box
+        width: 15vw
+        height: 20vw
+        background: variables.$dotted-border-color
+        position: absolute
+        bottom: 0
+        left: 0
 </style>

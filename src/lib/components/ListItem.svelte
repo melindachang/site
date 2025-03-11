@@ -53,7 +53,7 @@
     display: flex
     flex-direction: column
     gap: 2.4rem
-    border-bottom: 0.5px solid variables.$text-color
+    border-bottom: 0.5px dotted variables.$dotted-border-color
     padding-bottom: 2.4rem
     @include breakpoints.lg
       gap: 5.6rem
@@ -104,7 +104,7 @@
         justify-content: space-between
         align-items: center
         padding: 1.6rem 0
-        font-size: 1.4rem
+        font-size: 1.2rem
         line-height: 100%
         text-transform: uppercase
         font-family: variables.$font-monospace

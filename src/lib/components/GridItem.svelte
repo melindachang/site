@@ -1,8 +1,8 @@
 <script lang="ts">
-  let { heading, children } = $props()
+  let { heading, noGap = false, children } = $props()
 </script>
 
-<div class="grid__item">
+<div class={`grid__item ${noGap ? '' : 'grid__item--gap'}`}>
   <div class="grid__item__header">/ {heading}</div>
   <div class="grid__item__text">
     {@render children()}
@@ -14,7 +14,8 @@
   .grid__item
     display: flex
     flex-direction: column
-    gap: 2.4rem
+    &--gap
+      gap: 2.4rem
     .grid__item__header
       padding-bottom: .6rem
       font-size: 1.2rem

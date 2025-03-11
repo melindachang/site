@@ -1,0 +1,66 @@
+{
+  "work": [
+    {
+      "isFailure": true,
+      "date": "2025.02",
+      "title": "Rejected from both of my top-choice REUs",
+      "summary": "Lorem ipsum dolor sit amet"
+    },
+    {
+      "isFailure": false,
+      "date": "2024.12.28",
+      "title": "Short paper accepted to ICSE 2024",
+      "summary": "Lorem ipsum dolor sit amet"
+    },
+    {
+      "isFailure": false,
+      "date": "2023.10.21",
+      "title": "Directed Hack the Wave 1.0",
+      "summary": "Lorem ipsum dolor sit amet"
+    },
+    {
+      "isFailure": false,
+      "date": "2023.06 - 12",
+      "title": "Student Researcher at the UCSD Programming Systems Group",
+      "summary": "Lorem ipsum dolor sit amet"
+    },
+    {
+      "isFailure": true,
+      "date": "2023.04",
+      "title": "Ignored or rejected by 19/20 professors I cold-emailed",
+      "summary": "Lorem ipsum dolor sit amet"
+    },
+    {
+      "isFailure": false,
+      "date": "2022.07 - 08",
+      "title": "SWE Intern at Hack Club",
+      "summary": "Lorem ipsum dolor sit amet"
+    },
+    {
+      "isFailure": false,
+      "date": "2022.06 - 08",
+      "title": "SWE Intern at the UCSD Lab for Computational Astrophysics",
+      "summary": "Lorem ipsum dolor sit amet"
+    },
+    {
+      "isFailure": true,
+      "date": "2022.04",
+      "title": "Ignored or rejected by 38/40 professors I cold-emailed",
+      "summary": "Lorem ipsum dolor sit amet"
+    }
+  ],
+  "play": [
+    {
+      "date": "2025.05.07",
+      "title": "Saw Ichiko Aoba in concert"
+    },
+    {
+      "date": "2025.03.27",
+      "title": "Saw FKA twigs live on the EUSEXUA tour"
+    },
+    {
+      "date": "2024.10.27",
+      "title": "Saw Charli xcx and Troye Sivan live on the Sweat tour"
+    }
+  ]
+}
