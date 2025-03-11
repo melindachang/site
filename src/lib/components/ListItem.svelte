@@ -79,19 +79,19 @@
         letter-spacing: -.03em
         // font-size: calc(14px + (3 * (100vw - 390px) / (1728 - 390)))
         font-size: 1.6rem
-      .link-list__item__tags
-        display: flex
-        flex-wrap: wrap
-        gap: 8px
-        .link-list__item__tag
-          text-decoration: none
-          font-size: 1.2rem
-          text-transform: uppercase
-          font-family: variables.$font-monospace
-          color: variables.$text-color
-          border: 0.5px dotted variables.$dotted-border-color
-          padding: 1px 4px 3px 4px
-          border-radius: 4px
+      // .link-list__item__tags
+      //   display: flex
+      //   flex-wrap: wrap
+      //   gap: 8px
+      //   .link-list__item__tag
+      //     text-decoration: none
+      //     font-size: 1.2rem
+      //     text-transform: uppercase
+      //     font-family: variables.$font-monospace
+      //     color: variables.$text-color
+      //     border: 0.5px dotted variables.$dotted-border-color
+      //     padding: 1px 4px 3px 4px
+      //     border-radius: 4px
 
     .link-list__item__actions
       display: flex
