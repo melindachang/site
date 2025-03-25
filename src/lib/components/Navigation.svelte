@@ -19,20 +19,20 @@
     //   href: '/writing',
     //   active: false,
     // },
-    {
-      name: 'Highlights',
-      keypress: 'H',
-      local: true,
-      href: '/highlights',
-      active: false,
-    },
-    {
-      name: 'Contact',
-      keypress: 'C',
-      local: false,
-      href: 'mailto:melinda@u.northwestern.edu',
-      active: false,
-    },
+    // {
+    //   name: 'Highlights',
+    //   keypress: 'H',
+    //   local: true,
+    //   href: '/highlights',
+    //   active: false,
+    // },
+    // {
+    //   name: 'Contact',
+    //   keypress: 'C',
+    //   local: false,
+    //   href: 'mailto:melinda@u.northwestern.edu',
+    //   active: false,
+    // },
   ]
 
   const toggleActive = (i: number) => {

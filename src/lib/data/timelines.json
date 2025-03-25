@@ -1,27 +1,39 @@
 {
   "work": [
     {
+      "isFailure": false,
+      "date": "2025.06 (incoming)",
+      "title": "Undergraduate Researcher @ UC Berkeley School of Information",
+      "summary": "Lorem ipsum dolor sit amet"
+    },
+    {
+      "isFailure": false,
+      "date": "2025.04 - Now",
+      "title": "Opinion Columnist @ The Daily Northwestern",
+      "summary": "Lorem ipsum dolor sit amet"
+    },
+    {
+      "isFailure": false,
+      "date": "2025.04 - Now",
+      "title": "Founder and Editor-in-Chief @ Computing Culture Undergraduate Journal",
+      "summary": "Lorem ipsum dolor sit amet"
+    },
+    {
       "isFailure": true,
-      "date": "2025.02",
-      "title": "Rejected from every REU I applied to",
+      "date": "2025.03",
+      "title": "Rejected from 5/5 REUs I applied to",
       "summary": "Lorem ipsum dolor sit amet"
     },
     {
       "isFailure": false,
       "date": "2024.10 - Now",
-      "title": "Tech Organizer at WildHacks",
-      "summary": "Lorem ipsum dolor sit amet"
-    },
-    {
-      "isFailure": false,
-      "date": "2024.09 - Now",
-      "title": "Began undergrad at Northwestern",
+      "title": "Web Developer @ WildHacks",
       "summary": "Lorem ipsum dolor sit amet"
     },
     {
       "isFailure": true,
       "date": "2024.05",
-      "title": "Worst grades of my life; almost placed on academic probation",
+      "title": "Worst grades of my life; almost had my NU admission offer rescinded",
       "summary": "Lorem ipsum dolor sit amet"
     },
     {
@@ -33,19 +45,19 @@
     {
       "isFailure": false,
       "date": "2023.06 - 2024.08",
-      "title": "Student Researcher at the UCSD Programming Systems Group",
-      "summary": "Lorem ipsum dolor sit amet"
-    },
-    {
-      "isFailure": false,
-      "date": "2023.01 - 12",
-      "title": "Founded and directed Hack the Wave 1.0",
+      "title": "Student Researcher @ UCSD Programming Systems Group",
       "summary": "Lorem ipsum dolor sit amet"
     },
     {
       "isFailure": true,
       "date": "2023.04",
-      "title": "Ignored or rejected by 19/20 professors I cold-emailed",
+      "title": "Rejected from 19/20 labs I cold-emailed",
+      "summary": "Lorem ipsum dolor sit amet"
+    },
+    {
+      "isFailure": false,
+      "date": "2023.01 - 12",
+      "title": "Founder and Director @ Hack the Wave",
       "summary": "Lorem ipsum dolor sit amet"
     },
     {
@@ -57,31 +69,25 @@
     {
       "isFailure": false,
       "date": "2022.08 - 2023.04",
-      "title": "Albio.js, compiler-powered reactivity library",
+      "title": "Built Albio.js, a compiler-powered reactivity library",
       "summary": "Lorem ipsum dolor sit amet"
     },
     {
       "isFailure": false,
       "date": "2022.07 - 08",
-      "title": "SWE Intern at Hack Club",
+      "title": "Software Engineering Intern @ Hack Club",
       "summary": "Lorem ipsum dolor sit amet"
     },
     {
       "isFailure": false,
       "date": "2022.06 - 09",
-      "title": "SWE Intern at the UCSD Lab for Computational Astrophysics",
+      "title": "Software Engineering Intern @ UCSD Lab for Computational Astrophysics",
       "summary": "Lorem ipsum dolor sit amet"
     },
     {
       "isFailure": true,
       "date": "2022.04",
-      "title": "Ignored or rejected by 38/40 professors I cold-emailed",
-      "summary": "Lorem ipsum dolor sit amet"
-    },
-    {
-      "isFailure": false,
-      "date": "2021.10 - 2024.08",
-      "title": "Outreach Volunteer at the San Diego Astronomy Association",
+      "title": "Rejected from COSMOS and 38/40 labs I cold-emailed",
       "summary": "Lorem ipsum dolor sit amet"
     }
   ],
@@ -97,6 +103,10 @@
     {
       "date": "2024.10.27",
       "title": "Saw Charli xcx and Troye Sivan live on the Sweat tour"
+    },
+    {
+      "date": "2024.10 - Now",
+      "title": "Editor @ Northwestern Flipside"
     }
   ]
 }

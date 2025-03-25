@@ -13,7 +13,7 @@
       <span class="timeline-item__date__text">{data.date}</span>
     </div>
     <div class="timeline-item__header">
-      <span class="timeline-item__header__text">{data.title}</span>
+      <span class="timeline-item__header__text">{@html data.title}</span>
       {#if data.summary}
         <div class="timeline-item__icon">
           {#if expanded}
