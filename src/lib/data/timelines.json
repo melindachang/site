@@ -7,6 +7,18 @@
       "summary": "Lorem ipsum dolor sit amet"
     },
     {
+      "isFailure": false,
+      "date": "2025.04 - Now",
+      "title": "Opinion Columnist @ The Daily Northwestern",
+      "summary": "Lorem ipsum dolor sit amet"
+    },
+    {
+      "isFailure": false,
+      "date": "2025.04 - Now",
+      "title": "Founder and Editor-in-Chief @ Computing Culture Undergraduate Journal",
+      "summary": "Lorem ipsum dolor sit amet"
+    },
+    {
       "isFailure": true,
       "date": "2025.03",
       "title": "Rejected from 5/5 REUs I applied to",
@@ -15,7 +27,7 @@
     {
       "isFailure": false,
       "date": "2024.10 - Now",
-      "title": "Organizer @ WildHacks",
+      "title": "Web Developer @ WildHacks",
       "summary": "Lorem ipsum dolor sit amet"
     },
     {
@@ -85,24 +97,16 @@
       "title": "Seeing Ichiko Aoba in concert"
     },
     {
+      "date": "2025.03.27 (Upcoming)",
+      "title": "Seeing FKA twigs live on the EUSEXUA tour"
+    },
+    {
       "date": "2024.10.27",
       "title": "Saw Charli xcx and Troye Sivan live on the Sweat tour"
     },
     {
       "date": "2024.10 - Now",
       "title": "Editor @ Northwestern Flipside"
-    },
-    {
-      "date": "2023.07.28 - 31",
-      "title": "Attended Hack Club Outernet in Vermont"
-    },
-    {
-      "date": "2022.08.02",
-      "title": "Attended the LOONATHEWORLD tour in LA"
-    },
-    {
-      "date": "2022.08.05 - 07",
-      "title": "Attended Hack Club Assemble in San Francisco"
     }
   ]
 }
