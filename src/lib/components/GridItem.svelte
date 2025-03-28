@@ -2,7 +2,7 @@
   let { heading, noGap = false, fn = null, fnName = null, children } = $props()
 </script>
 
-<div class={`grid__item ${noGap ? '' : 'grid__item--gap'}`}>
+<div class={['grid__item', !noGap && 'grid__item--gap']}>
   <div class="grid__item__header">
     <span class="grid__item__header__text">/ {heading}</span>
     {#if fn}

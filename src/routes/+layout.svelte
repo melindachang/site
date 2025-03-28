@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { navigating, page } from '$app/state'
+  import { page } from '$app/state'
   import CrtLines from '$lib/components/CrtLines.svelte'
   import LocalTime from '$lib/components/LocalTime.svelte'
   import Navigation from '$lib/components/Navigation.svelte'
@@ -17,21 +17,17 @@
 </svelte:head>
 
 <CrtLines />
-{#if navigating == null}
-  Loading...
-{:else}
-  <Navigation />
-  <main>
-    <div class="content-left">
-      <LocalTime />
-      <SpotifyWidget song={data.song} />
-      <div class="box"></div>
-    </div>
-    <div class="content-right">
-      {@render children()}
-    </div>
-  </main>
-{/if}
+<Navigation />
+<main>
+  <div class="content-left">
+    <LocalTime />
+    <SpotifyWidget song={data.song} />
+    <div class="box"></div>
+  </div>
+  <div class="content-right">
+    {@render children()}
+  </div>
+</main>
 
 <style lang="sass">
   @use '../lib/sass/_variables'

@@ -2,7 +2,7 @@
   import { goto, onNavigate } from '$app/navigation'
   import { onMount } from 'svelte'
 
-  let innerWidth: number
+  let innerWidth = $state(0)
 
   const pages = [
     {
@@ -78,11 +78,10 @@
     <div class="nav__links">
       {#each pages as page, i}
         <a
-          class="nav__link"
+          class={['nav__link', page.local && 'active']}
           href={page.href}
           target={!page.local ? '_blank' : null}
-          class:active={page.local ? page.active : null}
-          on:click={page.local ? () => toggleActive(i) : null}
+          onclick={page.local ? () => toggleActive(i) : null}
           data-sveltekit-preload-data
         >
           {innerWidth >= 992 ? `[${page.keypress}] ${page.name}` : page.name}</a
