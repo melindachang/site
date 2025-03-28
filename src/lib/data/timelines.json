@@ -7,18 +7,6 @@
       "summary": "Lorem ipsum dolor sit amet"
     },
     {
-      "isFailure": false,
-      "date": "2025.04 - Now",
-      "title": "Opinion Columnist @ The Daily Northwestern",
-      "summary": "Lorem ipsum dolor sit amet"
-    },
-    {
-      "isFailure": false,
-      "date": "2025.04 - Now",
-      "title": "Founder and Editor-in-Chief @ Computing Culture Undergraduate Journal",
-      "summary": "Lorem ipsum dolor sit amet"
-    },
-    {
       "isFailure": true,
       "date": "2025.03",
       "title": "Rejected from 5/5 REUs I applied to",
@@ -27,7 +15,7 @@
     {
       "isFailure": false,
       "date": "2024.10 - Now",
-      "title": "Web Developer @ WildHacks",
+      "title": "Organizer @ WildHacks",
       "summary": "Lorem ipsum dolor sit amet"
     },
     {
@@ -97,8 +85,8 @@
       "title": "Seeing Ichiko Aoba in concert"
     },
     {
-      "date": "2025.03.27 (Upcoming)",
-      "title": "Seeing FKA twigs live on the EUSEXUA tour"
+      "date": "2025.03.28",
+      "title": "Saw ARTMS after FKA twigs cancelled the EUSEXUA tour..."
     },
     {
       "date": "2024.10.27",
