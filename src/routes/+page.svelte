@@ -17,10 +17,10 @@
           >Computer Science</b
         >
         and <b>English Literature</b> with a (prospective) minor in
-        <b>Art History</b>.
+        <b>Film</b>.
         <br />My research interests span programming languages, cultural
-        analytics, and the digital humanities. Elsewhere: 19th- and
-        20th-century European fiction and thought, aesthetics, global
+        analytics, and the digital humanities. Elsewhere: 19th- and 20th-century
+        European fiction and thought, Taiwan New Wave, aesthetics, global
         literary and cinematic modernism.
         <br />
         A lot of people think the Internet isn't fun anymore&mdash;I like to make
