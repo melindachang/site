@@ -2,20 +2,20 @@
   "work": [
     {
       "isFailure": false,
-      "date": "2025.06 (incoming)",
+      "date": "2025.04 - Now",
       "title": "Undergraduate Researcher @ UC Berkeley School of Information",
       "summary": "Lorem ipsum dolor sit amet"
     },
     {
       "isFailure": true,
       "date": "2025.03",
-      "title": "Rejected from 5/5 REUs I applied to",
+      "title": "Rejected from all of my top-choice REUs",
       "summary": "Lorem ipsum dolor sit amet"
     },
     {
       "isFailure": false,
       "date": "2024.10 - Now",
-      "title": "Organizer @ WildHacks",
+      "title": "Director of Technology @ WildHacks",
       "summary": "Lorem ipsum dolor sit amet"
     },
     {
@@ -63,13 +63,13 @@
     {
       "isFailure": false,
       "date": "2022.07 - 08",
-      "title": "Software Engineering Intern @ Hack Club",
+      "title": "Software Engineer Intern @ Hack Club",
       "summary": "Lorem ipsum dolor sit amet"
     },
     {
       "isFailure": false,
       "date": "2022.06 - 09",
-      "title": "Software Engineering Intern @ UCSD Lab for Computational Astrophysics",
+      "title": "Research Assistant @ UCSD Lab for Computational Astrophysics",
       "summary": "Lorem ipsum dolor sit amet"
     },
     {
