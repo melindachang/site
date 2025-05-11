@@ -1,0 +1,37 @@
+import { mdsvex, escapeSvelte } from 'mdsvex'
+import adapter from '@sveltejs/adapter-vercel'
+import { vitePreprocess } from '@sveltejs/vite-plugin-svelte'
+import externalLinks from 'rehype-external-links'
+import { createHighlighter } from 'shiki'
+
+const config = {
+  preprocess: [
+    vitePreprocess({ sass: false }),
+    mdsvex({
+      extensions: ['.md'],
+      remarkPlugins: [externalLinks],
+      highlight: {
+        highlighter: async (code, lang = 'text') => {
+          const highlighter = await createHighlighter({
+            themes: ['gruvbox-dark-medium'],
+            langs: ['python', 'shellscript', 'toml'],
+          })
+          await highlighter.loadLanguage('python', 'shellscript', 'toml')
+          const html = escapeSvelte(
+            highlighter.codeToHtml(code, { lang, theme: 'gruvbox-dark-medium' }),
+          )
+          return `{@html \`${html}\` }`
+        },
+      },
+    }),
+  ],
+  kit: {
+    adapter: adapter(),
+    alias: {
+      $articles: 'src/articles',
+    },
+  },
+  extensions: ['.svelte', '.md'],
+}
+
+export default config

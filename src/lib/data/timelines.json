@@ -1,0 +1,100 @@
+{
+  "work": [
+    {
+      "isFailure": false,
+      "date": "2025.04 - Now",
+      "title": "Founder, Editor-in-Chief @ Critical Culture Undergraduate Journal",
+      "summary": "Lorem ipsum dolor sit amet"
+    },
+    {
+      "isFailure": false,
+      "date": "2025.04 - Now",
+      "title": "Undergraduate Researcher @ UC Berkeley School of Information",
+      "summary": "Lorem ipsum dolor sit amet"
+    },
+    {
+      "isFailure": true,
+      "date": "2025.03",
+      "title": "Rejected from every REU I applied for",
+      "summary": "Lorem ipsum dolor sit amet"
+    },
+    {
+      "isFailure": false,
+      "date": "2024.10 - Now",
+      "title": "Director of Technology @ WildHacks",
+      "summary": "Lorem ipsum dolor sit amet"
+    },
+    {
+      "isFailure": true,
+      "date": "2024.05",
+      "title": "Worst grades of my life; almost rescinded from Northwestern",
+      "summary": "Lorem ipsum dolor sit amet"
+    },
+    {
+      "isFailure": false,
+      "date": "2024.04",
+      "title": "Attended ICSE 2024 in Lisbon",
+      "summary": "Lorem ipsum dolor sit amet"
+    },
+    {
+      "isFailure": false,
+      "date": "2023.06 - 2024.08",
+      "title": "Student Researcher @ UCSD Programming Systems Group",
+      "summary": "Lorem ipsum dolor sit amet"
+    },
+    {
+      "isFailure": false,
+      "date": "2023.01 - 12",
+      "title": "Founder, Director @ Hack the Wave",
+      "summary": "Lorem ipsum dolor sit amet"
+    },
+    {
+      "isFailure": true,
+      "date": "2023.04",
+      "title": "Didn't qualify for ISEF",
+      "summary": "Lorem ipsum dolor sit amet"
+    },
+    {
+      "isFailure": false,
+      "date": "2022.08 - 2023.04",
+      "title": "Built Albio.js, a compiler-powered reactivity library",
+      "summary": "Lorem ipsum dolor sit amet"
+    },
+    {
+      "isFailure": false,
+      "date": "2022.07 - 08",
+      "title": "Software Engineer Intern @ Hack Club",
+      "summary": "Lorem ipsum dolor sit amet"
+    },
+    {
+      "isFailure": false,
+      "date": "2022.06 - 09",
+      "title": "Research Assistant @ UCSD Lab for Computational Astrophysics",
+      "summary": "Lorem ipsum dolor sit amet"
+    },
+    {
+      "isFailure": true,
+      "date": "2022.04",
+      "title": "Rejected from the only summer camp I ever applied to",
+      "summary": "Lorem ipsum dolor sit amet"
+    }
+  ],
+  "play": [
+    {
+      "date": "2025.09.19 (Upcoming)",
+      "title": "Seeing Lorde for the Ultrasound tour"
+    },
+    {
+      "date": "2025.03.28",
+      "title": "Saw ARTMS after FKA twigs cancelled the EUSEXUA tour..."
+    },
+    {
+      "date": "2024.10.27",
+      "title": "Saw Charli xcx and Troye Sivan live on the Sweat tour"
+    },
+    {
+      "date": "2024.10 - Now",
+      "title": "Editor @ Northwestern Flipside"
+    }
+  ]
+}
