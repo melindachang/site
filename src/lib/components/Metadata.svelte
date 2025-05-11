@@ -35,7 +35,6 @@
       grid-template-columns: 1fr 1fr
       padding: 1.2rem 0
       border-bottom: 0.5px dotted variables.$dotted-border-color
-
       .metadata__item__value
         display: flex
         align-content: flex-start
