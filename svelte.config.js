@@ -1,5 +1,3 @@
-import adapter from 'svelte-adapter-bun'
-
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte'
 import { mdsvex, escapeSvelte } from 'mdsvex'
 import { createHighlighter } from 'shiki'
