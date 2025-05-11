@@ -8,24 +8,31 @@
   let showFailures = $state(false)
 </script>
 
+<svelte:head>
+  <title>Melinda Chang</title>
+</svelte:head>
+
 <div class="grid">
   <aside></aside>
   <div class="grid__content">
     <GridItem heading="Bio">
-      <div class="grid__blurb">
-        Hello! I'm a first-year student at Northwestern University studying <b
+      <p class="grid__blurb">
+        Hello! I'm a first-year student at Northwestern University majoring in <b
           >Computer Science</b
         >
-        and <b>English Literature</b> with a minor in <b>Film Studies</b>.
-        <br />My research interests span programming languages, cultural
-        analytics, and the digital humanities. Elsewhere: 19th- and 20th-century
-        European fiction and thought, aesthetics, Taiwan New Wave, global
-        literary and cinematic modernism.
+        and <b>Comparative Literary Studies</b>.
+        <br />My research interests span natural language processing (NLP),
+        computer vision, and cultural analytics. That is, I'm interested in
+        leveraging <em>humanistic</em> theoretical resources to develop
+        <em>computational</em>
+        tools and methods, as well as explore their affordances in the study of cultural
+        objects and cultural production broadly defined.
         <br />
-        A lot of people think the Internet isn't fun anymore&mdash;I like to make
-        software to prove that it still can be. I also take pictures of Chicago and
+        Elsewhere: 19th- and 20th-century European literature, Sinophone cinema,
+        aesthetics, global modernism. I also play with programming languages a lot
+        and
         <a href="/writing">write whatever I want</a>.
-      </div>
+      </p>
     </GridItem>
     <GridItem heading="Publications">
       <div class="link-list">
@@ -35,7 +42,6 @@
             subtitle={`${authors
               .map(a => (a === 'Melinda Chang' ? `<em>${a}</em>` : a))
               .join(', ')} &mdash; ${venue}`}
-            {tags}
             {links}
           />
         {/each}
@@ -53,11 +59,11 @@
         {/if}
       {/each}
     </GridItem>
-    <GridItem heading="Play" noGap>
+    <!-- <GridItem heading="Play" noGap>
       {#each data.play as el}
         <TimelineItem data={el} />
       {/each}
-    </GridItem>
+    </GridItem> -->
     <!-- <GridItem heading="Play"><div class="link-list"></div></GridItem> -->
     <GridItem heading="Everywhere">
       You can reach me via email at <code>melinda [at] u.northwestern.edu</code
@@ -95,8 +101,8 @@
 </div>
 
 <style lang="sass">
-  @use '../lib/sass/_variables'
-  @use '../lib/sass/_breakpoints'
+  @use '$lib/sass/_variables'
+  @use '$lib/sass/_breakpoints'
 
   .grid
     display: grid
@@ -120,6 +126,7 @@
           border: 0.5px dotted variables.$dotted-border-color
           padding: 1px 4px 3px 4px
           border-radius: 4px
+
           &:hover
             color: variables.$background-color
             background: variables.$text-color

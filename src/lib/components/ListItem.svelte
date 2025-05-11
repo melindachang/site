@@ -1,11 +1,11 @@
 <script lang="ts">
-  let { title, subtitle, links, tags } = $props()
+  let { title, subtitle, links } = $props()
 </script>
 
 <div class="link-list__item">
   <div class="link-list__item__info">
     <h2 class="link-list__item__title">{title}</h2>
-    <h3 class="link-list__item__subtitle">{@html subtitle}</h3>
+    <span class="link-list__item__subtitle">{@html subtitle}</span>
     <!-- <div class="link-list__item__tags">
       {#each tags as tag}
         <span class="link-list__item__tag"># {tag}</span>

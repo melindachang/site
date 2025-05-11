@@ -1,4 +1,4 @@
-<script lang="ts">
+<!-- <script lang="ts">
   import MinusIcon from '$lib/assets/icons/MinusIcon.svelte'
   import PlusIcon from '$lib/assets/icons/PlusIcon.svelte'
   import { gsap } from 'gsap'
@@ -81,4 +81,4 @@
       font-family: variables.$font-monospace
       text-transform: uppercase
 
-</style>
+</style> -->

@@ -1,7 +1,12 @@
+<script lang="ts">
+  let { width, height } = $props()
+</script>
+
 <svg
   width="15"
   height="15"
   viewBox="0 0 15 15"
+  style={`width: ${width}px; height: ${height}px`}
   fill="none"
   xmlns="http://www.w3.org/2000/svg"
   ><path
@@ -15,6 +20,7 @@
 <style lang="sass">
   svg
     margin-right: .8rem
+    mix-blend-mode: difference
     height: 1.2rem
     width: 1.2rem
 </style>

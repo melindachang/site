@@ -3,13 +3,19 @@
     {
       "isFailure": false,
       "date": "2025.04 - Now",
+      "title": "Founder, Editor-in-Chief @ Critical Culture Undergraduate Journal",
+      "summary": "Lorem ipsum dolor sit amet"
+    },
+    {
+      "isFailure": false,
+      "date": "2025.04 - Now",
       "title": "Undergraduate Researcher @ UC Berkeley School of Information",
       "summary": "Lorem ipsum dolor sit amet"
     },
     {
       "isFailure": true,
       "date": "2025.03",
-      "title": "Rejected from all of my top-choice REUs",
+      "title": "Rejected from every REU I applied for",
       "summary": "Lorem ipsum dolor sit amet"
     },
     {
@@ -21,7 +27,7 @@
     {
       "isFailure": true,
       "date": "2024.05",
-      "title": "Worst grades of my life; almost had my NU admission offer rescinded",
+      "title": "Worst grades of my life; almost rescinded from Northwestern",
       "summary": "Lorem ipsum dolor sit amet"
     },
     {
@@ -37,15 +43,9 @@
       "summary": "Lorem ipsum dolor sit amet"
     },
     {
-      "isFailure": true,
-      "date": "2023.04",
-      "title": "Rejected from 19/20 labs I cold-emailed",
-      "summary": "Lorem ipsum dolor sit amet"
-    },
-    {
       "isFailure": false,
       "date": "2023.01 - 12",
-      "title": "Founder and Director @ Hack the Wave",
+      "title": "Founder, Director @ Hack the Wave",
       "summary": "Lorem ipsum dolor sit amet"
     },
     {
@@ -75,14 +75,14 @@
     {
       "isFailure": true,
       "date": "2022.04",
-      "title": "Rejected from COSMOS and 38/40 labs I cold-emailed",
+      "title": "Rejected from the only summer camp I ever applied to",
       "summary": "Lorem ipsum dolor sit amet"
     }
   ],
   "play": [
     {
-      "date": "2025.05.07 (Upcoming)",
-      "title": "Seeing Ichiko Aoba in concert"
+      "date": "2025.09.19 (Upcoming)",
+      "title": "Seeing Lorde for the Ultrasound tour"
     },
     {
       "date": "2025.03.28",

@@ -1,10 +1,10 @@
 <script lang="ts">
-  import { goto, onNavigate } from '$app/navigation'
+  import { afterNavigate, goto } from '$app/navigation'
   import { onMount } from 'svelte'
 
   let innerWidth = $state(0)
 
-  const pages = [
+  const pages = $state([
     {
       name: 'About',
       keypress: 'A',
@@ -12,28 +12,14 @@
       href: '/',
       active: false,
     },
-    // {
-    //   name: 'Writing',
-    //   keypress: 'W',
-    //   local: true,
-    //   href: '/writing',
-    //   active: false,
-    // },
-    // {
-    //   name: 'Highlights',
-    //   keypress: 'H',
-    //   local: true,
-    //   href: '/highlights',
-    //   active: false,
-    // },
-    // {
-    //   name: 'Contact',
-    //   keypress: 'C',
-    //   local: false,
-    //   href: 'mailto:melinda@u.northwestern.edu',
-    //   active: false,
-    // },
-  ]
+    {
+      name: 'Writing',
+      keypress: 'W',
+      local: true,
+      href: '/writing',
+      active: false,
+    },
+  ])
 
   const toggleActive = (i: number) => {
     pages.forEach(el => (el.active = false))
@@ -60,7 +46,7 @@
     toggleActive(i)
   })
 
-  onNavigate(() => {
+  afterNavigate(() => {
     const currentPath = window.location.pathname
     let i = pages.findIndex(el => el.href === currentPath)
     toggleActive(i)
@@ -78,7 +64,7 @@
     <div class="nav__links">
       {#each pages as page, i}
         <a
-          class={['nav__link', page.local && 'active']}
+          class={['nav__link', page.active && 'active']}
           href={page.href}
           target={!page.local ? '_blank' : null}
           onclick={page.local ? () => toggleActive(i) : null}

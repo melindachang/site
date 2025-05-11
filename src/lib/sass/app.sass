@@ -20,7 +20,7 @@ body
   font-family: variables.$font-sans-serif
 
 ::selection
-  background: variables.$text-color
+  background: variables.$accent-orange
   color: variables.$background-color
 
 br
@@ -31,14 +31,29 @@ br
 a
   color: variables.$text-color
 
+p
+  margin: 0
+  a
+    color: variables.$accent-aqua
+    &:hover
+      color: variables.$accent-aqua-2
+
+
 code
-  font-family: variables.$font-monospace
-  background: variables.$background-color-lighter
   font-size: 0.85em
-  padding: 1px 4px 3px 4px
-  margin: 0 2px
-  border: 0.5px solid variables.$dotted-border-color
-  border-radius: 4px
+  font-family: variables.$font-monospace-2
+  &:not(pre code)
+    background: variables.$background-color-lighter
+    padding: 1px 4px 3px 4px
+    margin: 0 2px
+    border: 0.5px dotted variables.$dotted-border-color
+    border-radius: 4px
+
+:is(h1, h2, h3, h4, h5, h6)
+  font-weight: 400
+  letter-spacing: -.06em
+  line-height: 92%
+  margin: 0
 
 ::-webkit-scrollbar
   width: 3px
@@ -50,3 +65,33 @@ code
     background: variables.$dotted-border-color
     &:hover
       background: variables.$text-color
+
+
+//////// ARTICLE ////////
+
+.prose
+  display: grid
+  grid-template-columns: 2fr 1fr
+  h1
+    font-size: 4.8rem
+    line-height: 100%
+    margin-top: 4rem
+  p
+    margin: 2.4rem 0 0
+    line-height: 130%
+    font-size: 1.8rem
+    &:first-child
+      margin: 0
+  ul
+    margin: 2.4rem 0 0
+    li
+      margin: 1.6rem 0 0
+      font-size: 1.8rem
+      line-height: 130%
+      
+pre
+  font-size: 1.8rem
+  padding: 1rem
+  border-radius: 8px
+  border: 0.5px dotted variables.$dotted-border-color
+  font-family: variables.$font-monospace-2

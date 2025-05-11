@@ -105,8 +105,6 @@
     background: variables.$background-color
     border: 0.5px solid variables.$text-color
     max-width: 20em
-    @include breakpoints.lg
-      max-width: auto
     .player__heading
       color: variables.$text-color
       width: 100%
@@ -141,11 +139,10 @@
       padding: 1em
       overflow: hidden
       .player__text
-        display: flex
-        flex-direction: column
+        display: grid
         gap: 0.25em
         width: calc(12em - 6px)
-        justify-content: end
+        align-content: end
         .player__text__title
           text-decoration: none
           overflow: hidden
