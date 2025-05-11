@@ -26,15 +26,13 @@
 
   .metadata
     text-transform: uppercase
-    display: grid
-    grid-template-columns: 1fr 1fr
     font-size: 1.2rem
     font-family: variables.$font-monospace
     letter-spacing: -.04em
     .metadata__item
       grid-column: 1 / -1
       display: grid
-      grid-template-columns: subgrid
+      grid-template-columns: 1fr 1fr
       padding: 1.2rem 0
       border-bottom: 0.5px dotted variables.$dotted-border-color
 

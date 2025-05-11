@@ -19,9 +19,17 @@
       href: '/writing',
       active: false,
     },
+    {
+      name: 'CV',
+      keypress: 'C',
+      local: false,
+      href: 'https://melindachang.github.io/cv-latex/output.pdf',
+      active: false,
+    },
   ])
 
   const toggleActive = (i: number) => {
+    if (i < 0) return
     pages.forEach(el => (el.active = false))
     pages[i].active = true
   }

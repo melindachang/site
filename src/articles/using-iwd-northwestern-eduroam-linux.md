@@ -2,9 +2,8 @@
 title: Using iwd to Connect to Northwestern Eduroam Wi-Fi
 author: Melinda Chang
 description:
-  Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur, recusandae
-  voluptate eum quis eaque quidem? Eum corrupti nam, similique labore sed optio
-  culpa provident maxime laudantium repudiandae doloribus numquam repellat.
+  Eduroam has a lot of irritating config options that you need to specify
+  manually to get online during an Arch Linux installation.
 date: '2025.05.09'
 categories:
   - tech/linux
@@ -109,14 +108,20 @@ ping archlinux.org
 
 And you're in!
 
-# Troubleshooting
+# Tips & Troubleshooting
+
+If you used `archinstall` and chose the minimal option, consider copying this
+config file to the external device you mounted earlier. This way, you can copy
+it and the certificate again to `/var/lib/iwd` when you chroot into your new
+system. Remember to install `iwd` and a text editor like `vim` at this stage,
+because there won't be any way for you to do so once you've restarted your
+computer.
 
 Check to make sure you've spelled everything correctly. If your configuration
 file is using the wrong protocol, you will see an error that reads something
 like this:
 
 ```
-...
 EAP server tried method X while client was configured for method Y
 EAP completed with eapFail
 4-Way handshake failed for ...

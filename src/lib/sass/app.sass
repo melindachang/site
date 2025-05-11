@@ -1,5 +1,6 @@
-@use '../sass/_variables'
-@use '../sass/_fonts'
+@use '$lib/sass/_variables'
+@use '$lib/sass/_breakpoints'
+@use '$lib/sass/_fonts'
 
 *, *::before, *::after
   box-sizing: border-box
@@ -38,10 +39,9 @@ p
     &:hover
       color: variables.$accent-aqua-2
 
-
 code
   font-size: 0.85em
-  font-family: variables.$font-monospace-2
+  font-family: variables.$font-monospace
   &:not(pre code)
     background: variables.$background-color-lighter
     padding: 1px 4px 3px 4px
@@ -66,12 +66,14 @@ code
     &:hover
       background: variables.$text-color
 
-
 //////// ARTICLE ////////
 
 .prose
   display: grid
-  grid-template-columns: 2fr 1fr
+  position: relative
+  grid-template-columns: minmax(0, 1fr)
+  @include breakpoints.lg
+    grid-template-columns: 2fr 1fr
   h1
     font-size: 4.8rem
     line-height: 100%
@@ -88,10 +90,11 @@ code
       margin: 1.6rem 0 0
       font-size: 1.8rem
       line-height: 130%
-      
-pre
-  font-size: 1.8rem
-  padding: 1rem
-  border-radius: 8px
-  border: 0.5px dotted variables.$dotted-border-color
-  font-family: variables.$font-monospace-2
+  pre
+    font-size: 1.8rem
+    overflow-x: auto
+    padding: 1rem
+    border-radius: 8px
+    border: 0.5px dotted variables.$dotted-border-color
+    font-family: variables.$font-monospace
+    tab-size: 2
