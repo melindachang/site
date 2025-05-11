@@ -1,5 +1,5 @@
 import { mdsvex, escapeSvelte } from 'mdsvex'
-import adapter from '@sveltejs/adapter-vercel'
+import adapter from 'svelte-adapter-bun'
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte'
 import externalLinks from 'rehype-external-links'
 import { createHighlighter } from 'shiki'
