@@ -17,7 +17,7 @@
   <div class="grid__content">
     <GridItem heading="Bio">
       <p class="grid__blurb">
-        Hello! I'm a first-year student at Northwestern University majoring in <b
+        Hello! I'm a first-year student at Northwestern majoring in <b
           >Computer Science</b
         >
         and <b>Comparative Literary Studies</b>.

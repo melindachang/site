@@ -40,11 +40,4 @@
 
     .grid__item__text
       line-height: 1.5
-      ul
-        margin-top: 0
-        list-style-type: square
-        li:not(:last-child)
-          margin-bottom: .6em
-      a
-        text-underline-offset: 2px
 </style>

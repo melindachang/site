@@ -6,7 +6,7 @@
 
   let { song } = $props()
   let closed = $state(false)
-  let artist: HTMLSpanElement
+  let artist: HTMLSpanElement | undefined = $state()
   let visibleWidth = $state(0)
   let fullWidth = $state(0)
   let scrollAmt = $derived(visibleWidth! - fullWidth!)
@@ -15,7 +15,7 @@
   $effect(() => {
     if (artistName) {
       tl.clear()
-      tl.to(artist, {
+      tl.to(artist!, {
         marginLeft: scrollAmt < 0 ? `${scrollAmt}px` : '0px',
         ease: 'linear',
         duration: -(scrollAmt / 100),
