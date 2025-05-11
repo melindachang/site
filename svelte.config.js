@@ -1,6 +1,7 @@
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte'
 import { mdsvex, escapeSvelte } from 'mdsvex'
 import { createHighlighter } from 'shiki'
+import adapter from '@sveltejs/adapter-auto'
 import toc from 'remark-toc'
 import externalLinks from 'rehype-external-links'
 
@@ -29,11 +30,12 @@ const config = {
   extensions: ['.svelte', '.md'],
   preprocess: [vitePreprocess({ sass: false }), mdsvex(mdsvexOptions)],
 
+  adapter: adapter(),
   kit: {
     // adapter-auto only supports some environments, see https://svelte.dev/docs/kit/adapter-auto for a list.
     // If your environment is not supported, or you settled on a specific environment, switch out the adapter.
     // See https://svelte.dev/docs/kit/adapters for more information about adapters.
-    adapter: adapter(),
+
     alias: {
       $articles: 'src/articles',
     },
