@@ -29,8 +29,8 @@
   ])
 
   const toggleActive = (i: number) => {
-    if (i < 0) return
     pages.forEach(el => (el.active = false))
+    if (i < 0) return
     pages[i].active = true
   }
 
