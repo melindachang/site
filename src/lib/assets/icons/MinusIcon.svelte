@@ -18,8 +18,9 @@
 >
 
 <style lang="sass">
+  @use '$lib/sass/_variables'
   svg
-    margin-right: .8rem
+    color: variables.$text-color
     mix-blend-mode: difference
     height: 1.2rem
     width: 1.2rem

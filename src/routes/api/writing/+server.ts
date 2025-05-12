@@ -13,15 +13,17 @@ const get_articles = async () => {
     if (file && typeof file === 'object' && 'metadata' in file && slug) {
       let metadata = file.metadata as Omit<Article, 'slug'>
       metadata.categories.sort()
-      const article = { ...metadata, slug } satisfies Article
+
+      const article = {
+        ...metadata,
+        href: slug,
+      } satisfies Article
+
       article.published && articles.push(article)
     }
   }
 
-  articles.sort(
-    (first, second) =>
-      new Date(second.date).getTime() - new Date(first.date).getTime(),
-  )
+  articles.sort((first, second) => new Date(second.date).getTime() - new Date(first.date).getTime())
 
   return articles
 }

@@ -1,10 +1,12 @@
 <script lang="ts">
   import MinusIcon from '$lib/assets/icons/MinusIcon.svelte'
   import PlusIcon from '$lib/assets/icons/PlusIcon.svelte'
+  import type { Article, Entry, Timeline } from '$lib/utils/interfaces'
   import { gsap } from 'gsap'
   import { onMount } from 'svelte'
 
-  let { data } = $props()
+  let { data, isFailure = false }: { data: Entry<Article> | Entry<Timeline>; isFailure: boolean } =
+    $props()
 
   let expanded = $state(false)
   let collapsible: HTMLDivElement
@@ -38,7 +40,7 @@
   })
 </script>
 
-<div class="entry" bind:this={collapsible}>
+<div class={['entry', isFailure && 'entry--failure']} bind:this={collapsible}>
   <div class="entry__title" bind:clientHeight={titleHeight}>
     <div class="entry__caption entry__date">
       <div class="entry__date__text">
@@ -46,7 +48,7 @@
         <span>{data.date}</span>
       </div>
     </div>
-    <a class="entry__title__text" href={data.slug}>{data.title}</a>
+    <a class="entry__title__text" href={data.href}>{data.title}</a>
     <button class="entry__title__icon" onclick={toggleExpanded}>
       {#if !expanded}
         <PlusIcon width="18" height="18" />
@@ -57,30 +59,29 @@
   </div>
 
   <div class="entry__body" bind:clientHeight={bodyHeight}>
-    <div class="entry__description">
-      <div class="entry__caption">
-        <span class="entry__caption__text"> Description: </span>
-      </div>
-      <p class="entry__description__text">{data.description}</p>
-    </div>
-    <div class="entry__author">
-      <div class="entry__caption">
-        <span class="entry__caption__text">Author:</span>
-      </div>
-      <div class="entry__author__text">
-        <p>{data.author}</p>
-      </div>
-    </div>
-    <div class="entry__tags">
-      <div class="entry__caption">
-        <span class="entry__caption__text">Tags:</span>
-      </div>
-      <div class="entry__tags__text">
-        {#each data.categories as tag}
-          <span class="tag">{tag}</span>
-        {/each}
-      </div>
-    </div>
+    {#each data.content as el}
+      {#if el && el.value && typeof el.value != 'boolean'}
+        {#if el.key === 'categories'}
+          <div class="entry__tags">
+            <div class="entry__caption">
+              <span class="entry__caption__text">Tags:</span>
+            </div>
+            <div class="entry__tags__text">
+              {#each el.value as tag}
+                <span class="tag">{tag}</span>
+              {/each}
+            </div>
+          </div>
+        {:else}
+          <div class="entry__item">
+            <div class="entry__caption">
+              <span class="entry__caption__text"> {el.key.toUpperCase()}: </span>
+            </div>
+            <p class="entry__item__text">{@html el.value}</p>
+          </div>
+        {/if}
+      {/if}
+    {/each}
   </div>
 </div>
 
@@ -97,6 +98,12 @@
     @include breakpoints.lg
       grid-template-columns: 2fr 11fr
       height: 4.5rem
+    &--failure
+      .entry__date__icon
+        background: variables.$accent-red !important
+      .entry__title__text
+        color: variables.$accent-red
+
     p, a
       text-decoration: none
       margin: 0
@@ -136,6 +143,7 @@
       grid-column: 1 / -1
       display: grid
       grid-auto-rows: min-content
+      column-gap: 1rem
       align-items: center
       grid-template-columns: 10fr 1fr
       @include breakpoints.lg
@@ -144,7 +152,7 @@
         color: variables.$background-color
         background: variables.$text-color
         .entry__date__icon
-          background: variables.$background-color !important
+          background: variables.$background-color
       .entry__title__text
         font-size: 2.5rem
         white-space: nowrap

@@ -38,6 +38,7 @@
       .metadata__item__value
         display: flex
         align-content: flex-start
+        flex-wrap: wrap
         gap: 0.5rem
       .metadata__item__tag
         white-space: nowrap

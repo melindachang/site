@@ -68,18 +68,14 @@
           style={`background-color: gray; background-image: url('${song.albumImageUrl}')`}
         ></div>
         <div class="player__text">
-          <a href={song.songUrl} target="_blank" class="player__text__title"
-            >{song.title}</a
-          >
+          <a href={song.songUrl} target="_blank" class="player__text__title">{song.title}</a>
           <div
             class="player__text__artist"
             onmouseover={() => tl.play()}
             onmouseleave={resetArtist}
             bind:clientWidth={visibleWidth}
           >
-            <span bind:this={artist} bind:clientWidth={fullWidth}
-              >{song.artist}</span
-            >
+            <span bind:this={artist} bind:clientWidth={fullWidth}>{song.artist}</span>
           </div>
         </div>
       </div>
@@ -104,7 +100,7 @@
     padding: 4px
     background: variables.$background-color
     border: 0.5px solid variables.$text-color
-    max-width: 20em
+    max-width: 100%
     .player__heading
       color: variables.$text-color
       width: 100%
@@ -135,7 +131,6 @@
       width: 100%
       display: flex
       gap: 1em
-      height: 7em
       padding: 1em
       overflow: hidden
       .player__text
@@ -180,7 +175,7 @@
             &::before
               background: transparent
       .player__img
-        height: 100%
+        height: 6em
         aspect-ratio: 1/1
         border: 0.5px solid variables.$dotted-border-color
         filter: grayscale(50%)

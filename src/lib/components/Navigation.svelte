@@ -65,10 +65,10 @@
 
 <div class="nav">
   <div class="nav__content">
-    <div class="nav__title">
+    <!-- <div class="nav__title">
       Melinda Chang <span class="nav__title--darker">(she/her)</span>
     </div>
-    <aside class="spacer"></aside>
+    <aside class="spacer"></aside> -->
     <div class="nav__links">
       {#each pages as page, i}
         <a
@@ -103,12 +103,12 @@
     .nav__content
       width: 100%
       display: grid
-      grid-template-columns: 1fr 0fr 1fr
-      @include breakpoints.lg
-        gap: 5.6rem
-        grid-template-columns: 2fr 1fr 3fr
-      @include breakpoints.xl
-        grid-template-columns: 1fr 1fr 3fr
+      // grid-template-columns: 1fr 0fr 1fr
+      // @include breakpoints.lg
+      //   gap: 5.6rem
+      //   grid-template-columns: 2fr 1fr 3fr
+      // @include breakpoints.xl
+      //   grid-template-columns: 1fr 1fr 3fr
       .nav__title
         &--darker
           color: variables.$dotted-border-color

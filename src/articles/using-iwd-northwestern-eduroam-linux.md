@@ -6,8 +6,8 @@ description:
   during an Arch Linux installation. Here's some informal documentation of the process.
 date: '2025.05.09'
 categories:
-  - tech/linux
-  - northwestern
+  - Linux
+  - Northwestern
 published: true
 ---
 

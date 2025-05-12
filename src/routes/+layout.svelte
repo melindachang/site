@@ -1,6 +1,7 @@
 <script lang="ts">
   import { page } from '$app/state'
   import CrtLines from '$lib/components/CrtLines.svelte'
+  import Header from '$lib/components/Header.svelte'
   import Navigation from '$lib/components/Navigation.svelte'
   import '$lib/sass/app.sass'
 
@@ -17,6 +18,9 @@
 <CrtLines />
 <Navigation />
 <main>
+  <div class="header">
+    <Header title={page.data.title} amount={page.data.amount} />
+  </div>
   {@render children()}
 </main>
 

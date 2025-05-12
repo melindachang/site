@@ -1,16 +1,19 @@
 import * as projects from '$lib/data/publications.json'
 import * as timelines from '$lib/data/timelines.json'
+import type { Timeline } from '$lib/utils/interfaces.js'
 
-export const load = () => {
+export const load = async ({ fetch }) => {
+  let song = await fetch('/api/spotify').then(res => res.json())
   let { publications } = projects
-  let { work, play } = timelines
+  let { work }: { work: Timeline[] } = timelines
 
   publications.forEach(p => p.tags.sort((a, b) => a.localeCompare(b)))
 
   return {
-    title: 'Home',
+    song,
+    title: 'About',
+    amount: 4,
     publications,
     work,
-    play,
   }
 }

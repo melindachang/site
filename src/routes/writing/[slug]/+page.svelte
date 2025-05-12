@@ -1,15 +1,16 @@
 <script lang="ts">
   import GridItem from '$lib/components/GridItem.svelte'
+  import Header from '$lib/components/Header.svelte'
   import Metadata from '$lib/components/Metadata.svelte'
   import { gsap } from 'gsap'
   import { onMount } from 'svelte'
   let { data } = $props()
 
-  let headerHeight = $state(0)
   let title: HTMLHeadingElement
   let titleHeight = 0
   let content: HTMLDivElement
-  let stickyDistance = $derived(headerHeight + 64)
+  let metaLoc = $state<HTMLElement>()
+  let stickyDistance = $derived(metaLoc!.getBoundingClientRect().y)
   let scrollY = $state(0)
   let innerWidth = $state(0)
   let mounted = $state(false)
@@ -66,12 +67,8 @@
 </svelte:head>
 
 <svelte:window bind:scrollY bind:innerWidth />
-
-<header bind:clientHeight={headerHeight}>
-  <h1>{data.meta.title}</h1>
-</header>
 <article>
-  <div class="metadata">
+  <div class="metadata" bind:this={metaLoc}>
     <div class="metadata__title">
       <h2 bind:this={title}>
         {data.meta.title}
@@ -95,11 +92,6 @@
 <style lang="sass">
   @use '$lib/sass/_breakpoints'
   @use '$lib/sass/_variables'
-
-  header
-    margin: 4em 0
-    h1
-      font-size: variables.$section-title-font-size
 
   article
     display: grid

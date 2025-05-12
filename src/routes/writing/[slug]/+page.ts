@@ -7,6 +7,7 @@ export const load = async ({ params }) => {
     return {
       content: article.default,
       meta: article.metadata,
+      title: article.metadata.title
     }
   } catch (err) {
     error(404, `Could not find ${params.slug}`)
