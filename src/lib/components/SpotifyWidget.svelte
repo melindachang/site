@@ -100,7 +100,7 @@
     padding: 4px
     background: variables.$background-color
     border: 0.5px solid variables.$text-color
-    max-width: 100%
+    max-width: 23em
     .player__heading
       color: variables.$text-color
       width: 100%

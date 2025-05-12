@@ -1,7 +1,7 @@
 <script lang="ts">
   import Entry from '$lib/components/Entry.svelte'
   import GridItem from '$lib/components/GridItem.svelte'
-  import ListItem from '$lib/components/ListItem.svelte'
+  import LinkEntry from '$lib/components/LinkEntry.svelte'
   import LocalTime from '$lib/components/LocalTime.svelte'
   import SpotifyWidget from '$lib/components/SpotifyWidget.svelte'
   import { map_to_entry } from '$lib/utils/utils'
@@ -27,8 +27,8 @@
           Hello! I'm a first-year student at Northwestern majoring in <b>Computer Science</b>
           and <b>Comparative Literary Studies</b>.
           <br />My research interests span natural language processing (NLP), computer vision, and
-          cultural analytics. That is, I leverage <em>humanistic</em> theoretical resources to
-          develop
+          cultural analytics. That is, I want to leverage <em>humanistic</em> theoretical
+          resources to develop
           <em>computational</em>
           tools and methods, as well as explore their affordances in the study of cultural objects and
           cultural production broadly defined.
@@ -41,7 +41,7 @@
       <GridItem heading="Publications">
         <div class="link-list">
           {#each data.publications as { title, authors, venue, tags, links }}
-            <ListItem
+            <LinkEntry
               {title}
               subtitle={`${authors
                 .map(a => (a === 'Melinda Chang' ? `<em>${a}</em>` : a))

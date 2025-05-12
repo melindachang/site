@@ -24,11 +24,17 @@
   })
 
   onMount(() => {
-    tl.to(collapsible, {
-      height: `${titleHeight + bodyHeight}px`,
-      duration: 0.35,
-      ease: 'power1.inOut',
-    }).to(
+    tl.fromTo(
+      collapsible,
+      {
+        height: `${titleHeight}px`,
+      },
+      {
+        height: `${titleHeight + bodyHeight}px`,
+        duration: 0.35,
+        ease: 'power1.inOut',
+      },
+    ).to(
       collapsible.querySelector('.entry__body'),
       {
         opacity: 1,
@@ -94,10 +100,8 @@
     column-gap: 4px
     border-bottom: 0.5px dotted variables.$dotted-border-color
     overflow-y: hidden
-    height: 7.5rem
     @include breakpoints.lg
       grid-template-columns: 2fr 11fr
-      height: 4.5rem
     &--failure
       .entry__date__icon
         background: variables.$accent-red !important
@@ -154,11 +158,10 @@
         .entry__date__icon
           background: variables.$background-color
       .entry__title__text
-        font-size: 2.5rem
-        white-space: nowrap
-        text-overflow: ellipsis
-        overflow: hidden
+        font-size: 2.2rem
         line-height: 100%
+        @include breakpoints.md
+          font-size: 2.5rem
       .entry__title__icon
         cursor: pointer
         background: none

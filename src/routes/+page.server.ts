@@ -5,7 +5,7 @@ import type { Timeline } from '$lib/utils/interfaces.js'
 export const load = async ({ fetch }) => {
   let song = await fetch('/api/spotify').then(res => res.json())
   let { publications } = projects
-  let { work }: { work: Timeline[] } = timelines
+  let work = timelines.work as Timeline[]
 
   publications.forEach(p => p.tags.sort((a, b) => a.localeCompare(b)))
 

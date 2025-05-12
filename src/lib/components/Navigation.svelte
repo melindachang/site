@@ -109,9 +109,9 @@
       //   grid-template-columns: 2fr 1fr 3fr
       // @include breakpoints.xl
       //   grid-template-columns: 1fr 1fr 3fr
-      .nav__title
-        &--darker
-          color: variables.$dotted-border-color
+      // .nav__title
+      //   // &--darker
+      //   //   color: variables.$dotted-border-color
       .nav__links
         display: flex
         justify-content: end

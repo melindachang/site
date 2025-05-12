@@ -5,7 +5,7 @@
 <div class="link-list__item">
   <div class="link-list__item__info">
     <h2 class="link-list__item__title">{title}</h2>
-    <span class="link-list__item__subtitle">{@html subtitle}</span>
+    <p class="link-list__item__subtitle">{@html subtitle}</p>
     <!-- <div class="link-list__item__tags">
       {#each tags as tag}
         <span class="link-list__item__tag"># {tag}</span>
@@ -65,6 +65,7 @@
       @include breakpoints.lg
         flex: 3
       .link-list__item__title
+        font-size: 2.5rem
         margin: 0
         line-height: 100%
         // font-size: calc(3px + 2.5vw)
@@ -78,7 +79,6 @@
         margin: 0
         letter-spacing: -.03em
         // font-size: calc(14px + (3 * (100vw - 390px) / (1728 - 390)))
-        font-size: 1.6rem
       // .link-list__item__tags
       //   display: flex
       //   flex-wrap: wrap

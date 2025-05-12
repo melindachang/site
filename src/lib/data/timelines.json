@@ -11,8 +11,8 @@
       "isFailure": false,
       "date": "2025.04 - Now",
       "title": "Undergraduate Researcher @ UC Berkeley School of Information",
-      "description": "Advised by Prof. Tim Tangherlini. Apprehending narrative in the Icelandic saga with literary-theoretical and computational methods.",
-      "categories": ["research", "cultural analytics"]
+      "description": "Advised by Prof. Tim Tangherlini (Dept. of Scandanavian Studies; Center for Cultural Analytics). Apprehending narrative in the Icelandic saga with literary-theoretical and computational methods.",
+      "categories": ["research", "computational humanities"]
     },
     {
       "isFailure": true,
@@ -32,13 +32,6 @@
       "date": "2024.05",
       "title": "Worst grades of my life; almost rescinded from college",
       "description": "Tell your teachers about your mental ailments and I suspect more of them will like you than did me! I now genuinely believe Northwestern will only rescind your offer if you burn down Ryan Field."
-    },
-    {
-      "isFailure": false,
-      "date": "2024.04",
-      "title": "Attended ICSE 2024 in Lisbon",
-      "description": "Lorem ipsum dolor sit amet",
-      "categories": ["research", "conference"]
     },
     {
       "isFailure": false,
