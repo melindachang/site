@@ -1,11 +1,10 @@
 <script lang="ts">
-  import MinusIcon from '$lib/assets/icons/MinusIcon.svelte'
-  import PlusIcon from '$lib/assets/icons/PlusIcon.svelte'
-  import type { Article, Entry, Timeline } from '$lib/utils/interfaces'
+  import PlusMinusIcon from '$lib/assets/icons/PlusMinusIcon.svelte'
+  import type { Article, Entry, Work } from '$lib/utils/interfaces'
   import { gsap } from 'gsap'
   import { onMount } from 'svelte'
 
-  let { data, isFailure = false }: { data: Entry<Article> | Entry<Timeline>; isFailure: boolean } =
+  let { data, isFailure = false }: { data: Entry<Article> | Entry<Work>; isFailure: boolean } =
     $props()
 
   let expanded = $state(false)
@@ -34,10 +33,13 @@
         duration: 0.35,
         ease: 'power1.inOut',
       },
-    ).to(
+    ).fromTo(
       collapsible.querySelector('.entry__body'),
       {
-        opacity: 1,
+        autoAlpha: 0,
+      },
+      {
+        autoAlpha: 1,
         duration: 0.35,
         ease: 'power1.inOut',
       },
@@ -54,16 +56,11 @@
         <span>{data.date}</span>
       </div>
     </div>
-    <a class="entry__title__text" href={data.href}>{data.title}</a>
+    <a class="entry__title__text" href={data.href}>{@html data.title}</a>
     <button class="entry__title__icon" onclick={toggleExpanded}>
-      {#if !expanded}
-        <PlusIcon width="18" height="18" />
-      {:else}
-        <MinusIcon width="18" height="18" />
-      {/if}
+      <PlusMinusIcon {expanded} width={18} height={18} />
     </button>
   </div>
-
   <div class="entry__body" bind:clientHeight={bodyHeight}>
     {#each data.content as el}
       {#if el && el.value && typeof el.value != 'boolean'}
@@ -97,10 +94,10 @@
 
   .entry
     display: grid
-    column-gap: 4px
     border-bottom: 0.5px dotted variables.$dotted-border-color
     overflow-y: hidden
     @include breakpoints.lg
+      column-gap: 4px
       grid-template-columns: 2fr 11fr
     &--failure
       .entry__date__icon
@@ -118,6 +115,7 @@
       text-transform: uppercase
       font-family: variables.$font-monospace
       font-size: 1.2rem
+      line-height: 100%
       display: flex
       align-items: flex-start
       grid-column: 1 / -1
@@ -132,6 +130,9 @@
           visibility: hidden
           font-size: 2rem
       &.entry__date
+        padding-top: 1.3rem
+        @include breakpoints.lg
+          padding: 0
         .entry__date__text
           display: inline-flex
           gap: 1rem
@@ -142,15 +143,13 @@
             width: 0.6rem
     &__title
       text-decoration: none
-      padding: 1rem 0
-      row-gap: 1rem
       grid-column: 1 / -1
       display: grid
       grid-auto-rows: min-content
-      column-gap: 1rem
       align-items: center
       grid-template-columns: 10fr 1fr
       @include breakpoints.lg
+        gap: 1rem
         grid-template-columns: 2fr 10fr 1fr
       &:hover
         color: variables.$background-color
@@ -158,6 +157,7 @@
         .entry__date__icon
           background: variables.$background-color
       .entry__title__text
+        padding: 1.3rem 0
         font-size: 2.2rem
         line-height: 100%
         @include breakpoints.md
@@ -171,7 +171,6 @@
         
     &__body
       grid-column: 1 / -1
-      opacity: 0
       padding: 2.4rem 0
       display: grid
       grid-template-columns: subgrid
@@ -185,6 +184,8 @@
         grid-template-columns: subgrid
         row-gap: 1rem
         line-height: 1.3
+      .entry__item__text
+        font-size: 2rem
       .entry__tags
         &__text
           display: flex

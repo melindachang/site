@@ -3,17 +3,23 @@
   import { DotLottieSvelte } from '@lottiefiles/dotlottie-svelte'
   import XIcon from '$lib/assets/icons/XIcon.svelte'
   import { gsap } from 'gsap'
+  import type { PlaybackState, SimplifiedTrack, Track } from '@spotify/web-api-ts-sdk'
 
-  let { song } = $props()
+  let { song }: { song: PlaybackState } = $props()
+
   let closed = $state(false)
-  let artist: HTMLSpanElement | undefined = $state()
+  let artist = $state<HTMLSpanElement>()
+  let artistName = $derived(
+    song && song.is_playing
+      ? (song.item as SimplifiedTrack).artists.map(a => a.name).join(', ')
+      : '',
+  )
   let visibleWidth = $state(0)
   let fullWidth = $state(0)
   let scrollAmt = $derived(visibleWidth! - fullWidth!)
-  let artistName = $derived(song.artist)
 
   $effect(() => {
-    if (artistName) {
+    if (artistName.length) {
       tl.clear()
       tl.to(artist!, {
         marginLeft: scrollAmt < 0 ? `${scrollAmt}px` : '0px',
@@ -23,22 +29,13 @@
     }
   })
 
-  const resetArtist = () => {
-    tl.seek(0)
-    tl.pause()
-  }
-
-  const closePlayer = () => {
-    closed = true
-  }
-
   const tl = gsap.timeline({ paused: true })
 
-  onMount(() => {
-    let updateSong = async () => {
-      song = await fetch('/api/spotify').then(res => res.json())
-    }
+  let updateSong = async () => {
+    song = await fetch('/api/spotify').then(res => res.json())
+  }
 
+  onMount(() => {
     updateSong()
     setInterval(updateSong, 10000)
   })
@@ -49,33 +46,34 @@
 {#if !closed}
   <div class="player">
     <div class="player__heading">
-      <button class="player__heading__x" onclick={closePlayer}>
+      <button class="player__heading__x" onclick={() => (closed = true)}>
         <XIcon />
       </button>
       <span class="player__heading__title"
-        >{song && song.isPlaying ? 'Now' : 'Not'} Playing &mdash; Spotify</span
+        >{song && song.is_playing ? 'Now' : 'Not'} Playing &mdash; Spotify</span
       >
-      {#if song && song.isPlaying}
+      {#if song && song.is_playing}
         <div class="player__heading__icon">
           <DotLottieSvelte src="/now-playing.lottie" loop autoplay />
         </div>
       {/if}
     </div>
-    {#if song && song.isPlaying}
+    {#if song && song.is_playing}
       <div class="player__background">
         <div
           class="player__img"
-          style={`background-color: gray; background-image: url('${song.albumImageUrl}')`}
+          style:background-color="gray"
+          style:background-image={`url('${(song.item as Track).album.images[0].url}')`}
         ></div>
         <div class="player__text">
-          <a href={song.songUrl} target="_blank" class="player__text__title">{song.title}</a>
+          <a href={song.item.href} target="_blank" class="player__text__title">{song.item.name}</a>
           <div
             class="player__text__artist"
             onmouseover={() => tl.play()}
-            onmouseleave={resetArtist}
+            onmouseleave={() => tl.seek(0).pause()}
             bind:clientWidth={visibleWidth}
           >
-            <span bind:this={artist} bind:clientWidth={fullWidth}>{song.artist}</span>
+            <span bind:this={artist} bind:clientWidth={fullWidth}>{artistName}</span>
           </div>
         </div>
       </div>

@@ -3,7 +3,7 @@
 </script>
 
 <header>
-  <h1>{title}</h1>
+  <h1>{@html title}</h1>
   {#if amount > 0}
     <small>({amount})</small>
   {/if}

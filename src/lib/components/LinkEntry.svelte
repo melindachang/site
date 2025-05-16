@@ -1,20 +1,20 @@
 <script lang="ts">
-  let { title, subtitle, links } = $props()
+  import type { Link } from '$lib/utils/interfaces'
+
+  let { links, children }: { links: Link[]; children: any } = $props()
 </script>
 
 <div class="link-list__item">
   <div class="link-list__item__info">
-    <h2 class="link-list__item__title">{title}</h2>
-    <p class="link-list__item__subtitle">{@html subtitle}</p>
-    <!-- <div class="link-list__item__tags">
-      {#each tags as tag}
-        <span class="link-list__item__tag"># {tag}</span>
-      {/each}
-    </div> -->
+    {@render children()}
   </div>
   <div class="link-list__item__actions">
     {#each links as link}
-      <a href={link.href} target="_blank" class="link-list__item__action">
+      <a
+        href={link.href}
+        target={link.external ? '_blank' : '_self'}
+        class="link-list__item__action"
+      >
         <div class="link-list__item__action__left">
           <i class="link-list__item__action__icon--square"></i>{link.type}
         </div>
@@ -60,24 +60,29 @@
       flex-direction: row
     .link-list__item__info
       display: flex
-      gap: 1.6rem
       flex-direction: column
+      gap: 2.4rem
       @include breakpoints.lg
         flex: 3
-      .link-list__item__title
-        font-size: 2.5rem
-        margin: 0
-        line-height: 100%
-        // font-size: calc(3px + 2.5vw)
-        letter-spacing: -.04em
-        font-weight: 400
-        // font-size: 2.2rem
-        // @include breakpoints.lg
-        //   font-size: calc(14.5px + 0.78125vw)
-      .link-list__item__subtitle
-        font-weight: 400
-        margin: 0
-        letter-spacing: -.03em
+      // h2
+      //   font-size: 2.5rem
+      //   margin: 0
+      //   line-height: 100%
+      //   letter-spacing: -0.04em
+    //   .link-list__item__title
+    //     font-size: 2.5rem
+    //     margin: 0
+    //     line-height: 100%
+    //     // font-size: calc(3px + 2.5vw)
+    //     letter-spacing: -.04em
+    //     font-weight: 400
+    //     // font-size: 2.2rem
+    //     // @include breakpoints.lg
+    //     //   font-size: calc(14.5px + 0.78125vw)
+    //   .link-list__item__subtitle
+    //     font-weight: 400
+    //     margin: 0
+    //     letter-spacing: -.03em
         // font-size: calc(14px + (3 * (100vw - 390px) / (1728 - 390)))
       // .link-list__item__tags
       //   display: flex

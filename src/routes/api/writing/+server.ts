@@ -14,10 +14,7 @@ const get_articles = async () => {
       let metadata = file.metadata as Omit<Article, 'slug'>
       metadata.categories.sort()
 
-      const article = {
-        ...metadata,
-        href: slug,
-      } satisfies Article
+      const article = { ...metadata, href: slug } satisfies Article
 
       article.published && articles.push(article)
     }

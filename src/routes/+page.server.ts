@@ -1,19 +1,11 @@
-import * as projects from '$lib/data/publications.json'
-import * as timelines from '$lib/data/timelines.json'
-import type { Timeline } from '$lib/utils/interfaces.js'
+import type { PlaybackState } from '@spotify/web-api-ts-sdk'
 
 export const load = async ({ fetch }) => {
-  let song = await fetch('/api/spotify').then(res => res.json())
-  let { publications } = projects
-  let work = timelines.work as Timeline[]
-
-  publications.forEach(p => p.tags.sort((a, b) => a.localeCompare(b)))
+  let song = (await fetch('/api/spotify').then(res => res.json())) satisfies Partial<PlaybackState>
 
   return {
     song,
     title: 'About',
-    amount: 4,
-    publications,
-    work,
+    amount: 5,
   }
 }

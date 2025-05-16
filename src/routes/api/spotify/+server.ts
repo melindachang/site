@@ -1,14 +1,13 @@
+import { SpotifyApi, type AccessToken, type PlaybackState } from '@spotify/web-api-ts-sdk'
 import type { RequestHandler } from '@sveltejs/kit'
 
 const client_id = import.meta.env.VITE_SPOTIFY_CLIENT_ID
 const client_secret = import.meta.env.VITE_SPOTIFY_CLIENT_SECRET
 const refresh_token = import.meta.env.VITE_SPOTIFY_REFRESH_TOKEN
 const redirect_uri = import.meta.env.VITE_SPOTIFY_REDIRECT_URI
-const token_endpoint = `https://accounts.spotify.com/api/token`
-const now_playing_endpoint = `https://api.spotify.com/v1/me/player/currently-playing`
 
-export const GET: RequestHandler = async () => {
-  const { access_token } = await fetch(token_endpoint, {
+const get_access_token = async () => {
+  const access_token = await fetch('https://accounts.spotify.com/api/token', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
@@ -21,24 +20,15 @@ export const GET: RequestHandler = async () => {
       client_secret,
     }),
   }).then(res => res.json())
+  return access_token as AccessToken
+}
 
-  const res = await fetch(now_playing_endpoint, {
-    headers: {
-      Authorization: `Bearer ${access_token}`,
-    },
-  })
+export const GET: RequestHandler = async () => {
+  const access_token = await get_access_token()
+  const sdk = SpotifyApi.withAccessToken(client_id, access_token)
+  const res = await sdk.player.getCurrentlyPlayingTrack()
 
-  if (res.status === 204 || res.status > 400) {
-    return new Response(JSON.stringify({ isPlaying: false }))
-  }
+  if (!res) return new Response(JSON.stringify({ is_playing: false } as Partial<PlaybackState>))
 
-  const song = await res.json()
-  const isPlaying = song.is_playing
-  const title = song.item.name
-  const artist = song.item.artists.map((_artist: any) => _artist.name).join(', ')
-  const album = song.item.album.name
-  const albumImageUrl = song.item.album.images[0].url
-  const songUrl = song.item.external_urls.spotify
-
-  return new Response(JSON.stringify({ title, artist, album, isPlaying, albumImageUrl, songUrl }))
+  return new Response(JSON.stringify(res))
 }

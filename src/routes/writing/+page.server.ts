@@ -1,10 +1,15 @@
-import type { Article } from '$lib/utils/interfaces.js'
+import type { Article, Tag } from '$lib/utils/interfaces.js'
 
 export const load = async ({ fetch }) => {
   const response = await fetch('/api/writing')
   let articles: Article[] = await response.json()
-  let tags = new Set<string>()
-  articles.forEach(a => a.categories.forEach(c => tags.add(c)))
+  let tags: Tag[] = []
+  for (const a of articles) {
+    for (const c of a.categories) {
+      let tag = tags.find(t => t.name === c)
+      tag ? (tag.amount += 1) : tags.push({ name: c, amount: 1, checked: false } satisfies Tag)
+    }
+  }
 
   return {
     title: 'Writing',

@@ -27,5 +27,5 @@
 <style lang="sass">
   main
     width: 100%
-    padding: 4em 1em 1em 1em
+    padding: 4em 1em
 </style>

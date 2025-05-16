@@ -6,7 +6,8 @@
   width="15"
   height="15"
   viewBox="0 0 15 15"
-  style={`width: ${width}px; height: ${height}px`}
+  style:width={`${width}px`}
+  style:height={`${height}px`}
   fill="none"
   xmlns="http://www.w3.org/2000/svg"
   ><path

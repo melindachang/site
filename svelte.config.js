@@ -2,6 +2,7 @@ import { mdsvex, escapeSvelte } from 'mdsvex'
 import adapter from '@sveltejs/adapter-vercel'
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte'
 import externalLinks from 'rehype-external-links'
+import toc from 'remark-toc'
 import { createHighlighter } from 'shiki'
 
 const config = {
@@ -9,7 +10,7 @@ const config = {
     vitePreprocess({ sass: false }),
     mdsvex({
       extensions: ['.md'],
-      remarkPlugins: [externalLinks],
+      remarkPlugins: [externalLinks, toc],
       highlight: {
         highlighter: async (code, lang = 'text') => {
           const highlighter = await createHighlighter({

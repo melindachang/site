@@ -96,6 +96,7 @@
     top: 0
     left: 0
     width: 100%
+    margin: 0 auto
     padding: 1em
     justify-content: center
     background-image: linear-gradient(to bottom, variables.$background-color, rgba(0,0,0,0))
@@ -114,8 +115,6 @@
       //   //   color: variables.$dotted-border-color
       .nav__links
         display: flex
-        justify-content: end
-        @include breakpoints.lg
           justify-content: start
         .nav__link
           pointer-events: auto

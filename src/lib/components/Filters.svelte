@@ -1,10 +1,9 @@
 <script lang="ts">
   import Checkbox from '$lib/assets/icons/Checkbox.svelte'
   import Folder from '$lib/assets/icons/Folder.svelte'
-  import MinusIcon from '$lib/assets/icons/MinusIcon.svelte'
-  import PlusIcon from '$lib/assets/icons/PlusIcon.svelte'
+  import PlusMinusIcon from '$lib/assets/icons/PlusMinusIcon.svelte'
 
-  let { data = $bindable() } = $props()
+  let { tags = $bindable() } = $props()
 
   let open = $state(true)
 </script>
@@ -12,21 +11,17 @@
 <div class="filters">
   <div class="filters__folder">
     <button class="filters__folder__button" onclick={() => (open = !open)}>
-      {#if open}
-        <MinusIcon width="14" height="14" />
-      {:else}
-        <PlusIcon width="14" height="14" />
-      {/if}
+      <PlusMinusIcon expanded={open} width={14} height={14} />
     </button>
     <Folder {open} width="22" height="22" />
     <span class="filters__folder__label">Topics</span>
   </div>
   {#if open}
     <div class="filters__list">
-      {#each data as tag}
+      {#each tags as tag}
         <div class={['filters__list__item', tag.checked && 'highlight']}>
           <Checkbox bind:checked={tag.checked} width="20" height="20" />
-          <span class="filters__list__item__label">{tag.name}</span>
+          <span class="filters__list__item__label">{tag.name} ({tag.amount})</span>
         </div>
       {/each}
     </div>
@@ -50,17 +45,11 @@
         cursor: pointer
     .filters__list
       position: relative
-      margin-left: 2.4rem
+      margin-left: 1.4rem
+      padding-left: 1rem
       display: grid
       row-gap: 5px
-      &::before
-        content: ''
-        position: absolute
-        left: -1.5rem
-        height: 100%
-        width: 2px
-        opacity: 0.2
-        background: variables.$text-color
+      border-left: 0.5px dotted variables.$dotted-border-color
       .filters__list__item
         opacity: 0.5
         display: flex
@@ -77,7 +66,4 @@
           // text-transform: uppercase
           font-size: 1.4rem
           line-height: 100%
-
-
-
 </style>

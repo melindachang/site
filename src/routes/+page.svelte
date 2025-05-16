@@ -4,9 +4,25 @@
   import LinkEntry from '$lib/components/LinkEntry.svelte'
   import LocalTime from '$lib/components/LocalTime.svelte'
   import SpotifyWidget from '$lib/components/SpotifyWidget.svelte'
+  import type { Link } from '$lib/utils/interfaces'
   import { map_to_entry } from '$lib/utils/utils'
+  import type { PlaybackState } from '@spotify/web-api-ts-sdk'
+  import { work_timeline, publications } from '$lib/data/state.svelte.js'
 
-  let { data } = $props()
+  let { song }: { song: PlaybackState } = $props()
+
+  const bioLinks: Link[] = [
+    {
+      type: 'Software',
+      href: 'https://www.github.com/melindachang',
+      external: true,
+    },
+    {
+      type: 'Writing',
+      href: '/writing',
+      external: false,
+    },
+  ]
 
   let showFailures = $state(false)
 </script>
@@ -18,38 +34,27 @@
 <div class="grid">
   <GridItem heading="Info">
     <LocalTime />
-    <SpotifyWidget song={data.song} />
+    <SpotifyWidget {song} />
   </GridItem>
   <div class="subgrid">
     <div class="subgrid__content">
       <GridItem heading="Bio">
-        <p class="subgrid__blurb">
-          Hello! I'm a first-year student at Northwestern majoring in <b>Computer Science</b>
-          and <b>Comparative Literary Studies</b>.
-          <br />My research interests span natural language processing (NLP), computer vision, and
-          cultural analytics. That is, I want to leverage <em>humanistic</em> theoretical
-          resources to develop
-          <em>computational</em>
-          tools and methods, as well as explore their affordances in the study of cultural objects and
-          cultural production broadly defined.
-          <br />
-          Elsewhere: 19th- and 20th-century European literature, Sinophone cinema, aesthetics, global
-          modernism. I also play with programming languages a lot and
-          <a href="/writing">write whatever I want</a>.
-        </p>
-      </GridItem>
-      <GridItem heading="Publications">
-        <div class="link-list">
-          {#each data.publications as { title, authors, venue, tags, links }}
-            <LinkEntry
-              {title}
-              subtitle={`${authors
-                .map(a => (a === 'Melinda Chang' ? `<em>${a}</em>` : a))
-                .join(', ')} &mdash; ${venue}`}
-              {links}
-            />
-          {/each}
-        </div>
+        <LinkEntry links={bioLinks}>
+          <p>
+            Hello! I'm a first-year student at Northwestern majoring in <b>Computer Science</b>
+            and <b>Comparative Literary Studies</b>.
+            <br />My research interests span natural language processing (NLP), computer vision, and
+            cultural analytics. That is, I want to leverage <em>humanistic</em> theoretical
+            resources to develop
+            <em>computational</em>
+            tools and methods, as well as explore their affordances in the study of cultural objects
+            and cultural production broadly defined.
+            <br />
+            Elsewhere: 19th- and 20th-century European literature, Sinophone cinema, aesthetics, global
+            modernism. I also <a href="#">play with programming languages</a> sometimes and
+            <a href="#">take pictures of Chicago</a>.
+          </p>
+        </LinkEntry>
       </GridItem>
       <GridItem
         heading="Work"
@@ -57,24 +62,26 @@
         fn={() => (showFailures = !showFailures)}
         fnName={showFailures ? 'Hide Failures' : 'Show Failures'}
       >
-        <!-- {#each data.work as el}
-          {#if !el.isFailure || showFailures}
-            <TimelineItem data={el} alert={el.isFailure} />
-          {/if}
-        {/each} -->
-
-        {#each data.work as el}
-          {#if !el.isFailure || showFailures}
-            <Entry data={map_to_entry(el)} isFailure={el.isFailure} />
+        {#each work_timeline as work}
+          {#if !work.isFailure || showFailures}
+            <Entry data={map_to_entry(work)} isFailure={work.isFailure} />
           {/if}
         {/each}
       </GridItem>
-      <!-- <GridItem heading="Play" noGap>
-      {#each data.play as el}
-        <TimelineItem data={el} />
-      {/each}
-    </GridItem> -->
-      <!-- <GridItem heading="Play"><div class="link-list"></div></GridItem> -->
+      <GridItem heading="Publications">
+        <div class="publications">
+          {#each publications as { title, authors, venue, categories, links }}
+            <LinkEntry {links}>
+              <h2 class="publication__title">{title}</h2>
+              <p class="publication__subtitle">
+                {@html `${authors
+                  .map(a => (a === 'Melinda Chang' ? `<em>${a}</em>` : a))
+                  .join(', ')} &mdash; ${venue}`}
+              </p>
+            </LinkEntry>
+          {/each}
+        </div>
+      </GridItem>
       <GridItem heading="Everywhere">
         You can reach me via email at <code>melinda [at] u.northwestern.edu</code>. I'm also on
         <a href="https://goodreads.com/hychang" target="_blank">Goodreads</a>

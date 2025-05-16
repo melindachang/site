@@ -20,7 +20,7 @@ export type Article = EntryMeta & {
   published: boolean
 }
 
-export type Timeline = EntryMeta & {
+export type Work = EntryMeta & {
   isFailure: boolean
   description: string
   categories?: string[]
@@ -28,5 +28,20 @@ export type Timeline = EntryMeta & {
 
 export type Tag = {
   name: string
+  amount: number
   checked: boolean
+}
+
+export type Link = {
+  type: string
+  href: string
+  external: boolean
+}
+
+export type Publication = {
+  title: string
+  authors: string[]
+  venue: string
+  links: Link[]
+  categories?: string[]
 }
