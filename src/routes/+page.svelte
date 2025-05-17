@@ -43,16 +43,18 @@
           <p>
             Hello! I'm a first-year student at Northwestern majoring in <b>Computer Science</b>
             and <b>Comparative Literary Studies</b>.
-            <br />My research interests span natural language processing (NLP), computer vision, and
+          </p>
+          <p>
+            My research interests span natural language processing (NLP), computer vision, and
             cultural analytics. That is, I want to leverage <em>humanistic</em> theoretical
             resources to develop
             <em>computational</em>
             tools and methods, as well as explore their affordances in the study of cultural objects
             and cultural production broadly defined.
-            <br />
-            Elsewhere: 19th- and 20th-century European literature, Sinophone cinema, aesthetics, global
-            modernism. I also <a href="#">play with programming languages</a> sometimes and
-            <a href="#">take pictures of Chicago</a>.
+          </p>
+          <p>
+            Elsewhere: 19th- and 20th-century European literature, Sinophone cinema, aesthetics,
+            global modernism. I also take pictures of Chicago and write whatever I want.
           </p>
         </LinkEntry>
       </GridItem>

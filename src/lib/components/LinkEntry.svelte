@@ -4,22 +4,18 @@
   let { links, children }: { links: Link[]; children: any } = $props()
 </script>
 
-<div class="link-list__item">
-  <div class="link-list__item__info">
+<div class="entry">
+  <div class="entry__info">
     {@render children()}
   </div>
-  <div class="link-list__item__actions">
+  <div class="entry__actions">
     {#each links as link}
-      <a
-        href={link.href}
-        target={link.external ? '_blank' : '_self'}
-        class="link-list__item__action"
-      >
-        <div class="link-list__item__action__left">
-          <i class="link-list__item__action__icon--square"></i>{link.type}
+      <a href={link.href} target={link.external ? '_blank' : undefined} class="entry__action">
+        <div class="entry__action__left">
+          <i class="entry__action__icon--square"></i>{link.type}
         </div>
         <svg
-          class="link-list__item__action__icon--arrow"
+          class="entry__action__icon--arrow"
           width="24"
           height="24"
           fill="none"
@@ -49,61 +45,27 @@
   @use '../sass/_variables'
   @use '../sass/_breakpoints'
 
-  .link-list__item
+  .entry
     display: flex
     flex-direction: column
-    gap: 2.4rem
+    column-gap: 2.4rem
     border-bottom: 0.5px dotted variables.$dotted-border-color
     padding-bottom: 2.4rem
     @include breakpoints.lg
       gap: 5.6rem
       flex-direction: row
-    .link-list__item__info
+    .entry__info
       display: flex
       flex-direction: column
-      gap: 2.4rem
+      gap: 0.8em
       @include breakpoints.lg
         flex: 3
-      // h2
-      //   font-size: 2.5rem
-      //   margin: 0
-      //   line-height: 100%
-      //   letter-spacing: -0.04em
-    //   .link-list__item__title
-    //     font-size: 2.5rem
-    //     margin: 0
-    //     line-height: 100%
-    //     // font-size: calc(3px + 2.5vw)
-    //     letter-spacing: -.04em
-    //     font-weight: 400
-    //     // font-size: 2.2rem
-    //     // @include breakpoints.lg
-    //     //   font-size: calc(14.5px + 0.78125vw)
-    //   .link-list__item__subtitle
-    //     font-weight: 400
-    //     margin: 0
-    //     letter-spacing: -.03em
-        // font-size: calc(14px + (3 * (100vw - 390px) / (1728 - 390)))
-      // .link-list__item__tags
-      //   display: flex
-      //   flex-wrap: wrap
-      //   gap: 8px
-      //   .link-list__item__tag
-      //     text-decoration: none
-      //     font-size: 1.2rem
-      //     text-transform: uppercase
-      //     font-family: variables.$font-monospace
-      //     color: variables.$text-color
-      //     border: 0.5px dotted variables.$dotted-border-color
-      //     padding: 1px 4px 3px 4px
-      //     border-radius: 4px
-
-    .link-list__item__actions
+    .entry__actions
       display: flex
       flex-direction: column
       @include breakpoints.lg
         flex: 2
-      .link-list__item__action
+      .entry__action
         text-decoration: none
         display: flex
         justify-content: space-between
@@ -119,17 +81,17 @@
           cursor: pointer
           color: variables.$background-color
           background: variables.$text-color
-          .link-list__item__action__icon--square
+          .entry__action__icon--square
             background: variables.$background-color
-          .link-list__item__action__icon--arrow
+          .entry__action__icon--arrow
             color: variables.$background-color
-        .link-list__item__action__icon--square
+        .entry__action__icon--square
           display: inline-flex
           height: 1rem
           width: 1rem
           background: variables.$text-color
           margin-right: 1rem
-        .link-list__item__action__icon--arrow
+        .entry__action__icon--arrow
           display: inline-flex
           height: 1.4em
           width: 1.4em

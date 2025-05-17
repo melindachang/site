@@ -49,7 +49,7 @@ export let work_timeline = $state<Work[]>([
     date: '2024.10 - Now',
     title: 'Director of Technology @ WildHacks',
     description:
-      'Leading software development the largest intercollegiate hackathon in the Chicago area.',
+      'Leading software development at the largest intercollegiate hackathon in the Chicago area.',
     categories: ['student org'],
   },
   {
@@ -64,7 +64,7 @@ export let work_timeline = $state<Work[]>([
     date: '2023.06 - 2024.08',
     title: 'Student Researcher @ UCSD Programming Systems Group',
     description:
-      "Advised by Prof. Michael Coblenz. Toward ergonomic programming languages and software processes for computational climate scientists (ICSE '24).",
+      "Advised by Prof. Michael Coblenz. Toward ergonomic programming languages and software processes for computational climate scientists.",
     categories: ['research', 'software engineering'],
   },
   {

@@ -19,10 +19,13 @@
   {#if open}
     <div class="filters__list">
       {#each tags as tag}
-        <div class={['filters__list__item', tag.checked && 'highlight']}>
-          <Checkbox bind:checked={tag.checked} width="20" height="20" />
+        <button
+          class={['filters__list__item', tag.checked && 'highlight']}
+          onclick={() => (tag.checked = !tag.checked)}
+        >
+          <Checkbox bind:checked={tag.checked} width={20} height={20} />
           <span class="filters__list__item__label">{tag.name} ({tag.amount})</span>
-        </div>
+        </button>
       {/each}
     </div>
   {/if}
@@ -46,11 +49,15 @@
     .filters__list
       position: relative
       margin-left: 1.4rem
-      padding-left: 1rem
+      padding-left: 1.8rem
       display: grid
-      row-gap: 5px
+      row-gap: 8px
       border-left: 0.5px dotted variables.$dotted-border-color
       .filters__list__item
+        padding: 0
+        background: none
+        border: none
+        color: inherit
         opacity: 0.5
         display: flex
         align-items: center
@@ -62,8 +69,8 @@
           .filters__list__item__label
             background-color: variables.$accent-aqua
         .filters__list__item__label
-          // font-family: variables.$font-monospace
-          // text-transform: uppercase
-          font-size: 1.4rem
+          font-family: variables.$font-monospace
+          text-transform: uppercase
+          font-size: 1.2rem
           line-height: 100%
 </style>
