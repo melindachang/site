@@ -1,4 +1,9 @@
+import type { Track, TrackItem } from '@spotify/web-api-ts-sdk'
 import type { Entry, Content, EntryMeta } from './interfaces'
+
+export const is_track = (input: TrackItem): input is Track => {
+  return 'album' in input
+}
 
 export const map_to_entry = <T extends EntryMeta>(input: T): Entry<T> => {
   let meta: EntryMeta = { title: input.title, date: input.date, href: input.href }

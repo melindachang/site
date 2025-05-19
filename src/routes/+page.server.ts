@@ -1,10 +1,10 @@
-import type { PlaybackState } from '@spotify/web-api-ts-sdk'
+import { userState } from '$lib/data/state.svelte.js'
+import type { PlaybackState, Track } from '@spotify/web-api-ts-sdk'
 
 export const load = async ({ fetch }) => {
-  let song = (await fetch('/api/spotify').then(res => res.json())) satisfies Partial<PlaybackState>
+  userState.playback_state = (await fetch('/api/spotify').then(res => res.json())) as Track
 
   return {
-    song,
     title: 'About',
     amount: 5,
   }

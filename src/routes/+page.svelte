@@ -6,10 +6,7 @@
   import SpotifyWidget from '$lib/components/SpotifyWidget.svelte'
   import type { Link } from '$lib/utils/interfaces'
   import { map_to_entry } from '$lib/utils/utils'
-  import type { PlaybackState } from '@spotify/web-api-ts-sdk'
-  import { work_timeline, publications } from '$lib/data/state.svelte.js'
-
-  let { song }: { song: PlaybackState } = $props()
+  import { userState } from '$lib/data/state.svelte.js'
 
   const bioLinks: Link[] = [
     {
@@ -34,7 +31,7 @@
 <div class="grid">
   <GridItem heading="Info">
     <LocalTime />
-    <SpotifyWidget {song} />
+    <SpotifyWidget />
   </GridItem>
   <div class="subgrid">
     <div class="subgrid__content">
@@ -64,7 +61,7 @@
         fn={() => (showFailures = !showFailures)}
         fnName={showFailures ? 'Hide Failures' : 'Show Failures'}
       >
-        {#each work_timeline as work}
+        {#each userState.work_timeline as work}
           {#if !work.isFailure || showFailures}
             <Entry data={map_to_entry(work)} isFailure={work.isFailure} />
           {/if}
@@ -72,7 +69,7 @@
       </GridItem>
       <GridItem heading="Publications">
         <div class="publications">
-          {#each publications as { title, authors, venue, categories, links }}
+          {#each userState.publications as { title, authors, venue, categories, links }}
             <LinkEntry {links}>
               <h2 class="publication__title">{title}</h2>
               <p class="publication__subtitle">

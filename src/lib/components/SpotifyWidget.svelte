@@ -3,16 +3,12 @@
   import { DotLottieSvelte } from '@lottiefiles/dotlottie-svelte'
   import XIcon from '$lib/assets/icons/XIcon.svelte'
   import { gsap } from 'gsap'
-  import type { PlaybackState, SimplifiedTrack, Track } from '@spotify/web-api-ts-sdk'
-
-  let { song }: { song: PlaybackState } = $props()
+  import { userState } from '$lib/data/state.svelte'
 
   let closed = $state(false)
   let artist = $state<HTMLSpanElement>()
   let artistName = $derived(
-    song && song.is_playing
-      ? (song.item as SimplifiedTrack).artists.map(a => a.name).join(', ')
-      : '',
+    userState.playback_state ? userState.playback_state.artists.map(a => a.name).join(', ') : '',
   )
   let visibleWidth = $state(0)
   let fullWidth = $state(0)
@@ -32,7 +28,7 @@
   const tl = gsap.timeline({ paused: true })
 
   let updateSong = async () => {
-    song = await fetch('/api/spotify').then(res => res.json())
+    userState.playback_state = await fetch('/api/spotify').then(res => res.json())
   }
 
   onMount(() => {
@@ -50,23 +46,25 @@
         <XIcon />
       </button>
       <span class="player__heading__title"
-        >{song && song.is_playing ? 'Now' : 'Not'} Playing &mdash; Spotify</span
+        >{userState.playback_state ? 'Now' : 'Not'} Playing &mdash; Spotify</span
       >
-      {#if song && song.is_playing}
+      {#if userState.playback_state}
         <div class="player__heading__icon">
           <DotLottieSvelte src="/now-playing.lottie" loop autoplay />
         </div>
       {/if}
     </div>
-    {#if song && song.is_playing}
+    {#if userState.playback_state}
       <div class="player__background">
         <div
           class="player__img"
           style:background-color="gray"
-          style:background-image={`url('${(song.item as Track).album.images[0].url}')`}
+          style:background-image={`url('${userState.playback_state.album.images[0].url}')`}
         ></div>
         <div class="player__text">
-          <a href={song.item.href} target="_blank" class="player__text__title">{song.item.name}</a>
+          <a href={userState.playback_state.href} target="_blank" class="player__text__title"
+            >{userState.playback_state.name}</a
+          >
           <div
             class="player__text__artist"
             onmouseover={() => tl.play()}

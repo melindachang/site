@@ -1,4 +1,11 @@
-import { SpotifyApi, type AccessToken, type PlaybackState } from '@spotify/web-api-ts-sdk'
+import { is_track } from '$lib/utils/utils'
+import {
+  SpotifyApi,
+  type AccessToken,
+  type PlaybackState,
+  type PlayHistory,
+  type RecentlyPlayedTracksPage,
+} from '@spotify/web-api-ts-sdk'
 import type { RequestHandler } from '@sveltejs/kit'
 
 const client_id = import.meta.env.VITE_SPOTIFY_CLIENT_ID
@@ -26,9 +33,12 @@ const get_access_token = async () => {
 export const GET: RequestHandler = async () => {
   const access_token = await get_access_token()
   const sdk = SpotifyApi.withAccessToken(client_id, access_token)
-  const res = await sdk.player.getCurrentlyPlayingTrack()
+  let res = (await sdk.player.getCurrentlyPlayingTrack()) satisfies PlaybackState
 
-  if (!res) return new Response(JSON.stringify({ is_playing: false } as Partial<PlaybackState>))
+  if (!res || !is_track(res.item)) {
+    let res = (await sdk.player.getRecentlyPlayedTracks()) satisfies RecentlyPlayedTracksPage
+    return new Response(JSON.stringify((res.items as PlayHistory[])[0].track))
+  }
 
-  return new Response(JSON.stringify(res))
+  return new Response(JSON.stringify(res.item))
 }
