@@ -20,7 +20,7 @@
     display: flex
     flex-direction: column
     &--gap
-      gap: 2.4rem
+      row-gap: 2.4rem
     .grid__item__header
       display: flex
       justify-content: space-between

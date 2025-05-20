@@ -2,26 +2,24 @@
   import Entry from '$lib/components/Entry.svelte'
   import GridItem from '$lib/components/GridItem.svelte'
   import LinkEntry from '$lib/components/LinkEntry.svelte'
-  import LocalTime from '$lib/components/LocalTime.svelte'
   import SpotifyWidget from '$lib/components/SpotifyWidget.svelte'
-  import type { Link } from '$lib/utils/interfaces'
   import { map_to_entry } from '$lib/utils/utils'
   import { userState } from '$lib/data/state.svelte.js'
-
-  const bioLinks: Link[] = [
-    {
-      type: 'Software',
-      href: 'https://www.github.com/melindachang',
-      external: true,
-    },
-    {
-      type: 'Writing',
-      href: '/writing',
-      external: false,
-    },
-  ]
+  import { onMount } from 'svelte'
 
   let showFailures = $state(false)
+  let time = $state(new Date()),
+    locale_str = $derived(time.toLocaleTimeString('en-US', { timeZone: 'America/Chicago' }))
+
+  onMount(() => {
+    const interval = setInterval(() => {
+      time = new Date()
+    }, 1000)
+
+    return () => {
+      clearInterval(interval)
+    }
+  })
 </script>
 
 <svelte:head>
@@ -29,14 +27,29 @@
 </svelte:head>
 
 <div class="grid">
-  <GridItem heading="Info">
-    <LocalTime />
-    <SpotifyWidget />
-  </GridItem>
+  <div class="info">
+    <GridItem heading="Info">
+      <p>It is <span class="time">{locale_str}</span> in Evanston, IL</p>
+      <SpotifyWidget />
+    </GridItem>
+  </div>
   <div class="subgrid">
     <div class="subgrid__content">
       <GridItem heading="Bio">
-        <LinkEntry links={bioLinks}>
+        <LinkEntry
+          links={[
+            {
+              type: 'Software',
+              href: 'https://www.github.com/melindachang',
+              external: true,
+            },
+            {
+              type: 'Writing',
+              href: '/writing',
+              external: false,
+            },
+          ]}
+        >
           <p>
             Hello! I'm a first-year student at Northwestern majoring in <b>Computer Science</b>
             and <b>Comparative Literary Studies</b>.
@@ -69,7 +82,7 @@
       </GridItem>
       <GridItem heading="Publications">
         <div class="publications">
-          {#each userState.publications as { title, authors, venue, categories, links }}
+          {#each userState.publications as { title, authors, venue, links }}
             <LinkEntry {links}>
               <h2 class="publication__title">{title}</h2>
               <p class="publication__subtitle">
@@ -82,13 +95,13 @@
         </div>
       </GridItem>
       <GridItem heading="Everywhere">
-        You can reach me via email at <code>melinda [at] u.northwestern.edu</code>. I'm also on
-        <a href="https://goodreads.com/hychang" target="_blank">Goodreads</a>
-        and
-        <a href="https://letterboxd.com/hychang" target="_blank">Letterboxd</a>. You will never find
-        my Twitter account.
-        <br />
-        <div class="subgrid__item__socials">
+        <p>
+          You can reach me via email at <code>melinda [at] u.northwestern.edu</code>. I'm also on
+          <a href="https://goodreads.com/hychang" target="_blank">Goodreads</a>
+          and
+          <a href="https://letterboxd.com/hychang" target="_blank">Letterboxd</a>.
+        </p>
+        <p class="subgrid__item__socials">
           <a
             class="subgrid__item__socials__link"
             href="https://github.com/melindachang"
@@ -110,7 +123,7 @@
           >
             Instagram
           </a>
-        </div>
+        </p>
       </GridItem>
     </div>
   </div>
@@ -125,6 +138,12 @@
     @include breakpoints.lg
       grid-template-columns: 1fr 3fr
       column-gap: 5.6rem
+    .info
+      height: fit-content
+      will-change: auto
+      @include breakpoints.lg
+        top: 4em
+        position: sticky
     .subgrid
       display: grid
       .subgrid__content

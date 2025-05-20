@@ -5,7 +5,7 @@ description:
   Eduroam has a lot of irritating config options that you need to specify manually to get online
   during an Arch Linux installation. Here's some informal documentation of the process.
 date: '2025.05.09'
-categories:
+tags:
   - Linux
   - Northwestern
 published: true
@@ -103,7 +103,7 @@ ping archlinux.org
 
 And you're in!
 
-# Tips & Troubleshooting
+# Troubleshooting
 
 If you used `archinstall` and chose the minimal option, consider copying this config file to the
 external device you mounted earlier. This way, you can copy it and the certificate again to

@@ -1,9 +1,9 @@
 <script lang="ts">
-  import { onMount } from 'svelte'
+  import { onMount, type Snippet } from 'svelte'
   import { DotLottieSvelte } from '@lottiefiles/dotlottie-svelte'
-  import XIcon from '$lib/assets/icons/XIcon.svelte'
   import { gsap } from 'gsap'
   import { userState } from '$lib/data/state.svelte'
+  import type { Track } from '@spotify/web-api-ts-sdk'
 
   let closed = $state(false)
   let artist = $state<HTMLSpanElement>()
@@ -26,55 +26,69 @@
   })
 
   const tl = gsap.timeline({ paused: true })
-
-  let updateSong = async () => {
-    userState.playback_state = await fetch('/api/spotify').then(res => res.json())
-  }
-
-  onMount(() => {
-    updateSong()
-    setInterval(updateSong, 10000)
-  })
 </script>
+
+{#snippet xIcon()}
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke-width="1.5"
+    stroke="currentColor"
+    class="size-6"
+  >
+    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+  </svg>
+{/snippet}
+
+{#snippet player(ico?: Snippet, body?: Snippet)}
+  <div class="player__heading">
+    <button class="player__heading__x" onclick={() => (closed = true)}>
+      {@render xIcon()}
+    </button>
+    <span class="player__heading__title">Now Playing &mdash; Spotify</span>
+    {@render ico?.()}
+  </div>
+  {@render body?.()}
+{/snippet}
+
+{#snippet npIcon()}
+  <div class="player__heading__icon">
+    <DotLottieSvelte src="/now-playing.lottie" loop autoplay />
+  </div>
+{/snippet}
 
 <!-- svelte-ignore a11y_no_static_element_interactions -->
 <!-- svelte-ignore a11y_mouse_events_have_key_events -->
+{#snippet playerBody()}
+  <div class="player__background">
+    <div
+      class="player__img"
+      style:background-color="gray"
+      style:background-image={`url('${userState.playback_state!.album.images[0].url}')`}
+    ></div>
+    <div class="player__text">
+      <a href={userState.playback_state!.href} target="_blank" class="player__text__title"
+        >{userState.playback_state!.name}</a
+      >
+      <div
+        class="player__text__artist"
+        onmouseover={() => tl.play()}
+        onmouseleave={() => tl.seek(0).pause()}
+        bind:clientWidth={visibleWidth}
+      >
+        <span bind:this={artist} bind:clientWidth={fullWidth}>{artistName}</span>
+      </div>
+    </div>
+  </div>
+{/snippet}
+
 {#if !closed}
   <div class="player">
-    <div class="player__heading">
-      <button class="player__heading__x" onclick={() => (closed = true)}>
-        <XIcon />
-      </button>
-      <span class="player__heading__title"
-        >{userState.playback_state ? 'Now' : 'Not'} Playing &mdash; Spotify</span
-      >
-      {#if userState.playback_state}
-        <div class="player__heading__icon">
-          <DotLottieSvelte src="/now-playing.lottie" loop autoplay />
-        </div>
-      {/if}
-    </div>
     {#if userState.playback_state}
-      <div class="player__background">
-        <div
-          class="player__img"
-          style:background-color="gray"
-          style:background-image={`url('${userState.playback_state.album.images[0].url}')`}
-        ></div>
-        <div class="player__text">
-          <a href={userState.playback_state.href} target="_blank" class="player__text__title"
-            >{userState.playback_state.name}</a
-          >
-          <div
-            class="player__text__artist"
-            onmouseover={() => tl.play()}
-            onmouseleave={() => tl.seek(0).pause()}
-            bind:clientWidth={visibleWidth}
-          >
-            <span bind:this={artist} bind:clientWidth={fullWidth}>{artistName}</span>
-          </div>
-        </div>
-      </div>
+      {@render player(npIcon, playerBody)}
+    {:else}
+      {@render player()}
     {/if}
   </div>
 {/if}
@@ -121,6 +135,12 @@
         background: none
         border: none
         cursor: pointer
+        svg
+          color: variables.$text-color
+          height: 100%
+          position: absolute
+          top: 0
+          left: 0
     .player__background
       position: relative
       border: 0.5px solid variables.$text-color

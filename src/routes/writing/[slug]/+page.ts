@@ -1,13 +1,16 @@
+import type { Article, Content } from '$lib/utils/interfaces.js'
+import { map_to_entry } from '$lib/utils/utils.js'
 import { error } from '@sveltejs/kit'
 
 export const load = async ({ params }) => {
   try {
     const article = await import(`$articles/${params.slug}.md`)
+    const meta = map_to_entry(article.metadata as Article)
 
     return {
       content: article.default,
-      meta: article.metadata,
-      title: article.metadata.title
+      meta,
+      title: article.metadata.title,
     }
   } catch (err) {
     error(404, `Could not find ${params.slug}`)

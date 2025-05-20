@@ -25,7 +25,10 @@
 </main>
 
 <style lang="sass">
+  @use '$lib/sass/_breakpoints'
   main
     width: 100%
     padding: 4em 1em
+    .header
+      width: fit-content
 </style>

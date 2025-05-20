@@ -12,9 +12,9 @@
     <span class="metadata__item__value">{data.author}</span>
   </div>
   <div class="metadata__item">
-    <span class="metadata__item__label">Categories:</span>
+    <span class="metadata__item__label">tags:</span>
     <div class="metadata__item__value">
-      {#each data.categories as tag}
+      {#each data.tags as tag}
         <span class="metadata__item__tag">{tag}</span>
       {/each}
     </div>

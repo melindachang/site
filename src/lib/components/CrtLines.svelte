@@ -1,7 +1,7 @@
 <div class="crt-effect"></div>
 
 <style lang="sass">
-  @use '../sass/_animations'
+  @use '$lib/sass/_animations'
 
   .crt-effect
     position: fixed

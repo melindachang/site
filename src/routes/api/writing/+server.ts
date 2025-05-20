@@ -12,7 +12,7 @@ const get_articles = async () => {
 
     if (file && typeof file === 'object' && 'metadata' in file && slug) {
       let metadata = file.metadata as Omit<Article, 'slug'>
-      metadata.categories.sort()
+      metadata.tags.sort()
 
       const article = { ...metadata, href: slug } satisfies Article
 

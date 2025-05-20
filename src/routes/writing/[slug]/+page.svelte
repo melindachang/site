@@ -1,15 +1,14 @@
 <script lang="ts">
   import GridItem from '$lib/components/GridItem.svelte'
-  import Metadata from '$lib/components/Metadata.svelte'
+  import type { Article, Content, EntryMeta } from '$lib/utils/interfaces.js'
   import { gsap } from 'gsap'
-  import { onMount } from 'svelte'
+  import { onMount, type Snippet } from 'svelte'
   let { data } = $props()
 
   let title: HTMLHeadingElement
-  let titleHeight = $state(0)
   let content: HTMLDivElement
-  let metaLoc = $state<HTMLElement>()
-  let stickyDistance = $derived(metaLoc!.getBoundingClientRect().y)
+  let metadata = $state<HTMLElement>()
+  let stickyDistance = $derived(metadata!.getBoundingClientRect().y)
   let scrollY = $state(0)
   let innerWidth = $state(0)
   let mounted = $state(false)
@@ -38,7 +37,7 @@
     ).fromTo(
       content,
       {
-        translateY: `-${titleHeight + 24}px`,
+        translateY: `-${title.clientHeight + 24}px`,
       },
       {
         translateY: 0,
@@ -55,16 +54,38 @@
 </svelte:head>
 
 <svelte:window bind:scrollY bind:innerWidth />
+
+{#snippet metadataItem(item: Content<Omit<Article, keyof EntryMeta>>, value: Snippet<[any]>)}
+  <div class="metadata__item">
+    <span class="metadata__item__label">{item!.key}</span>
+    {@render value(item!.value)}
+  </div>
+{/snippet}
+
+{#snippet tags(value: string[])}
+  <div class="metadata__item__value">
+    {#each value as tag}
+      <span class="metadata__item__tag">{tag}</span>
+    {/each}
+  </div>
+{/snippet}
+
+{#snippet text(value: string)}
+  <span class="metadata__item__value">{value}</span>
+{/snippet}
+
 <article>
-  <div class="metadata" bind:this={metaLoc}>
+  <div class="metadata" bind:this={metadata}>
     <div class="metadata__title">
-      <h2 bind:this={title} bind:clientHeight={titleHeight}>
+      <h2 bind:this={title}>
         {data.meta.title}
       </h2>
     </div>
     <div class="metadata__content" bind:this={content}>
       <GridItem heading="Metadata" noGap>
-        <Metadata data={data.meta} />
+        {#each data.meta.content.filter(el => el.key != 'description') as item}
+          {@render metadataItem(item, item.key === 'tags' ? tags : text)}
+        {/each}
       </GridItem>
     </div>
   </div>
@@ -83,9 +104,9 @@
 
   article
     display: grid
-    gap: 3em
     @include breakpoints.lg
       grid-template-columns: 6fr 17fr
+      column-gap: 3em
     .metadata
       height: fit-content
       will-change: auto
@@ -99,5 +120,34 @@
           margin-bottom: 2.4rem
       .metadata__content
         transform: translateY(0)
+        text-transform: uppercase
+        font-size: 1.2rem
+        font-family: variables.$font-monospace
+        letter-spacing: -.04em
+        .metadata__item
+          grid-column: 1 / -1
+          display: grid
+          grid-template-columns: 1fr 1fr
+          padding: 1.2rem 0
+          border-bottom: 0.5px dotted variables.$dotted-border-color
+          .metadata__item__value
+            display: flex
+            align-content: flex-start
+            flex-wrap: wrap
+            gap: 0.5rem
+          .metadata__item__tag
+            white-space: nowrap
+            cursor: pointer
+            text-decoration: none
+            font-size: 1.2rem
+            text-transform: uppercase
+            font-family: variables.$font-monospace
+            color: variables.$text-color
+            border: 0.5px dotted variables.$dotted-border-color
+            padding: 1px 4px 3px 4px
+            border-radius: 4px
+            &:hover
+              color: variables.$background-color
+              background: variables.$text-color 
 
 </style>

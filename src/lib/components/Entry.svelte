@@ -2,19 +2,15 @@
   import PlusMinusIcon from '$lib/assets/icons/PlusMinusIcon.svelte'
   import type { Article, Entry, Work } from '$lib/utils/interfaces'
   import { gsap } from 'gsap'
-  import { onMount } from 'svelte'
+  import { onMount, type Snippet } from 'svelte'
 
-  let { data, isFailure = false }: { data: Entry<Article> | Entry<Work>; isFailure: boolean } =
-    $props()
+  type Props = { data: Entry<Article> | Entry<Work>; isFailure: boolean }
+  let { data, isFailure = false }: Props = $props()
 
-  let expanded = $state(false)
-  let collapsible: HTMLDivElement
-  let titleHeight = $state(0)
-  let bodyHeight = $state(0)
-
-  const toggleExpanded = () => {
-    expanded = !expanded
-  }
+  let expanded = $state(false),
+    collapsible: HTMLDivElement,
+    collapsibleBody: HTMLDivElement,
+    titleHeight = $state(0)
 
   const tl = gsap.timeline()
 
@@ -29,12 +25,12 @@
         height: `${titleHeight}px`,
       },
       {
-        height: `${titleHeight + bodyHeight}px`,
+        height: `${titleHeight + collapsibleBody.clientHeight}px`,
         duration: 0.35,
         ease: 'power1.inOut',
       },
     ).fromTo(
-      collapsible.querySelector('.entry__body'),
+      collapsibleBody,
       {
         autoAlpha: 0,
       },
@@ -48,6 +44,27 @@
   })
 </script>
 
+{#snippet entryItem(key: string, value: string | string[], snippet: Snippet<[any]>)}
+  <div class="entry__item">
+    <div class="entry__caption">
+      <span class="entry__caption__text">{key.toUpperCase()}: </span>
+    </div>
+    {@render snippet(value)}
+  </div>
+{/snippet}
+
+{#snippet tags(value: string[])}
+  <div class="entry__item__tags">
+    {#each value as tag}
+      <span class="tag">{tag}</span>
+    {/each}
+  </div>
+{/snippet}
+
+{#snippet text(value: string)}
+  <p class="entry__item__text">{@html value}</p>
+{/snippet}
+
 <div class={['entry', isFailure && 'entry--failure']} bind:this={collapsible}>
   <div class="entry__title" bind:clientHeight={titleHeight}>
     <div class="entry__caption entry__date">
@@ -57,33 +74,13 @@
       </div>
     </div>
     <a class="entry__title__text" href={data.href}>{@html data.title}</a>
-    <button class="entry__title__icon" onclick={toggleExpanded}>
+    <button class="entry__title__icon" onclick={() => (expanded = !expanded)}>
       <PlusMinusIcon {expanded} width={18} height={18} />
     </button>
   </div>
-  <div class="entry__body" bind:clientHeight={bodyHeight}>
-    {#each data.content as el}
-      {#if el && el.value && typeof el.value != 'boolean'}
-        {#if el.key === 'categories'}
-          <div class="entry__tags">
-            <div class="entry__caption">
-              <span class="entry__caption__text">Tags:</span>
-            </div>
-            <div class="entry__tags__text">
-              {#each el.value as tag}
-                <span class="tag">{tag}</span>
-              {/each}
-            </div>
-          </div>
-        {:else}
-          <div class="entry__item">
-            <div class="entry__caption">
-              <span class="entry__caption__text"> {el.key.toUpperCase()}: </span>
-            </div>
-            <p class="entry__item__text">{@html el.value}</p>
-          </div>
-        {/if}
-      {/if}
+  <div class="entry__body" bind:this={collapsibleBody}>
+    {#each data.content.filter(el => typeof el.value != 'boolean') as { key, value }}
+      {@render entryItem(key, value, key === 'tags' ? tags : text)}
     {/each}
   </div>
 </div>
@@ -166,7 +163,6 @@
         cursor: pointer
         background: none
         color: variables.$text-color
-        // padding: 1.35rem 0
         border: none
         
     &__body
@@ -186,26 +182,25 @@
         line-height: 1.3
       .entry__item__text
         font-size: 2rem
-      .entry__tags
-        &__text
-          display: flex
-          align-items: flex-start
-          flex-wrap: wrap
-          gap: 0.2rem
-          .tag
-            white-space: nowrap
-            cursor: pointer
-            text-decoration: none
-            font-size: 1.2rem
-            text-transform: uppercase
-            font-family: variables.$font-monospace
-            color: variables.$text-color
-            border: 0.5px dotted variables.$dotted-border-color
-            padding: 1px 4px 3px 4px
-            border-radius: 4px
-            &:hover
-              color: variables.$background-color
-              background: variables.$text-color 
+      .entry__item__tags
+        display: flex
+        align-items: flex-start
+        flex-wrap: wrap
+        gap: 2px
+        .tag
+          white-space: nowrap
+          cursor: pointer
+          text-decoration: none
+          font-size: 1.2rem
+          text-transform: uppercase
+          font-family: variables.$font-monospace
+          color: variables.$text-color
+          border: 0.5px dotted variables.$dotted-border-color
+          padding: 1px 4px 3px 4px
+          border-radius: 4px
+          &:hover
+            color: variables.$background-color
+            background: variables.$text-color 
         
 
 </style>

@@ -4,7 +4,7 @@ export type EntryMeta = {
   href?: string
 }
 
-export type Entry<T> = EntryMeta & { content: Content<T>[] }
+export type Entry<T> = EntryMeta & { content: Content<Omit<T, keyof EntryMeta>>[] }
 
 export type Content<T> = {
   [Prop in keyof T]: {
@@ -16,14 +16,14 @@ export type Content<T> = {
 export type Article = EntryMeta & {
   author: string
   description: string
-  categories: string[]
+  tags: string[]
   published: boolean
 }
 
 export type Work = EntryMeta & {
   isFailure: boolean
   description: string
-  categories?: string[]
+  tags: string[]
 }
 
 export type Tag = {
@@ -43,5 +43,5 @@ export type Publication = {
   authors: string[]
   venue: string
   links: Link[]
-  categories?: string[]
+  tags?: string[]
 }
