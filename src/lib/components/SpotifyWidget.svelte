@@ -25,7 +25,16 @@
     }
   })
 
-  const tl = gsap.timeline({ paused: true })
+  const tl = gsap.timeline()
+
+  const update_song = async () => {
+    userState.playback_state = (await fetch('/api/spotify').then(res => res.json())) as Track
+  }
+
+  onMount(async () => {
+    update_song()
+    setInterval(update_song, 10000)
+  })
 </script>
 
 {#snippet xIcon()}
