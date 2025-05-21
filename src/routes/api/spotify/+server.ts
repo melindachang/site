@@ -13,7 +13,7 @@ const client_secret = import.meta.env.VITE_SPOTIFY_CLIENT_SECRET
 const refresh_token = import.meta.env.VITE_SPOTIFY_REFRESH_TOKEN
 const redirect_uri = import.meta.env.VITE_SPOTIFY_REDIRECT_URI
 
-const get_access_token = async () => {
+const get_access_token = async (): Promise<AccessToken> => {
   const access_token = await fetch('https://accounts.spotify.com/api/token', {
     method: 'POST',
     headers: {

@@ -8,7 +8,7 @@
   let title: HTMLHeadingElement
   let content: HTMLDivElement
   let metadata = $state<HTMLElement>()
-  let stickyDistance = $derived(metadata!.getBoundingClientRect().y)
+  let stickyDistance = $derived(metadata ? metadata.getBoundingClientRect().y : 400)
   let scrollY = $state(0)
   let innerWidth = $state(0)
   let mounted = $state(false)

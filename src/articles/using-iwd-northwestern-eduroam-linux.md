@@ -2,8 +2,9 @@
 title: Using iwd to Connect to Northwestern Eduroam Wi-Fi
 author: Melinda Chang
 description:
-  Eduroam has a lot of irritating config options that you need to specify manually to get online
-  during an Arch Linux installation. Here's some informal documentation of the process.
+  Eduroam has a lot of irritatingly opaque config options that you need to specify to get online
+  during an Arch Linux installation. This documentation is for the Northwestern network, but it
+  might still be useful if you're trying to replicate these methods elsewhere.
 date: '2025.05.09'
 tags:
   - Linux
@@ -23,7 +24,7 @@ configuration profile for eduroam varies somewhat by school. If (a) you have any
 phone's Wi-Fi tethering or (b) the Ethernet port in your dorm room actually functions, either option
 may save you a few hours.
 
-# Getting started
+## Getting started
 
 Before you enter the Arch live environment, you need to download the Northwestern eduroam
 certificate `nu-eduroam.cer` from
@@ -42,7 +43,7 @@ cd /path/to/dir
 cp nu-eduroam.cer /var/lib/iwd
 ```
 
-# Configuration
+## Configuration
 
 In the same directory, create the eduroam config file with your text editor of choice.
 
@@ -73,8 +74,8 @@ your password. Leave everything else alone.
 The contents of this file were extracted from the
 [eduroam CAT installer for Linux](https://cat.eduroam.org/), which is really a Python script with
 the `iwd` config buried inside somewhere&mdash;it's easy enough to dig through your institution's
-installer and see what details you need to populate. If you need to do so, a few things I found
-helpful:
+installer and see which details to populate. If you find yourself needing to do so, a few things I
+found helpful:
 
 - The `IwdConfiguration` class has functions to create configs for a number of different protocols,
   but you can safely assume that only one of them will work. It's likely that your institution's IT
@@ -87,7 +88,7 @@ helpful:
   ```
   Just use the URI that follows and discard the `DNS:`, or it won't work.
 
-# Connect to Wi-Fi
+## Connect to Wi-Fi
 
 You should be good to go. Run the following:
 
@@ -103,7 +104,7 @@ ping archlinux.org
 
 And you're in!
 
-# Troubleshooting
+## Troubleshooting
 
 If you used `archinstall` and chose the minimal option, consider copying this config file to the
 external device you mounted earlier. This way, you can copy it and the certificate again to
