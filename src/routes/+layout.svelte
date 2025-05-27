@@ -3,7 +3,7 @@
   import CrtLines from '$lib/components/CrtLines.svelte'
   import Header from '$lib/components/Header.svelte'
   import Navigation from '$lib/components/Navigation.svelte'
-  import '$lib/sass/app.sass'
+  import '$lib/scss/app.scss'
 
   let { children } = $props()
 </script>
@@ -24,11 +24,13 @@
   {@render children()}
 </main>
 
-<style lang="sass">
-  @use '$lib/sass/_breakpoints'
-  main
-    width: 100%
-    padding: 4em 1em
-    .header
-      width: fit-content
+<style lang="scss">
+  @use '$lib/scss/_breakpoints';
+  main {
+    width: 100%;
+    padding: 4em 1em;
+    .header {
+      width: fit-content;
+    }
+  }
 </style>

@@ -7,11 +7,7 @@ export const load = async ({ params }) => {
     const article = await import(`$articles/${params.slug}.md`)
     const meta = map_to_entry(article.metadata as Article)
 
-    return {
-      content: article.default,
-      meta,
-      title: article.metadata.title,
-    }
+    return { content: article.default, meta, title: article.metadata.title }
   } catch (err) {
     error(404, `Could not find ${params.slug}`)
   }

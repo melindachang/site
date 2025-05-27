@@ -4,27 +4,21 @@
 
   let innerWidth = $state(0)
   const pages = $state([
-    {
-      name: 'About',
-      keypress: 'A',
-      local: true,
-      href: '/',
-      active: false,
-    },
+    { name: 'About', keypress: 'A', local: true, href: '/', active: false },
     {
       name: 'Writing',
       keypress: 'W',
       local: true,
       href: '/writing',
-      active: false,
+      active: false
     },
     {
       name: 'CV',
       keypress: 'C',
       local: false,
       href: 'https://melindachang.github.io/cv-latex/output.pdf',
-      active: false,
-    },
+      active: false
+    }
   ])
 
   const toggleActive = (i: number) => {
@@ -66,54 +60,63 @@
           href={page.href}
           target={!page.local ? '_blank' : null}
           onclick={page.local ? () => toggleActive(i) : null}
-          data-sveltekit-preload-data
-        >
-          {innerWidth >= 992 ? `[${page.keypress}] ${page.name}` : page.name}</a
-        >
+          data-sveltekit-preload-data>
+          {innerWidth >= 992
+            ? `[${page.keypress}] ${page.name}`
+            : page.name}</a>
       {/each}
     </div>
   </div>
 </div>
 
-<style lang="sass">
-  @use '../sass/_variables'
-  @use '../sass/_breakpoints'
-  @use 'sass:map'
+<style lang="scss">
+  @use '../scss/_variables';
+  @use '../scss/_breakpoints';
 
-  .nav
-    position: fixed
-    z-index: 99
-    top: 0
-    left: 0
-    width: 100%
-    margin: 0 auto
-    padding: 1em
-    justify-content: center
-    background-image: linear-gradient(to bottom, variables.$background-color, rgba(0,0,0,0))
-    pointer-events: none
-    .nav__content
-      width: 100%
-      display: grid
-      .nav__links
-        display: flex
-          justify-content: start
-        .nav__link
-          pointer-events: auto
-          display: flex
-          background: variables.$background-color-lighter
-          font-size: 1.2rem
-          line-height: 1.2
-          text-decoration: none
-          color: variables.$text-color
-          padding: .5rem .8rem
-          text-transform: uppercase
-          font-family: variables.$font-monospace
-          letter-spacing: -.3px
-          border-radius: 2px
-          &.active, &:hover
-            background: variables.$text-color
-            color: variables.$background-color
-          &:not(:last-child)
-            margin-right: .3rem
-
+  .nav {
+    position: fixed;
+    z-index: 99;
+    top: 0;
+    left: 0;
+    width: 100%;
+    margin: 0 auto;
+    padding: 1em;
+    justify-content: center;
+    background-image: linear-gradient(
+      to bottom,
+      variables.$background-color,
+      rgba(0, 0, 0, 0)
+    );
+    pointer-events: none;
+    .nav__content {
+      width: 100%;
+      display: grid;
+      .nav__links {
+        display: flex;
+        justify-content: start;
+        .nav__link {
+          pointer-events: auto;
+          display: flex;
+          background: variables.$background-color-lighter;
+          font-size: 1.2rem;
+          line-height: 1.2;
+          text-decoration: none;
+          color: variables.$text-color;
+          padding: 0.5rem 0.8rem;
+          text-transform: uppercase;
+          font-family: variables.$font-monospace;
+          letter-spacing: -0.3px;
+          border-radius: 2px;
+          &.active,
+          &:hover {
+            background: variables.$text-color;
+            color: variables.$background-color;
+          }
+          &:not(:last-child) {
+            margin-right: 0.3rem;
+          }
+        }
+      }
+    }
+  }
 </style>

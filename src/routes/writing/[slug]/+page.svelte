@@ -8,7 +8,9 @@
   let title: HTMLHeadingElement
   let content: HTMLDivElement
   let metadata = $state<HTMLElement>()
-  let stickyDistance = $derived(metadata ? metadata.getBoundingClientRect().y : 400)
+  let stickyDistance = $derived(
+    metadata ? metadata.getBoundingClientRect().y : 400
+  )
   let scrollY = $state(0)
   let innerWidth = $state(0)
   let mounted = $state(false)
@@ -24,27 +26,13 @@
   onMount(() => {
     tl.fromTo(
       title,
-      {
-        autoAlpha: 0,
-        translateY: '-15px',
-      },
-      {
-        autoAlpha: 1,
-        translateY: 0,
-        duration: 0.3,
-        ease: 'power2.inOut',
-      },
+      { autoAlpha: 0, translateY: '-15px' },
+      { autoAlpha: 1, translateY: 0, duration: 0.3, ease: 'power2.inOut' }
     ).fromTo(
       content,
-      {
-        translateY: `-${title.clientHeight + 24}px`,
-      },
-      {
-        translateY: 0,
-        duration: 0.4,
-        ease: 'power1.inOut',
-      },
-      '<',
+      { translateY: `-${title.clientHeight + 24}px` },
+      { translateY: 0, duration: 0.4, ease: 'power1.inOut' },
+      '<'
     )
   })
 </script>
@@ -55,7 +43,10 @@
 
 <svelte:window bind:scrollY bind:innerWidth />
 
-{#snippet metadataItem(item: Content<Omit<Article, keyof EntryMeta>>, value: Snippet<[any]>)}
+{#snippet metadataItem(
+  item: Content<Omit<Article, keyof EntryMeta>>,
+  value: Snippet<[any]>
+)}
   <div class="metadata__item">
     <span class="metadata__item__label">{item!.key}</span>
     {@render value(item!.value)}
@@ -98,56 +89,66 @@
   </GridItem>
 </article>
 
-<style lang="sass">
-  @use '$lib/sass/_breakpoints'
-  @use '$lib/sass/_variables'
+<style lang="scss">
+  @use '$lib/scss/_breakpoints';
+  @use '$lib/scss/_variables';
 
-  article
-    display: grid
-    @include breakpoints.lg
-      grid-template-columns: 6fr 17fr
-      column-gap: 3em
-    .metadata
-      height: fit-content
-      will-change: auto
-      @include breakpoints.lg
-        position: sticky
-        top: 4em
-      .metadata__title
-        min-height: 0px
-        font-size: 2.8rem
-        h2
-          margin-bottom: 2.4rem
-      .metadata__content
-        transform: translateY(0)
-        text-transform: uppercase
-        font-size: 1.2rem
-        font-family: variables.$font-monospace
-        letter-spacing: -.04em
-        .metadata__item
-          grid-column: 1 / -1
-          display: grid
-          grid-template-columns: 1fr 1fr
-          padding: 1.2rem 0
-          border-bottom: 0.5px dotted variables.$dotted-border-color
-          .metadata__item__value
-            display: flex
-            align-content: flex-start
-            flex-wrap: wrap
-            gap: 0.5rem
-          .metadata__item__tag
-            white-space: nowrap
-            cursor: pointer
-            text-decoration: none
-            font-size: 1.2rem
-            text-transform: uppercase
-            font-family: variables.$font-monospace
-            color: variables.$text-color
-            border: 0.5px dotted variables.$dotted-border-color
-            padding: 1px 4px 3px 4px
-            border-radius: 4px
-            &:hover
-              color: variables.$background-color
-              background: variables.$text-color 
-
+  article {
+    display: grid;
+    @include breakpoints.lg {
+      grid-template-columns: 6fr 17fr;
+      column-gap: 3em;
+    }
+    .metadata {
+      height: fit-content;
+      will-change: auto;
+      @include breakpoints.lg {
+        position: sticky;
+        top: 4em;
+      }
+      .metadata__title {
+        min-height: 0px;
+        font-size: 2.8rem;
+        h2 {
+          margin-bottom: 2.4rem;
+        }
+      }
+      .metadata__content {
+        transform: translateY(0);
+        text-transform: uppercase;
+        font-size: 1.2rem;
+        font-family: variables.$font-monospace;
+        letter-spacing: -0.04em;
+        .metadata__item {
+          grid-column: 1 / -1;
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          padding: 1.2rem 0;
+          border-bottom: 0.5px dotted variables.$dotted-border-color;
+          .metadata__item__value {
+            display: flex;
+            align-content: flex-start;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+          }
+          .metadata__item__tag {
+            white-space: nowrap;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            font-family: variables.$font-monospace;
+            color: variables.$text-color;
+            border: 0.5px dotted variables.$dotted-border-color;
+            padding: 1px 4px 3px 4px;
+            border-radius: 4px;
+            &:hover {
+              color: variables.$background-color;
+              background: variables.$text-color;
+            }
+          }
+        }
+      }
+    }
+  }
 </style>

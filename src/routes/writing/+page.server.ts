@@ -7,14 +7,11 @@ export const load = async ({ fetch }) => {
   for (const a of articles) {
     for (const c of a.tags) {
       let tag = tags.find(t => t.name === c)
-      tag ? (tag.amount += 1) : tags.push({ name: c, amount: 1, checked: false } satisfies Tag)
+      tag
+        ? (tag.amount += 1)
+        : tags.push({ name: c, amount: 1, checked: false } satisfies Tag)
     }
   }
 
-  return {
-    title: 'Writing',
-    amount: articles.length,
-    articles,
-    tags,
-  }
+  return { title: 'Writing', amount: articles.length, articles, tags }
 }

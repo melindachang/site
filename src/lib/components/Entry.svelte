@@ -21,30 +21,26 @@
   onMount(() => {
     tl.fromTo(
       collapsible,
-      {
-        height: `${titleHeight}px`,
-      },
+      { height: `${titleHeight}px` },
       {
         height: `${titleHeight + collapsibleBody.clientHeight}px`,
         duration: 0.35,
-        ease: 'power1.inOut',
-      },
+        ease: 'power1.inOut'
+      }
     ).fromTo(
       collapsibleBody,
-      {
-        autoAlpha: 0,
-      },
-      {
-        autoAlpha: 1,
-        duration: 0.35,
-        ease: 'power1.inOut',
-      },
-      '<',
+      { autoAlpha: 0 },
+      { autoAlpha: 1, duration: 0.35, ease: 'power1.inOut' },
+      '<'
     )
   })
 </script>
 
-{#snippet entryItem(key: string, value: string | string[], snippet: Snippet<[any]>)}
+{#snippet entryItem(
+  key: string,
+  value: string | string[],
+  snippet: Snippet<[any]>
+)}
   <div class="entry__item">
     <div class="entry__caption">
       <span class="entry__caption__text">{key.toUpperCase()}: </span>
@@ -85,122 +81,149 @@
   </div>
 </div>
 
-<style lang="sass">
-  @use '$lib/sass/_variables'
-  @use '$lib/sass/_breakpoints'
+<style lang="scss">
+  @use '$lib/scss/_variables';
+  @use '$lib/scss/_breakpoints';
 
-  .entry
-    display: grid
-    border-bottom: 0.5px dotted variables.$dotted-border-color
-    overflow-y: hidden
-    @include breakpoints.lg
-      column-gap: 4px
-      grid-template-columns: 2fr 11fr
-    &--failure
-      .entry__date__icon
-        background: variables.$accent-red !important
-      .entry__title__text
-        color: variables.$accent-red
+  .entry {
+    display: grid;
+    border-bottom: 0.5px dotted variables.$dotted-border-color;
+    overflow-y: hidden;
+    @include breakpoints.lg {
+      column-gap: 4px;
+      grid-template-columns: 2fr 11fr;
+    }
+    &--failure {
+      .entry__date__icon {
+        background: variables.$accent-red !important;
+      }
+      .entry__title__text {
+        color: variables.$accent-red;
+      }
+    }
 
-    p, a
-      text-decoration: none
-      margin: 0
-      padding: 0
-      color: inherit
-      letter-spacing: -.04em
-    .entry__caption
-      text-transform: uppercase
-      font-family: variables.$font-monospace
-      font-size: 1.2rem
-      line-height: 100%
-      display: flex
-      align-items: flex-start
-      grid-column: 1 / -1
-      @include breakpoints.lg
-        grid-column: 1
-      &__text
-        display: flex
-        align-items: center
-        justify-content: center
-        &::after
-          content: 'A'
-          visibility: hidden
-          font-size: 2rem
-      &.entry__date
-        padding-top: 1.3rem
-        @include breakpoints.lg
-          padding: 0
-        .entry__date__text
-          display: inline-flex
-          gap: 1rem
-          align-items: center
-          .entry__date__icon
-            background: variables.$text-color
-            height: 0.6rem
-            width: 0.6rem
-    &__title
-      text-decoration: none
-      grid-column: 1 / -1
-      display: grid
-      grid-auto-rows: min-content
-      align-items: center
-      grid-template-columns: 10fr 1fr
-      @include breakpoints.lg
-        gap: 1rem
-        grid-template-columns: 2fr 10fr 1fr
-      &:hover
-        color: variables.$background-color
-        background: variables.$text-color
-        .entry__date__icon
-          background: variables.$background-color
-      .entry__title__text
-        padding: 1.3rem 0
-        font-size: 2.2rem
-        line-height: 100%
-        @include breakpoints.md
-          font-size: 2.5rem
-      .entry__title__icon
-        cursor: pointer
-        background: none
-        color: variables.$text-color
-        border: none
-        
-    &__body
-      grid-column: 1 / -1
-      padding: 2.4rem 0
-      display: grid
-      grid-template-columns: subgrid
-      font-size: 2rem
+    p,
+    a {
+      text-decoration: none;
+      margin: 0;
+      padding: 0;
+      color: inherit;
+      letter-spacing: -0.04em;
+    }
+    .entry__caption {
+      text-transform: uppercase;
+      font-family: variables.$font-monospace;
+      font-size: 1.2rem;
+      line-height: 100%;
+      display: flex;
+      align-items: flex-start;
+      grid-column: 1 / -1;
+      @include breakpoints.lg {
+        grid-column: 1;
+      }
+      &__text {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        &::after {
+          content: 'A';
+          visibility: hidden;
+          font-size: 2rem;
+        }
+      }
+      &.entry__date {
+        padding-top: 1.3rem;
+        @include breakpoints.lg {
+          padding: 0;
+        }
+        .entry__date__text {
+          display: inline-flex;
+          gap: 1rem;
+          align-items: center;
+          .entry__date__icon {
+            background: variables.$text-color;
+            height: 0.6rem;
+            width: 0.6rem;
+          }
+        }
+      }
+    }
+    &__title {
+      text-decoration: none;
+      grid-column: 1 / -1;
+      display: grid;
+      grid-auto-rows: min-content;
+      align-items: center;
+      grid-template-columns: 10fr 1fr;
+      @include breakpoints.lg {
+        gap: 1rem;
+        grid-template-columns: 2fr 10fr 1fr;
+      }
+      &:hover {
+        color: variables.$background-color;
+        background: variables.$text-color;
+        .entry__date__icon {
+          background: variables.$background-color;
+        }
+      }
+      .entry__title__text {
+        padding: 1.3rem 0;
+        font-size: 2.2rem;
+        line-height: 100%;
+        @include breakpoints.md {
+          font-size: 2.5rem;
+        }
+      }
+      .entry__title__icon {
+        cursor: pointer;
+        background: none;
+        color: variables.$text-color;
+        border: none;
+      }
+    }
 
-      & > div
-        &:not(:last-child)
-          margin-bottom: 1em
-        grid-column: 1 / -1
-        display: grid
-        grid-template-columns: subgrid
-        row-gap: 1rem
-        line-height: 1.3
-      .entry__item__text
-        font-size: 2rem
-      .entry__item__tags
-        display: flex
-        align-items: flex-start
-        flex-wrap: wrap
-        gap: 2px
-        .tag
-          white-space: nowrap
-          cursor: pointer
-          text-decoration: none
-          font-size: 1.2rem
-          text-transform: uppercase
-          font-family: variables.$font-monospace
-          color: variables.$text-color
-          border: 0.5px dotted variables.$dotted-border-color
-          padding: 1px 4px 3px 4px
-          border-radius: 4px
-          &:hover
-            color: variables.$background-color
-            background: variables.$text-color 
-        
+    &__body {
+      grid-column: 1 / -1;
+      padding: 2.4rem 0;
+      display: grid;
+      grid-template-columns: subgrid;
+      font-size: 2rem;
 
+      & > div {
+        &:not(:last-child) {
+          margin-bottom: 1em;
+        }
+        grid-column: 1 / -1;
+        display: grid;
+        grid-template-columns: subgrid;
+        row-gap: 1rem;
+        line-height: 1.3;
+      }
+      .entry__item__text {
+        font-size: 2rem;
+      }
+      .entry__item__tags {
+        display: flex;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        gap: 2px;
+        .tag {
+          white-space: nowrap;
+          cursor: pointer;
+          text-decoration: none;
+          font-size: 1.2rem;
+          text-transform: uppercase;
+          font-family: variables.$font-monospace;
+          color: variables.$text-color;
+          border: 0.5px dotted variables.$dotted-border-color;
+          padding: 1px 4px 3px 4px;
+          border-radius: 4px;
+          &:hover {
+            color: variables.$background-color;
+            background: variables.$text-color;
+          }
+        }
+      }
+    }
+  }
 </style>

@@ -20,7 +20,7 @@
     "@sveltejs/vite-plugin-svelte": "^5.0.3",
     "mdsvex": "^0.12.6",
     "prettier": "^3.5.3",
-    "prettier-plugin-svelte": "^3.3.3",
+    "prettier-plugin-svelte": "^3.4.0",
     "rehype-external-links": "^3.0.0",
     "sass": "^1.88.0",
     "shiki": "^3.4.0",

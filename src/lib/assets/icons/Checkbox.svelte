@@ -6,7 +6,10 @@
 
 {#snippet svg(box: Snippet)}
   <div class="checkbox" style:width={`${width}px`} style:height={`${height}px`}>
-    <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      class="ionicon"
+      viewBox="0 0 512 512">
       {@render box()}
     </svg>
   </div>
@@ -19,8 +22,7 @@
     stroke-linecap="round"
     stroke-linejoin="round"
     stroke-width="32"
-    d="M352 176L217.6 336 160 272"
-  /><rect
+    d="M352 176L217.6 336 160 272" /><rect
     x="64"
     y="64"
     width="384"
@@ -30,8 +32,7 @@
     fill="none"
     stroke="currentColor"
     stroke-linejoin="round"
-    stroke-width="32"
-  />
+    stroke-width="32" />
 {/snippet}
 
 {#snippet unchecked_box()}
@@ -41,15 +42,16 @@
     stroke="currentColor"
     stroke-linecap="round"
     stroke-linejoin="round"
-    stroke-width="32"
-  />
+    stroke-width="32" />
 {/snippet}
 
 {@render svg(checked ? checked_box : unchecked_box)}
 
-<style lang="sass">
-  @use '$lib/sass/_variables'
-  .checkbox
-    svg
-      color: variables.$text-color
+<style lang="scss">
+  @use '$lib/scss/_variables';
+  .checkbox {
+    svg {
+      color: variables.$text-color;
+    }
+  }
 </style>

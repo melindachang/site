@@ -9,7 +9,9 @@
 
   let showFailures = $state(false)
   let time = $state(new Date()),
-    locale_str = $derived(time.toLocaleTimeString('en-US', { timeZone: 'America/Chicago' }))
+    locale_str = $derived(
+      time.toLocaleTimeString('en-US', { timeZone: 'America/Chicago' })
+    )
 
   onMount(() => {
     const interval = setInterval(() => {
@@ -41,30 +43,28 @@
             {
               type: 'Software',
               href: 'https://www.github.com/melindachang',
-              external: true,
+              external: true
             },
-            {
-              type: 'Writing',
-              href: '/writing',
-              external: false,
-            },
-          ]}
-        >
+            { type: 'Writing', href: '/writing', external: false }
+          ]}>
           <p>
-            Hello! I'm a first-year student at Northwestern majoring in <b>Computer Science</b>
+            Hello! I'm a first-year student at Northwestern majoring in <b
+              >Computer Science</b>
             and <b>Comparative Literary Studies</b>.
           </p>
           <p>
-            My research interests span natural language processing (NLP), computer vision, and
-            cultural analytics. That is, I want to leverage <em>humanistic</em> theoretical
-            resources to develop
+            My research interests span natural language processing (NLP),
+            computer vision, and cultural analytics. That is, I want to leverage <em
+              >humanistic</em>
+            theoretical resources to develop
             <em>computational</em>
-            tools and methods, as well as explore their affordances in the study of cultural objects
-            and cultural production broadly defined.
+            tools and methods, as well as explore their affordances in the study
+            of cultural objects and cultural production broadly defined.
           </p>
           <p>
-            Elsewhere: 19th- and 20th-century European literature, Sinophone cinema, aesthetics,
-            global modernism. I also take pictures of Chicago and write whatever I want.
+            Elsewhere: 19th- and 20th-century European literature, Sinophone
+            cinema, aesthetics, global modernism. I also take pictures of
+            Chicago and write whatever I want.
           </p>
         </LinkEntry>
       </GridItem>
@@ -72,8 +72,7 @@
         heading="Work"
         noGap
         fn={() => (showFailures = !showFailures)}
-        fnName={showFailures ? 'Hide Failures' : 'Show Failures'}
-      >
+        fnName={showFailures ? 'Hide Failures' : 'Show Failures'}>
         {#each userState.work_timeline as work}
           {#if !work.isFailure || showFailures}
             <Entry data={map_to_entry(work)} isFailure={work.isFailure} />
@@ -96,31 +95,31 @@
       </GridItem>
       <GridItem heading="Everywhere">
         <p>
-          You can reach me via email at <code>melinda [at] u.northwestern.edu</code>. I'm also on
+          You can reach me via email at <code
+            >melinda [at] u.northwestern.edu</code
+          >. I'm also on
           <a href="https://goodreads.com/hychang" target="_blank">Goodreads</a>
           and
-          <a href="https://letterboxd.com/hychang" target="_blank">Letterboxd</a>.
+          <a href="https://letterboxd.com/hychang" target="_blank">Letterboxd</a
+          >.
         </p>
         <p class="subgrid__item__socials">
           <a
             class="subgrid__item__socials__link"
             href="https://github.com/melindachang"
-            target="_blank"
-          >
+            target="_blank">
             GitHub
           </a>
           <a
             class="subgrid__item__socials__link"
             href="https://linkedin.com/in/melindahchang"
-            target="_blank"
-          >
+            target="_blank">
             Linkedin
           </a>
           <a
             class="subgrid__item__socials__link"
             href="https://instagram.com/changrybird"
-            target="_blank"
-          >
+            target="_blank">
             Instagram
           </a>
         </p>
@@ -129,42 +128,50 @@
   </div>
 </div>
 
-<style lang="sass">
-  @use '$lib/sass/_variables'
-  @use '$lib/sass/_breakpoints'
+<style lang="scss">
+  @use '$lib/scss/_variables';
+  @use '$lib/scss/_breakpoints';
 
-  .grid
-    display: grid
-    @include breakpoints.lg
-      grid-template-columns: 1fr 3fr
-      column-gap: 5.6rem
-    .info
-      height: fit-content
-      will-change: auto
-      @include breakpoints.lg
-        top: 4em
-        position: sticky
-    .subgrid
-      display: grid
-      .subgrid__content
-        display: grid
-        line-height: 1.5
-        row-gap: 5.6rem
+  .grid {
+    display: grid;
+    @include breakpoints.lg {
+      grid-template-columns: 1fr 3fr;
+      column-gap: 5.6rem;
+    }
+    .info {
+      height: fit-content;
+      will-change: auto;
+      @include breakpoints.lg {
+        top: 4em;
+        position: sticky;
+      }
+    }
+    .subgrid {
+      display: grid;
+      .subgrid__content {
+        display: grid;
+        line-height: 1.5;
+        row-gap: 5.6rem;
         // @include breakpoints.lg
         //   max-width: 65ch
-        .subgrid__item__socials
-          .subgrid__item__socials__link
-            text-decoration: none
-            font-size: 1.2rem
-            text-transform: uppercase
-            font-family: variables.$font-monospace
-            color: variables.$text-color
-            border: 0.5px dotted variables.$dotted-border-color
-            padding: 1px 4px 3px 4px
-            border-radius: 4px
+        .subgrid__item__socials {
+          .subgrid__item__socials__link {
+            text-decoration: none;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            font-family: variables.$font-monospace;
+            color: variables.$text-color;
+            border: 0.5px dotted variables.$dotted-border-color;
+            padding: 1px 4px 3px 4px;
+            border-radius: 4px;
 
-            &:hover
-              color: variables.$background-color
-              background: variables.$text-color
-
+            &:hover {
+              color: variables.$background-color;
+              background: variables.$text-color;
+            }
+          }
+        }
+      }
+    }
+  }
 </style>
