@@ -82,8 +82,32 @@
   italic
 );
 
-/////// GT America Mono ////////
+/////// Commit Mono ////////
 
+@include font-face(
+  'Commit Mono',
+  'commit_mono/CommitMono-Regular',
+  400,
+  normal
+);
+
+@include font-face(
+  'Commit Mono',
+  'commit_mono/CommitMono-RegularItalic',
+  400,
+  italic
+);
+
+@include font-face('Commit Mono', 'commit_mono/CommitMono-Bold', 700, normal);
+
+@include font-face(
+  'Commit Mono',
+  'commit_mono/CommitMono-BoldItalic',
+  700,
+  italic
+);
+
+/////// GT America Mono ////////
 @include font-face(
   'GT America Mono',
   'gt_america_mono/GT-America-Mono-Regular',
