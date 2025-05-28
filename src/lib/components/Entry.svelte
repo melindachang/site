@@ -1,10 +1,6 @@
 <script lang="ts">
   import PlusMinusIcon from '$lib/assets/icons/PlusMinusIcon.svelte'
-  import type {
-    Article,
-    Entry,
-    Work,
-  } from '$lib/utils/interfaces'
+  import type { Article, Entry, Work } from '$lib/utils/interfaces'
   import { gsap } from 'gsap'
   import { onMount, type Snippet } from 'svelte'
 
@@ -80,9 +76,6 @@
     </button>
   </div>
   <div class="entry__body" bind:this={collapsibleBody}>
-    <!-- {#each body.filter(el => typeof el.value != 'boolean') as { key, value }}
-      {@render entryItem(key, value, key === 'tags' ? tags : text)}
-    {/each} -->
     {#each Object.entries(data.body).filter(el => typeof el[1] != 'boolean') as [key, value]}
       {@render entryItem(
         key,
