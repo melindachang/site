@@ -1,13 +1,13 @@
 <script lang="ts">
   import GridItem from '$lib/components/GridItem.svelte'
   import Entry from '$lib/components/Entry.svelte'
-  import { map_to_entry } from '$lib/utils/utils.js'
   import PlusMinusIcon from '$lib/assets/icons/PlusMinusIcon.svelte'
   import FolderIcon from '$lib/assets/icons/FolderIcon.svelte'
   import Checkbox from '$lib/assets/icons/Checkbox.svelte'
   import { onMount } from 'svelte'
   let { data } = $props()
   import { gsap } from 'gsap'
+  import { map_to_entry } from '$lib/utils/utils.js'
 
   let tags = $state(data.tags),
     open = $state(true),
@@ -17,6 +17,8 @@
 
   const tl = gsap.timeline()
 
+  let activeFilters = $derived(tags.filter(t => t.checked).map(t => t.name))
+
   $effect(() => {
     open ? tl.reverse() : tl.play()
   })
@@ -25,10 +27,9 @@
     tl.fromTo(
       filter_wrapper,
       { height: `${titleHeight + bodyHeight + 8}px` },
-      { height: `${titleHeight}px`, duration: 0.2, ease: 'power1.inOut' }
+      { height: `${titleHeight}px`, duration: 0.2, ease: 'power1.inOut' },
     )
   })
-  let activeFilters = $derived(tags.filter(t => t.checked).map(t => t.name))
 </script>
 
 <div class="grid">
@@ -60,7 +61,7 @@
   </div>
   <GridItem heading="Entries" noGap>
     {#each data.articles as article}
-      {#if !activeFilters.length || activeFilters.some( f => article.tags.includes(f) )}
+      {#if !activeFilters.length || activeFilters.some( f => article.tags.includes(f), )}
         <Entry data={map_to_entry(article)} isFailure={false} />
       {/if}
     {/each}

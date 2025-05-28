@@ -1,4 +1,4 @@
-import type { Article, Content } from '$lib/utils/interfaces.js'
+import type { Article } from '$lib/utils/interfaces.js'
 import { map_to_entry } from '$lib/utils/utils.js'
 import { error } from '@sveltejs/kit'
 

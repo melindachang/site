@@ -10,15 +10,15 @@
       keypress: 'W',
       local: true,
       href: '/writing',
-      active: false
+      active: false,
     },
     {
       name: 'CV',
       keypress: 'C',
       local: false,
       href: 'https://melindachang.github.io/cv-latex/output.pdf',
-      active: false
-    }
+      active: false,
+    },
   ])
 
   const toggleActive = (i: number) => {

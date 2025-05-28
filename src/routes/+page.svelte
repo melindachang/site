@@ -10,7 +10,7 @@
   let showFailures = $state(false)
   let time = $state(new Date()),
     locale_str = $derived(
-      time.toLocaleTimeString('en-US', { timeZone: 'America/Chicago' })
+      time.toLocaleTimeString('en-US', { timeZone: 'America/Chicago' }),
     )
 
   onMount(() => {
@@ -43,9 +43,9 @@
             {
               type: 'Software',
               href: 'https://www.github.com/melindachang',
-              external: true
+              external: true,
             },
-            { type: 'Writing', href: '/writing', external: false }
+            { type: 'Writing', href: '/writing', external: false },
           ]}>
           <p>
             Hello! I'm a first-year student at Northwestern majoring in <b

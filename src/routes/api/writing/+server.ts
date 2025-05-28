@@ -22,7 +22,7 @@ const get_articles = async () => {
 
   articles.sort(
     (first, second) =>
-      new Date(second.date).getTime() - new Date(first.date).getTime()
+      new Date(second.date).getTime() - new Date(first.date).getTime(),
   )
 
   return articles

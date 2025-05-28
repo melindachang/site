@@ -1,22 +1,24 @@
 import type { Track, TrackItem } from '@spotify/web-api-ts-sdk'
-import type { Entry, Content, EntryMeta } from './interfaces'
+import type { Entry, EntryMeta } from './interfaces'
 
 export const is_track = (input: TrackItem): input is Track => {
   return 'album' in input
 }
 
 export const map_to_entry = <T extends EntryMeta>(input: T): Entry<T> => {
-  let meta: EntryMeta = { title: input.title, date: input.date, href: input.href }
-  let slice = omit_overlapping_keys(input, meta)
-  let mapped: Content<T>[] = []
-  for (const key in slice) {
-    mapped.push({ key, value: (slice as any)[key] } as Content<T>)
+  let meta: EntryMeta = {
+    title: input.title,
+    date: input.date,
+    href: input.href,
   }
-  let entry = { ...meta, content: mapped } as Entry<T>
-  return entry
+  let slice = omit_overlapping_keys(input, meta)
+  return { title: meta, body: slice }
 }
 
-export const omit_overlapping_keys = <T extends K, K extends Record<string, any>>(
+export const omit_overlapping_keys = <
+  T extends K,
+  K extends Record<string, any>,
+>(
   input: T,
   _toRemove: K,
 ): Omit<T, keyof K> => {
@@ -26,7 +28,10 @@ export const omit_overlapping_keys = <T extends K, K extends Record<string, any>
   return result
 }
 
-export const pick_overlapping_keys = <T extends K, K extends Record<string, any>>(
+export const pick_overlapping_keys = <
+  T extends K,
+  K extends Record<string, any>,
+>(
   input: T,
   _toKeep: K,
 ): K => {

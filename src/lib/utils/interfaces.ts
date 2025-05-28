@@ -1,17 +1,6 @@
-export type EntryMeta = {
-  title: string
-  date: string
-  href?: string
-}
+export type EntryMeta = { title: string; date: string; href?: string }
 
-export type Entry<T> = EntryMeta & { content: Content<Omit<T, keyof EntryMeta>>[] }
-
-export type Content<T> = {
-  [Prop in keyof T]: {
-    key: Prop
-    value: T[Prop]
-  }
-}[keyof T]
+export type Entry<T> = { title: EntryMeta; body: EntryBody<T> }
 
 export type Article = EntryMeta & {
   author: string
@@ -26,17 +15,11 @@ export type Work = EntryMeta & {
   tags: string[]
 }
 
-export type Tag = {
-  name: string
-  amount: number
-  checked: boolean
-}
+export type EntryBody<T> = Omit<T, keyof EntryMeta>
 
-export type Link = {
-  type: string
-  href: string
-  external: boolean
-}
+export type Tag = { name: string; amount: number; checked: boolean }
+
+export type Link = { type: string; href: string; external: boolean }
 
 export type Publication = {
   title: string

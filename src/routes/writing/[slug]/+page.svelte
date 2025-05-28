@@ -1,15 +1,15 @@
 <script lang="ts">
   import GridItem from '$lib/components/GridItem.svelte'
-  import type { Article, Content, EntryMeta } from '$lib/utils/interfaces.js'
   import { gsap } from 'gsap'
   import { onMount, type Snippet } from 'svelte'
+
   let { data } = $props()
 
   let title: HTMLHeadingElement
   let content: HTMLDivElement
   let metadata = $state<HTMLElement>()
   let stickyDistance = $derived(
-    metadata ? metadata.getBoundingClientRect().y : 400
+    metadata ? metadata.getBoundingClientRect().y : 400,
   )
   let scrollY = $state(0)
   let innerWidth = $state(0)
@@ -27,29 +27,30 @@
     tl.fromTo(
       title,
       { autoAlpha: 0, translateY: '-15px' },
-      { autoAlpha: 1, translateY: 0, duration: 0.3, ease: 'power2.inOut' }
+      { autoAlpha: 1, translateY: 0, duration: 0.3, ease: 'power2.inOut' },
     ).fromTo(
       content,
       { translateY: `-${title.clientHeight + 24}px` },
       { translateY: 0, duration: 0.4, ease: 'power1.inOut' },
-      '<'
+      '<',
     )
   })
 </script>
 
 <svelte:head>
-  <title>{data.meta.title} &mdash; Melinda Chang</title>
+  <title>{data.meta.title.title} &mdash; Melinda Chang</title>
 </svelte:head>
 
 <svelte:window bind:scrollY bind:innerWidth />
 
 {#snippet metadataItem(
-  item: Content<Omit<Article, keyof EntryMeta>>,
-  value: Snippet<[any]>
+  key: string,
+  value: string | string[],
+  snip: Snippet<[any]>,
 )}
   <div class="metadata__item">
-    <span class="metadata__item__label">{item!.key}</span>
-    {@render value(item!.value)}
+    <span class="metadata__item__label">{key}</span>
+    {@render snip(value)}
   </div>
 {/snippet}
 
@@ -69,13 +70,17 @@
   <div class="metadata" bind:this={metadata}>
     <div class="metadata__title">
       <h2 bind:this={title}>
-        {data.meta.title}
+        {data.meta.title.title}
       </h2>
     </div>
     <div class="metadata__content" bind:this={content}>
       <GridItem heading="Metadata" noGap>
-        {#each data.meta.content.filter(el => el.key != 'description') as item}
-          {@render metadataItem(item, item.key === 'tags' ? tags : text)}
+        {#each Object.entries(data.meta.body).filter(el => el[0] != 'description' && typeof el[1] != 'boolean') as [key, value]}
+          {@render metadataItem(
+            key,
+            value as string | string[],
+            key === 'tags' ? tags : text,
+          )}
         {/each}
       </GridItem>
     </div>

@@ -10,7 +10,7 @@
   let artistName = $derived(
     userState.playback_state
       ? userState.playback_state.artists.map(a => a.name).join(', ')
-      : ''
+      : '',
   )
   let visibleWidth = $state(0)
   let fullWidth = $state(0)
@@ -22,7 +22,7 @@
       tl.to(artist!, {
         marginLeft: scrollAmt < 0 ? `${scrollAmt}px` : '0px',
         ease: 'linear',
-        duration: -(scrollAmt / 100)
+        duration: -(scrollAmt / 100),
       })
     }
   })
@@ -31,7 +31,7 @@
 
   const update_song = async () => {
     userState.playback_state = (await fetch('/api/spotify').then(res =>
-      res.json()
+      res.json(),
     )) as Track
   }
 

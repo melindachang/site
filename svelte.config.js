@@ -19,19 +19,17 @@ const config = {
           })
           await highlighter.loadLanguage('python', 'shellscript', 'toml')
           const html = escapeSvelte(
-            highlighter.codeToHtml(code, { lang, theme: 'gruvbox-dark-medium' }),
+            highlighter.codeToHtml(code, {
+              lang,
+              theme: 'gruvbox-dark-medium',
+            }),
           )
           return `{@html \`${html}\` }`
         },
       },
     }),
   ],
-  kit: {
-    adapter: adapter(),
-    alias: {
-      $articles: 'src/articles',
-    },
-  },
+  kit: { adapter: adapter(), alias: { $articles: 'src/articles' } },
   extensions: ['.svelte', '.md'],
 }
 

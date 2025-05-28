@@ -4,7 +4,7 @@ import {
   type AccessToken,
   type PlaybackState,
   type PlayHistory,
-  type RecentlyPlayedTracksPage
+  type RecentlyPlayedTracksPage,
 } from '@spotify/web-api-ts-sdk'
 import type { RequestHandler } from '@sveltejs/kit'
 
@@ -22,8 +22,8 @@ const get_access_token = async (): Promise<AccessToken> => {
       refresh_token,
       redirect_uri,
       client_id,
-      client_secret
-    })
+      client_secret,
+    }),
   }).then(res => res.json())
   return access_token as AccessToken
 }

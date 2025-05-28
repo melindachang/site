@@ -10,7 +10,12 @@ export let userState = $state<{
   publications: [
     {
       title: 'A Theory of Scientific Programming Efficacy',
-      authors: ['Elizaveta Pertseva', 'Melinda Chang', 'Ulia Zaman', 'Michael Coblenz'],
+      authors: [
+        'Elizaveta Pertseva',
+        'Melinda Chang',
+        'Ulia Zaman',
+        'Michael Coblenz',
+      ],
       venue: '2024 International Conference on Software Engineering',
       links: [
         {
@@ -55,8 +60,10 @@ export let userState = $state<{
     {
       isFailure: false,
       date: '2025.04 - Now',
-      title: 'Founder, Editor-in-Chief @ Critical Culture Undergraduate Journal',
-      description: "Northwestern's premier undergraduate venue for critical writing.",
+      title:
+        'Founder, Editor-in-Chief @ Critical Culture Undergraduate Journal',
+      description:
+        "Northwestern's premier undergraduate venue for critical writing.",
       tags: ['student org', 'cultural studies'],
     },
     {
@@ -119,7 +126,8 @@ export let userState = $state<{
       isFailure: false,
       date: '2022.07 - 08',
       title: 'Software Engineer Intern @ Hack Club',
-      description: 'Building web tooling and interfaces for JavaScript-based game engine.',
+      description:
+        'Building web tooling and interfaces for JavaScript-based game engine.',
       tags: ['internship', 'software engineering'],
     },
     {

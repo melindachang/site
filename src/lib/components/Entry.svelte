@@ -1,6 +1,10 @@
 <script lang="ts">
   import PlusMinusIcon from '$lib/assets/icons/PlusMinusIcon.svelte'
-  import type { Article, Entry, Work } from '$lib/utils/interfaces'
+  import type {
+    Article,
+    Entry,
+    Work,
+  } from '$lib/utils/interfaces'
   import { gsap } from 'gsap'
   import { onMount, type Snippet } from 'svelte'
 
@@ -25,13 +29,13 @@
       {
         height: `${titleHeight + collapsibleBody.clientHeight}px`,
         duration: 0.35,
-        ease: 'power1.inOut'
-      }
+        ease: 'power1.inOut',
+      },
     ).fromTo(
       collapsibleBody,
       { autoAlpha: 0 },
       { autoAlpha: 1, duration: 0.35, ease: 'power1.inOut' },
-      '<'
+      '<',
     )
   })
 </script>
@@ -39,7 +43,7 @@
 {#snippet entryItem(
   key: string,
   value: string | string[],
-  snippet: Snippet<[any]>
+  snippet: Snippet<[any]>,
 )}
   <div class="entry__item">
     <div class="entry__caption">
@@ -66,17 +70,25 @@
     <div class="entry__caption entry__date">
       <div class="entry__date__text">
         <i class="entry__date__icon"></i>
-        <span>{data.date}</span>
+        <span>{data.title.date}</span>
       </div>
     </div>
-    <a class="entry__title__text" href={data.href}>{@html data.title}</a>
+    <a class="entry__title__text" href={data.title.href}
+      >{@html data.title.title}</a>
     <button class="entry__title__icon" onclick={() => (expanded = !expanded)}>
       <PlusMinusIcon {expanded} width={18} height={18} />
     </button>
   </div>
   <div class="entry__body" bind:this={collapsibleBody}>
-    {#each data.content.filter(el => typeof el.value != 'boolean') as { key, value }}
+    <!-- {#each body.filter(el => typeof el.value != 'boolean') as { key, value }}
       {@render entryItem(key, value, key === 'tags' ? tags : text)}
+    {/each} -->
+    {#each Object.entries(data.body).filter(el => typeof el[1] != 'boolean') as [key, value]}
+      {@render entryItem(
+        key,
+        value as string | string[],
+        key === 'tags' ? tags : text,
+      )}
     {/each}
   </div>
 </div>
