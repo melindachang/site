@@ -17,7 +17,7 @@
   cursor: pointer;
   text-decoration: none;
   color: v.$tag-text-color;
-  border: 0.5px dotted v.$tag-text-color;
+  border: 1px dotted v.$tag-text-color;
   padding: 1px 4px 3px 4px;
   border-radius: 4px;
   &:hover {

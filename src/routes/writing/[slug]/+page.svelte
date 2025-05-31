@@ -49,21 +49,21 @@
   snip: Snippet<[any]>,
 )}
   <div class="metadata__item">
-    <span class="metadata__item__label">{key}</span>
+    <span class="metadata__item-label">{key}</span>
     {@render snip(value)}
   </div>
 {/snippet}
 
 {#snippet tags(value: string[])}
-  <div class="metadata__item__value">
+  <div class="metadata__item-value">
     {#each value as tag}
-      <span class="metadata__item__tag">{tag}</span>
+      <span class="metadata__item-value--tag tag">{tag}</span>
     {/each}
   </div>
 {/snippet}
 
 {#snippet text(value: string)}
-  <span class="metadata__item__value">{value}</span>
+  <span class="metadata__item-value">{value}</span>
 {/snippet}
 
 <article>
@@ -104,56 +104,40 @@
       grid-template-columns: 6fr 17fr;
       column-gap: 3em;
     }
-    .metadata {
-      height: fit-content;
-      will-change: auto;
-      @include breakpoint-lg {
-        position: sticky;
-        top: 4em;
+  }
+  .metadata {
+    height: fit-content;
+    will-change: auto;
+    @include breakpoint-lg {
+      position: sticky;
+      top: 4em;
+    }
+    &__title {
+      min-height: 0px;
+      font-size: 2.8rem;
+      h2 {
+        margin-bottom: 2.4rem;
       }
-      .metadata__title {
-        min-height: 0px;
-        font-size: 2.8rem;
-        h2 {
-          margin-bottom: 2.4rem;
-        }
-      }
-      .metadata__content {
-        color: $minor-text-color;
-        transform: translateY(0);
-        text-transform: uppercase;
-        font-size: 1.2rem;
-        font-family: $font-monospace;
-        letter-spacing: -0.04em;
-        .metadata__item {
-          grid-column: 1 / -1;
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          padding: 1.2rem 0;
-          border-bottom: 0.5px solid $body-text-color;
-          .metadata__item__value {
-            display: flex;
-            align-content: flex-start;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-          }
-          .metadata__item__tag {
-            white-space: nowrap;
-            cursor: pointer;
-            text-decoration: none;
-            font-size: 1.2rem;
-            text-transform: uppercase;
-            font-family: $font-monospace;
-            color: $tag-text-color;
-            border: 0.5px dotted $tag-text-color;
-            padding: 1px 4px 3px 4px;
-            border-radius: 4px;
-            &:hover {
-              color: $text-inverted-color;
-              background: $tag-text-color;
-            }
-          }
-        }
+    }
+    &__content {
+      color: $minor-text-color;
+      transform: translateY(0);
+      text-transform: uppercase;
+      font-size: 1.2rem;
+      font-family: $font-monospace;
+      letter-spacing: -0.04em;
+    }
+    &__item {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding: 1.2rem 0;
+      border-bottom: 0.5px solid $body-text-color;
+      &-value {
+        display: flex;
+        align-content: flex-start;
+        flex-wrap: wrap;
+        gap: 0.5rem;
       }
     }
   }

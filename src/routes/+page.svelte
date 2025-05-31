@@ -36,6 +36,47 @@
       </p>
       <SpotifyWidget />
     </GridItem>
+    <GridItem heading="Everywhere">
+      <p class="grid__item--social">
+        <a
+          class="grid__item--social-link tag"
+          href="mailto:melindachang.hy@gmail.com"
+          target="_blank">
+          Email
+        </a>
+
+        <a
+          class="grid__item--social-link tag"
+          href="https:/letterboxd.com/hychang"
+          target="_blank">
+          Letterboxd
+        </a>
+        <a
+          class="grid__item--social-link tag"
+          href="https://goodreads.com/hychang"
+          target="_blank">
+          Goodreads
+        </a>
+        <a
+          class="grid__item--social-link tag"
+          href="https://codeberg.org/melindachang"
+          target="_blank">
+          Codeberg
+        </a>
+        <a
+          class="grid__item--social-link tag"
+          href="https://linkedin.com/in/melindahchang"
+          target="_blank">
+          Linkedin
+        </a>
+        <a
+          class="grid__item--social-link tag"
+          href="https://instagram.com/changrybird"
+          target="_blank">
+          Instagram
+        </a>
+      </p>
+    </GridItem>
   </div>
   <div class="grid__column--right">
     <GridItem heading="Bio">
@@ -94,42 +135,13 @@
         {/each}
       </div>
     </GridItem>
-    <GridItem heading="Everywhere">
-      <p>
-        You can reach me via email at <code
-          >melinda [at] u.northwestern.edu</code
-        >. I'm also on
-        <a href="https://goodreads.com/hychang" target="_blank">Goodreads</a>
-        and
-        <a href="https://letterboxd.com/hychang" target="_blank">Letterboxd</a>.
-      </p>
-      <p class="grid__item--social">
-        <a
-          class="grid__item--social-link tag"
-          href="https://codeberg.org/melindachang"
-          target="_blank">
-          Codeberg
-        </a>
-        <a
-          class="grid__item--social-link tag"
-          href="https://linkedin.com/in/melindahchang"
-          target="_blank">
-          Linkedin
-        </a>
-        <a
-          class="grid__item--social-link tag"
-          href="https://instagram.com/changrybird"
-          target="_blank">
-          Instagram
-        </a>
-      </p>
-    </GridItem>
   </div>
 </div>
 
 <style lang="scss">
   .grid {
     display: grid;
+    row-gap: 5.6rem;
     @include breakpoint-lg {
       grid-template-columns: minmax(0, 1fr) minmax(0, 3fr);
       column-gap: 5.6rem;
@@ -155,6 +167,11 @@
         &-text {
           color: $major-text-color;
         }
+      }
+      &--social {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px;
       }
     }
   }
