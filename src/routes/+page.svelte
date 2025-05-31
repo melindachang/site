@@ -43,14 +43,14 @@
         links={[
           {
             type: 'Software',
-            href: 'https://www.github.com/melindachang',
+            href: 'https://www.codeberg.org/melindachang',
             external: true,
           },
           { type: 'Writing', href: '/writing', external: false },
         ]}>
         <p>
-          Hello! I'm a rising second-year student at Northwestern majoring in <span class="highlight"
-            >Computer Science</span>
+          Hello! I'm a rising second-year student at Northwestern majoring in <span
+            class="highlight">Computer Science</span>
           and <span class="highlight">Comparative Literary Studies</span>.
         </p>
         <p>
@@ -106,9 +106,9 @@
       <p class="grid__item--social">
         <a
           class="grid__item--social-link tag"
-          href="https://github.com/melindachang"
+          href="https://codeberg.org/melindachang"
           target="_blank">
-          GitHub
+          Codeberg
         </a>
         <a
           class="grid__item--social-link tag"
@@ -131,7 +131,7 @@
   .grid {
     display: grid;
     @include breakpoint-lg {
-      grid-template-columns: 1fr 3fr;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 3fr);
       column-gap: 5.6rem;
     }
     &__column {
