@@ -51,10 +51,11 @@
   @use '../scss/_breakpoints';
 
   .entry {
+    // color: variables.$major-
     display: flex;
     flex-direction: column;
     column-gap: 2.4rem;
-    border-bottom: 0.5px dotted variables.$dotted-border-color;
+    border-bottom: 0.5px solid variables.$body-text-color;
     padding-bottom: 2.4rem;
     @include breakpoints.lg {
       gap: 5.6rem;
@@ -75,6 +76,7 @@
         flex: 2;
       }
       .entry__action {
+        color: variables.$minor-text-color;
         text-decoration: none;
         display: flex;
         justify-content: space-between;
@@ -85,34 +87,34 @@
         text-transform: uppercase;
         font-family: variables.$font-monospace;
         &:not(:last-child) {
-          border-bottom: 0.5px dotted variables.$dotted-border-color;
+          border-bottom: 0.5px solid variables.$body-text-color;
         }
         &:hover {
           cursor: pointer;
-          color: variables.$background-color;
-          background: variables.$text-color;
+          color: variables.$text-inverted-color;
+          background: variables.$highlight-color;
           .entry__action__icon {
             &--square {
-              background: variables.$background-color;
+              background: variables.$text-inverted-color;
             }
             &--arrow {
-              color: variables.$background-color;
+              color: variables.$text-inverted-color;
             }
           }
         }
         .entry__action__icon {
           &--square {
             display: inline-flex;
-            height: 1rem;
-            width: 1rem;
-            background: variables.$text-color;
+            height: 0.6rem;
+            width: 0.6rem;
+            background: variables.$minor-text-color;
             margin-right: 1rem;
           }
           &--arrow {
             display: inline-flex;
             height: 1.4em;
             width: 1.4em;
-            color: variables.$text-color;
+            color: variables.$minor-text-color;
           }
         }
       }

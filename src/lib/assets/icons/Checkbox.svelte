@@ -51,7 +51,7 @@
   @use '$lib/scss/_variables';
   .checkbox {
     svg {
-      color: variables.$text-color;
+      color: inherit;
     }
   }
 </style>

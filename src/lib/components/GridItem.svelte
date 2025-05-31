@@ -3,7 +3,7 @@
 </script>
 
 <div class={['grid__item', !noGap && 'grid__item--gap']}>
-  <div class="grid__item__header">
+  <div class="grid__item__header minor-text">
     <span class="grid__item__header__text">/ {heading}</span>
     {#if fn}
       <button onclick={fn} class="grid__item__header__button">{fnName}</button>
@@ -24,13 +24,11 @@
       row-gap: 2.4rem;
     }
     .grid__item__header {
+      color: variables.$body-text-color;
       display: flex;
       justify-content: space-between;
       padding-bottom: 0.6rem;
-      font-size: 1.2rem;
-      font-family: variables.$font-monospace;
-      text-transform: uppercase;
-      border-bottom: 0.5px solid variables.$text-color;
+      border-bottom: 0.5px solid variables.$body-text-color;
       .grid__item__header__button {
         cursor: pointer;
         background: none;

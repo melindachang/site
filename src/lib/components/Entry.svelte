@@ -43,7 +43,7 @@
 )}
   <div class="entry__item">
     <div class="entry__caption">
-      <span class="entry__caption__text">{key.toUpperCase()}: </span>
+      <span class="entry__caption__text minor-text">{key.toUpperCase()}: </span>
     </div>
     {@render snippet(value)}
   </div>
@@ -52,7 +52,7 @@
 {#snippet tags(value: string[])}
   <div class="entry__item__tags">
     {#each value as tag}
-      <span class="tag">{tag}</span>
+      <span class="tag minor-text">{tag}</span>
     {/each}
   </div>
 {/snippet}
@@ -63,9 +63,9 @@
 
 <div class={['entry', isFailure && 'entry--failure']} bind:this={collapsible}>
   <div class="entry__title" bind:clientHeight={titleHeight}>
-    <div class="entry__caption entry__date">
-      <div class="entry__date__text">
-        <i class="entry__date__icon"></i>
+    <div class="entry__date">
+      <div class="entry__date__text minor-text">
+        <i class="entry__date__text__icon"></i>
         <span>{data.title.date}</span>
       </div>
     </div>
@@ -92,7 +92,7 @@
 
   .entry {
     display: grid;
-    border-bottom: 0.5px dotted variables.$dotted-border-color;
+    border-bottom: 0.5px solid variables.$body-text-color;
     overflow-y: hidden;
     @include breakpoints.lg {
       column-gap: 4px;
@@ -100,10 +100,10 @@
     }
     &--failure {
       .entry__date__icon {
-        background: variables.$accent-red !important;
+        background: variables.$graphic-color !important;
       }
       .entry__title__text {
-        color: variables.$accent-red;
+        color: variables.$graphic-color;
       }
     }
 
@@ -115,10 +115,7 @@
       color: inherit;
       letter-spacing: -0.04em;
     }
-    .entry__caption {
-      text-transform: uppercase;
-      font-family: variables.$font-monospace;
-      font-size: 1.2rem;
+    &__caption {
       line-height: 100%;
       display: flex;
       align-items: flex-start;
@@ -136,24 +133,9 @@
           font-size: 2rem;
         }
       }
-      &.entry__date {
-        padding-top: 1.3rem;
-        @include breakpoints.lg {
-          padding: 0;
-        }
-        .entry__date__text {
-          display: inline-flex;
-          gap: 1rem;
-          align-items: center;
-          .entry__date__icon {
-            background: variables.$text-color;
-            height: 0.6rem;
-            width: 0.6rem;
-          }
-        }
-      }
     }
     &__title {
+      color: variables.$major-text-color;
       text-decoration: none;
       grid-column: 1 / -1;
       display: grid;
@@ -165,13 +147,10 @@
         grid-template-columns: 2fr 10fr 1fr;
       }
       &:hover {
-        color: variables.$background-color;
-        background: variables.$text-color;
-        .entry__date__icon {
-          background: variables.$background-color;
-        }
+        color: variables.$text-inverted-color;
+        background: variables.$highlight-color;
       }
-      .entry__title__text {
+      &__text {
         padding: 1.3rem 0;
         font-size: 2.2rem;
         line-height: 100%;
@@ -179,11 +158,28 @@
           font-size: 2.5rem;
         }
       }
-      .entry__title__icon {
+      &__icon {
         cursor: pointer;
         background: none;
-        color: variables.$text-color;
+        color: variables.$major-text-color;
         border: none;
+      }
+    }
+    &__date {
+      padding-top: 1.3rem;
+      @include breakpoints.lg {
+        padding: 0;
+      }
+      &__text {
+        color: variables.$minor-text-color;
+        display: inline-flex;
+        gap: 1rem;
+        align-items: center;
+        &__icon {
+          background: variables.$minor-text-color;
+          height: 0.6rem;
+          width: 0.6rem;
+        }
       }
     }
 
@@ -212,22 +208,6 @@
         align-items: flex-start;
         flex-wrap: wrap;
         gap: 2px;
-        .tag {
-          white-space: nowrap;
-          cursor: pointer;
-          text-decoration: none;
-          font-size: 1.2rem;
-          text-transform: uppercase;
-          font-family: variables.$font-monospace;
-          color: variables.$text-color;
-          border: 0.5px dotted variables.$dotted-border-color;
-          padding: 1px 4px 3px 4px;
-          border-radius: 4px;
-          &:hover {
-            color: variables.$background-color;
-            background: variables.$text-color;
-          }
-        }
       }
     }
   }

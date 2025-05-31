@@ -38,6 +38,7 @@
   @use '$lib/scss/_variables';
 
   svg {
-    color: variables.$text-color;
+    // color: variables.$button-color;
+    color: inherit;
   }
 </style>

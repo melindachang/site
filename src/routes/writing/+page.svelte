@@ -51,7 +51,7 @@
               class={['filters__list__item', tag.checked && 'highlight']}
               onclick={() => (tag.checked = !tag.checked)}>
               <Checkbox bind:checked={tag.checked} width={20} height={20} />
-              <span class="filters__list__item__label"
+              <span class="filters__list__item__label minor-text"
                 >{tag.name} ({tag.amount})</span>
             </button>
           {/each}
@@ -84,6 +84,7 @@
         display: block;
       }
       .filters {
+        color: variables.$button-color;
         display: grid;
         row-gap: 8px;
         overflow-y: hidden;
@@ -93,6 +94,7 @@
           gap: 6px;
           align-items: center;
           .filters__folder__button {
+            color: inherit;
             background: none;
             border: none;
             cursor: pointer;
@@ -106,7 +108,7 @@
           padding-left: 1.8rem;
           display: grid;
           row-gap: 8px;
-          border-left: 0.5px dotted variables.$dotted-border-color;
+          border-left: 0.5px solid variables.$dotted-border-color;
           .filters__list__item {
             padding: 0;
             background: none;
@@ -122,14 +124,9 @@
             &.highlight {
               opacity: 1;
               .filters__list__item__label {
-                background-color: variables.$accent-aqua;
+                color: variables.$text-inverted-color;
+                background-color: variables.$highlight-color;
               }
-            }
-            .filters__list__item__label {
-              font-family: variables.$font-monospace;
-              text-transform: uppercase;
-              font-size: 1.2rem;
-              line-height: 100%;
             }
           }
         }

@@ -1,6 +1,7 @@
 @use '$lib/scss/_variables';
 @use '$lib/scss/_breakpoints';
 @use '$lib/scss/_fonts';
+@use '$lib/scss/_utilities';
 
 *,
 *::before,
@@ -20,27 +21,28 @@ body {
   padding: 0;
   overflow-x: hidden;
   font-size: 1.6rem;
-  color: variables.$text-color;
+  color: variables.$body-text-color;
   background-color: variables.$background-color;
   font-family: variables.$font-sans-serif;
 }
 
 ::selection {
-  background: variables.$accent-orange;
-  color: variables.$background-color;
+  background: variables.$highlight-color;
+  color: variables.$text-inverted-color;
 }
 
 a {
-  color: variables.$text-color;
+  color: variables.$body-text-color;
 }
 
 p {
   font-size: 1.8rem;
   margin: 0;
   a {
-    color: variables.$accent-aqua;
+    color: variables.$button-color;
     &:hover {
-      color: variables.$accent-aqua-2;
+      color: variables.$text-inverted-color;
+      background: variables.$highlight-color;
     }
   }
 }
@@ -49,15 +51,16 @@ code {
   font-size: 0.85em;
   font-family: variables.$font-monospace;
   &:not(pre code) {
-    background: variables.$background-color-lighter;
-    padding: 1px 4px 3px 4px;
+    background: variables.$button-demph-color;
+    padding: 0 4px;
     margin: 0 2px;
-    border: 0.5px dotted variables.$dotted-border-color;
+    border: 0.5px solid variables.$dotted-border-color;
     border-radius: 4px;
   }
 }
 
 :is(h1, h2, h3, h4, h5, h6) {
+  color: variables.$major-text-color;
   font-weight: 400;
   letter-spacing: -0.06em;
   line-height: 92%;
@@ -73,9 +76,9 @@ code {
     background: variables.$background-color;
   }
   &-thumb {
-    background: variables.$dotted-border-color;
+    background: variables.$body-text-color;
     &:hover {
-      background: variables.$text-color;
+      background: variables.$major-text-color;
     }
   }
 }
@@ -131,7 +134,7 @@ code {
     overflow-x: auto;
     padding: 1rem;
     border-radius: 8px;
-    border: 0.5px dotted variables.$dotted-border-color;
+    border: 0.5px solid variables.$dotted-border-color;
     font-family: variables.$font-monospace;
     tab-size: 2;
   }

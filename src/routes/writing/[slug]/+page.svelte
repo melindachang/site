@@ -119,6 +119,7 @@
         }
       }
       .metadata__content {
+        color: variables.$minor-text-color;
         transform: translateY(0);
         text-transform: uppercase;
         font-size: 1.2rem;
@@ -129,7 +130,7 @@
           display: grid;
           grid-template-columns: 1fr 1fr;
           padding: 1.2rem 0;
-          border-bottom: 0.5px dotted variables.$dotted-border-color;
+          border-bottom: 0.5px solid variables.$body-text-color;
           .metadata__item__value {
             display: flex;
             align-content: flex-start;
@@ -143,13 +144,13 @@
             font-size: 1.2rem;
             text-transform: uppercase;
             font-family: variables.$font-monospace;
-            color: variables.$text-color;
-            border: 0.5px dotted variables.$dotted-border-color;
+            color: variables.$tag-text-color;
+            border: 0.5px dotted variables.$tag-text-color;
             padding: 1px 4px 3px 4px;
             border-radius: 4px;
             &:hover {
-              color: variables.$background-color;
-              background: variables.$text-color;
+              color: variables.$text-inverted-color;
+              background: variables.$tag-text-color;
             }
           }
         }

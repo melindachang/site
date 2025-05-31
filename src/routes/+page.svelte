@@ -145,6 +145,9 @@
         top: 4em;
         position: sticky;
       }
+      p {
+        color: variables.$major-text-color;
+      }
     }
     .subgrid {
       display: grid;
@@ -160,14 +163,14 @@
             font-size: 1.2rem;
             text-transform: uppercase;
             font-family: variables.$font-monospace;
-            color: variables.$text-color;
-            border: 0.5px dotted variables.$dotted-border-color;
+            color: variables.$tag-text-color;
+            border: 0.5px dotted variables.$tag-text-color;
             padding: 1px 4px 3px 4px;
             border-radius: 4px;
 
             &:hover {
-              color: variables.$background-color;
-              background: variables.$text-color;
+              color: variables.$text-inverted-color;
+              background: variables.$tag-text-color;
             }
           }
         }

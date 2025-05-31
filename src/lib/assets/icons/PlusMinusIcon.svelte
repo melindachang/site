@@ -39,8 +39,8 @@
 <style lang="scss">
   @use '$lib/scss/_variables';
   svg {
-    color: variables.$text-color;
-    mix-blend-mode: difference;
+    // color: variables.$major-text-color;
+    color: inherit;
     height: fit-content;
   }
 </style>

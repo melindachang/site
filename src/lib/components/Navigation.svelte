@@ -97,20 +97,23 @@
         .nav__link {
           pointer-events: auto;
           display: flex;
-          background: variables.$background-color-lighter;
+          background: variables.$button-demph-color;
           font-size: 1.2rem;
           line-height: 1.2;
           text-decoration: none;
-          color: variables.$text-color;
+          color: variables.$button-color;
           padding: 0.5rem 0.8rem;
           text-transform: uppercase;
           font-family: variables.$font-monospace;
           letter-spacing: -0.3px;
           border-radius: 2px;
-          &.active,
           &:hover {
-            background: variables.$text-color;
-            color: variables.$background-color;
+            background: variables.$highlight-color;
+            color: variables.$text-inverted-color;
+          }
+          &.active {
+            color: variables.$text-inverted-color;
+            background: variables.$button-color;
           }
           &:not(:last-child) {
             margin-right: 0.3rem;

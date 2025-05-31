@@ -121,10 +121,10 @@
     gap: 6px;
     padding: 4px;
     background: variables.$background-color;
-    border: 0.5px solid variables.$text-color;
+    border: 0.5px solid variables.$major-text-color;
     max-width: 23em;
     .player__heading {
-      color: variables.$text-color;
+      color: variables.$major-text-color;
       width: 100%;
       position: relative;
       display: flex;
@@ -150,7 +150,7 @@
         border: none;
         cursor: pointer;
         svg {
-          color: variables.$text-color;
+          color: variables.$body-text-color;
           height: 100%;
           position: absolute;
           top: 0;
@@ -160,7 +160,7 @@
     }
     .player__background {
       position: relative;
-      border: 0.5px solid variables.$text-color;
+      border: 0.5px solid variables.$major-text-color;
       width: 100%;
       display: flex;
       gap: 1em;
@@ -187,7 +187,7 @@
         }
         .player__text__artist {
           overflow: hidden;
-          color: variables.$dotted-border-color;
+          color: variables.$body-text-color;
           display: -webkit-box;
           -webkit-box-orient: vertical;
           -webkit-line-clamp: 1;
@@ -223,7 +223,7 @@
       .player__img {
         height: 6em;
         aspect-ratio: 1/1;
-        border: 0.5px solid variables.$dotted-border-color;
+        border: 0.5px solid variables.$body-text-color;
         filter: grayscale(50%);
         background-size: cover;
         background-position: 50% 50%;
