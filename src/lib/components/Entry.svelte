@@ -41,16 +41,18 @@
   value: string | string[],
   snippet: Snippet<[any]>,
 )}
-  <div class="entry__item">
-    <div class="entry__caption">
-      <span class="entry__caption__text minor-text">{key.toUpperCase()}: </span>
+  <div class="body__item">
+    <div class="body__item-caption">
+      <span class="body__item-caption-text minor-text"
+        >{key.toUpperCase()}:
+      </span>
     </div>
     {@render snippet(value)}
   </div>
 {/snippet}
 
 {#snippet tags(value: string[])}
-  <div class="entry__item__tags">
+  <div class="body__item__value--tags">
     {#each value as tag}
       <span class="tag minor-text">{tag}</span>
     {/each}
@@ -58,24 +60,23 @@
 {/snippet}
 
 {#snippet text(value: string)}
-  <p class="entry__item__text">{@html value}</p>
+  <p class="body__item__value--text">{@html value}</p>
 {/snippet}
 
 <div class={['entry', isFailure && 'entry--failure']} bind:this={collapsible}>
-  <div class="entry__title" bind:clientHeight={titleHeight}>
-    <div class="entry__date">
-      <div class="entry__date__text minor-text">
-        <i class="entry__date__text__icon"></i>
+  <div class="title" bind:clientHeight={titleHeight}>
+    <div class="title__date">
+      <div class="title__date-text minor-text">
+        <i class="title__date-text-icon"></i>
         <span>{data.title.date}</span>
       </div>
     </div>
-    <a class="entry__title__text" href={data.title.href}
-      >{@html data.title.title}</a>
-    <button class="entry__title__icon" onclick={() => (expanded = !expanded)}>
+    <a class="title__text" href={data.title.href}>{@html data.title.title}</a>
+    <button class="title__icon" onclick={() => (expanded = !expanded)}>
       <PlusMinusIcon {expanded} width={18} height={18} />
     </button>
   </div>
-  <div class="entry__body" bind:this={collapsibleBody}>
+  <div class="body" bind:this={collapsibleBody}>
     {#each Object.entries(data.body).filter(el => typeof el[1] != 'boolean') as [key, value]}
       {@render entryItem(
         key,
@@ -87,24 +88,13 @@
 </div>
 
 <style lang="scss">
-  @use '$lib/scss/_variables';
-  @use '$lib/scss/_breakpoints';
-
   .entry {
     display: grid;
-    border-bottom: 0.5px solid variables.$body-text-color;
+    border-bottom: 0.5px solid $body-text-color;
     overflow-y: hidden;
-    @include breakpoints.lg {
+    @include breakpoint-lg {
       column-gap: 4px;
       grid-template-columns: 2fr 11fr;
-    }
-    &--failure {
-      .entry__date__icon {
-        background: variables.$graphic-color !important;
-      }
-      .entry__title__text {
-        color: variables.$graphic-color;
-      }
     }
 
     p,
@@ -115,82 +105,87 @@
       color: inherit;
       letter-spacing: -0.04em;
     }
-    &__caption {
-      line-height: 100%;
-      display: flex;
-      align-items: flex-start;
-      grid-column: 1 / -1;
-      @include breakpoints.lg {
-        grid-column: 1;
-      }
-      &__text {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        &::after {
-          content: 'A';
-          visibility: hidden;
-          font-size: 2rem;
+
+    &#{&}--failure {
+      .title {
+        &__date-text-icon {
+          background: $graphic-color;
+        }
+        &__text {
+          color: $graphic-color;
         }
       }
     }
-    &__title {
-      color: variables.$major-text-color;
+    .title {
       text-decoration: none;
       grid-column: 1 / -1;
       display: grid;
       grid-auto-rows: min-content;
       align-items: center;
       grid-template-columns: 10fr 1fr;
-      @include breakpoints.lg {
+
+      @include breakpoint-lg {
         gap: 1rem;
         grid-template-columns: 2fr 10fr 1fr;
       }
+
       &:hover {
-        color: variables.$text-inverted-color;
-        background: variables.$highlight-color;
+        background: $highlight-color;
+
+        & > * {
+          color: $text-inverted-color;
+        }
+
+        .title__date-text-icon {
+          background: $text-inverted-color;
+        }
       }
+
+      &__date {
+        color: $minor-text-color;
+        padding-top: 1.3rem;
+        grid-column: 1 / -1;
+        @include breakpoint-lg {
+          grid-column: 1;
+          padding: 0;
+        }
+        &-text {
+          display: inline-flex;
+          gap: 1rem;
+          align-items: center;
+          &-icon {
+            background: $minor-text-color;
+            height: 0.8rem;
+            width: 0.8rem;
+          }
+        }
+      }
+
       &__text {
+        color: $major-text-color;
         padding: 1.3rem 0;
         font-size: 2.2rem;
         line-height: 100%;
-        @include breakpoints.md {
+        @include breakpoint-md {
           font-size: 2.5rem;
         }
       }
       &__icon {
         cursor: pointer;
         background: none;
-        color: variables.$major-text-color;
+        color: $major-text-color;
         border: none;
       }
     }
-    &__date {
-      padding-top: 1.3rem;
-      @include breakpoints.lg {
-        padding: 0;
-      }
-      &__text {
-        color: variables.$minor-text-color;
-        display: inline-flex;
-        gap: 1rem;
-        align-items: center;
-        &__icon {
-          background: variables.$minor-text-color;
-          height: 0.6rem;
-          width: 0.6rem;
-        }
-      }
-    }
 
-    &__body {
+    .body {
       grid-column: 1 / -1;
       padding: 2.4rem 0;
       display: grid;
       grid-template-columns: subgrid;
       font-size: 2rem;
 
-      & > div {
+      &__item {
         &:not(:last-child) {
           margin-bottom: 1em;
         }
@@ -199,15 +194,36 @@
         grid-template-columns: subgrid;
         row-gap: 1rem;
         line-height: 1.3;
-      }
-      .entry__item__text {
-        font-size: 2rem;
-      }
-      .entry__item__tags {
-        display: flex;
-        align-items: flex-start;
-        flex-wrap: wrap;
-        gap: 2px;
+        &-caption {
+          display: flex;
+          align-items: flex-start;
+          grid-column: 1 / -1;
+          @include breakpoint-lg {
+            grid-column: 1;
+          }
+          &-text {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            &::after {
+              content: 'A';
+              visibility: hidden;
+              font-size: 2rem;
+            }
+          }
+        }
+
+        &__value {
+          &--text {
+            font-size: 2rem;
+          }
+          &--tags {
+            display: flex;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 2px;
+          }
+        }
       }
     }
   }

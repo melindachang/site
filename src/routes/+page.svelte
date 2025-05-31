@@ -29,150 +29,131 @@
 </svelte:head>
 
 <div class="grid">
-  <div class="info">
+  <div class="grid__column--left">
     <GridItem heading="Info">
-      <p>It is <span class="time">{locale_str}</span> in Evanston, IL</p>
+      <p class="grid__item--info-text">
+        It is <span>{locale_str}</span> in Evanston, IL
+      </p>
       <SpotifyWidget />
     </GridItem>
   </div>
-  <div class="subgrid">
-    <div class="subgrid__content">
-      <GridItem heading="Bio">
-        <LinkEntry
-          links={[
-            {
-              type: 'Software',
-              href: 'https://www.github.com/melindachang',
-              external: true,
-            },
-            { type: 'Writing', href: '/writing', external: false },
-          ]}>
-          <p>
-            Hello! I'm a first-year student at Northwestern majoring in <b
-              >Computer Science</b>
-            and <b>Comparative Literary Studies</b>.
-          </p>
-          <p>
-            My research interests span natural language processing (NLP),
-            computer vision, and cultural analytics. That is, I want to leverage <em
-              >humanistic</em>
-            theoretical resources to develop
-            <em>computational</em>
-            tools and methods, as well as explore their affordances in the study
-            of cultural objects and cultural production broadly defined.
-          </p>
-          <p>
-            Elsewhere: 19th- and 20th-century European literature, Sinophone
-            cinema, aesthetics, global modernism. I also take pictures of
-            Chicago and write whatever I want.
-          </p>
-        </LinkEntry>
-      </GridItem>
-      <GridItem
-        heading="Work"
-        noGap
-        fn={() => (showFailures = !showFailures)}
-        fnName={showFailures ? 'Hide Failures' : 'Show Failures'}>
-        {#each userState.work_timeline as work}
-          {#if !work.isFailure || showFailures}
-            <Entry data={map_to_entry(work)} isFailure={work.isFailure} />
-          {/if}
-        {/each}
-      </GridItem>
-      <GridItem heading="Publications">
-        <div class="publications">
-          {#each userState.publications as { title, authors, venue, links }}
-            <LinkEntry {links}>
-              <h2 class="publication__title">{title}</h2>
-              <p class="publication__subtitle">
-                {@html `${authors
-                  .map(a => (a === 'Melinda Chang' ? `<em>${a}</em>` : a))
-                  .join(', ')} &mdash; ${venue}`}
-              </p>
-            </LinkEntry>
-          {/each}
-        </div>
-      </GridItem>
-      <GridItem heading="Everywhere">
+  <div class="grid__column--right">
+    <GridItem heading="Bio">
+      <LinkEntry
+        links={[
+          {
+            type: 'Software',
+            href: 'https://www.github.com/melindachang',
+            external: true,
+          },
+          { type: 'Writing', href: '/writing', external: false },
+        ]}>
         <p>
-          You can reach me via email at <code
-            >melinda [at] u.northwestern.edu</code
-          >. I'm also on
-          <a href="https://goodreads.com/hychang" target="_blank">Goodreads</a>
-          and
-          <a href="https://letterboxd.com/hychang" target="_blank">Letterboxd</a
-          >.
+          Hello! I'm a rising second-year student at Northwestern majoring in <span class="highlight"
+            >Computer Science</span>
+          and <span class="highlight">Comparative Literary Studies</span>.
         </p>
-        <p class="subgrid__item__socials">
-          <a
-            class="subgrid__item__socials__link"
-            href="https://github.com/melindachang"
-            target="_blank">
-            GitHub
-          </a>
-          <a
-            class="subgrid__item__socials__link"
-            href="https://linkedin.com/in/melindahchang"
-            target="_blank">
-            Linkedin
-          </a>
-          <a
-            class="subgrid__item__socials__link"
-            href="https://instagram.com/changrybird"
-            target="_blank">
-            Instagram
-          </a>
+        <p>
+          My research interests span natural language processing (NLP), computer
+          vision, and cultural analytics. That is, I want to leverage <em
+            >humanistic</em>
+          theoretical resources to develop
+          <em>computational</em>
+          tools and methods, as well as explore their affordances in the study of
+          cultural objects and cultural production broadly defined.
         </p>
-      </GridItem>
-    </div>
+        <p>
+          Elsewhere: 19th- and 20th-century European literature, Sinophone
+          cinema, aesthetics, global modernism. I also take pictures of Chicago
+          and write whatever I want.
+        </p>
+      </LinkEntry>
+    </GridItem>
+    <GridItem
+      heading="Work"
+      noGap
+      fn={() => (showFailures = !showFailures)}
+      fnName={showFailures ? 'Hide Failures' : 'Show Failures'}>
+      {#each userState.work_timeline as work}
+        {#if !work.isFailure || showFailures}
+          <Entry data={map_to_entry(work)} isFailure={work.isFailure} />
+        {/if}
+      {/each}
+    </GridItem>
+    <GridItem heading="Publications">
+      <div class="publications">
+        {#each userState.publications as { title, authors, venue, links }}
+          <LinkEntry {links}>
+            <h2 class="publication__title">{title}</h2>
+            <p class="publication__subtitle">
+              {@html `${authors
+                .map(a => (a === 'Melinda Chang' ? `<em>${a}</em>` : a))
+                .join(', ')} &mdash; ${venue}`}
+            </p>
+          </LinkEntry>
+        {/each}
+      </div>
+    </GridItem>
+    <GridItem heading="Everywhere">
+      <p>
+        You can reach me via email at <code
+          >melinda [at] u.northwestern.edu</code
+        >. I'm also on
+        <a href="https://goodreads.com/hychang" target="_blank">Goodreads</a>
+        and
+        <a href="https://letterboxd.com/hychang" target="_blank">Letterboxd</a>.
+      </p>
+      <p class="grid__item--social">
+        <a
+          class="grid__item--social-link tag"
+          href="https://github.com/melindachang"
+          target="_blank">
+          GitHub
+        </a>
+        <a
+          class="grid__item--social-link tag"
+          href="https://linkedin.com/in/melindahchang"
+          target="_blank">
+          Linkedin
+        </a>
+        <a
+          class="grid__item--social-link tag"
+          href="https://instagram.com/changrybird"
+          target="_blank">
+          Instagram
+        </a>
+      </p>
+    </GridItem>
   </div>
 </div>
 
 <style lang="scss">
-  @use '$lib/scss/_variables';
-  @use '$lib/scss/_breakpoints';
-
   .grid {
     display: grid;
-    @include breakpoints.lg {
+    @include breakpoint-lg {
       grid-template-columns: 1fr 3fr;
       column-gap: 5.6rem;
     }
-    .info {
-      height: fit-content;
-      will-change: auto;
-      @include breakpoints.lg {
-        top: 4em;
-        position: sticky;
+    &__column {
+      &--left {
+        height: fit-content;
+        will-change: auto;
+        @include breakpoint-lg {
+          top: 4em;
+          position: sticky;
+        }
       }
-      p {
-        color: variables.$major-text-color;
-      }
-    }
-    .subgrid {
-      display: grid;
-      .subgrid__content {
+      &--right {
         display: grid;
         line-height: 1.5;
         row-gap: 5.6rem;
-        // @include breakpoints.lg
-        //   max-width: 65ch
-        .subgrid__item__socials {
-          .subgrid__item__socials__link {
-            text-decoration: none;
-            font-size: 1.2rem;
-            text-transform: uppercase;
-            font-family: variables.$font-monospace;
-            color: variables.$tag-text-color;
-            border: 0.5px dotted variables.$tag-text-color;
-            padding: 1px 4px 3px 4px;
-            border-radius: 4px;
+      }
+    }
 
-            &:hover {
-              color: variables.$text-inverted-color;
-              background: variables.$tag-text-color;
-            }
-          }
+    &__item {
+      &--info {
+        &-text {
+          color: $major-text-color;
         }
       }
     }

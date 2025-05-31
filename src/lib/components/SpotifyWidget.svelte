@@ -58,17 +58,17 @@
 
 {#snippet player(ico?: Snippet, body?: Snippet)}
   <div class="player__heading">
-    <button class="player__heading__x" onclick={() => (closed = true)}>
+    <button class="player__heading-x" onclick={() => (closed = true)}>
       {@render xIcon()}
     </button>
-    <span class="player__heading__title">Now Playing &mdash; Spotify</span>
+    <span class="player__heading-title">Now Playing &mdash; Spotify</span>
     {@render ico?.()}
   </div>
   {@render body?.()}
 {/snippet}
 
 {#snippet npIcon()}
-  <div class="player__heading__icon">
+  <div class="player__heading-icon">
     <DotLottieSvelte src="/now-playing.lottie" loop autoplay />
   </div>
 {/snippet}
@@ -76,19 +76,19 @@
 <!-- svelte-ignore a11y_no_static_element_interactions -->
 <!-- svelte-ignore a11y_mouse_events_have_key_events -->
 {#snippet playerBody()}
-  <div class="player__background">
+  <div class="player__body">
     <div
-      class="player__img"
+      class="player__body-cover"
       style:background-color="gray"
       style:background-image={`url('${userState.playback_state!.album.images[0].url}')`}>
     </div>
-    <div class="player__text">
+    <div class="player__body-text">
       <a
         href={userState.playback_state!.href}
         target="_blank"
-        class="player__text__title">{userState.playback_state!.name}</a>
+        class="player__body-text-title">{userState.playback_state!.name}</a>
       <div
-        class="player__text__artist"
+        class="player__body-text-artist"
         onmouseover={() => tl.play()}
         onmouseleave={() => tl.seek(0).pause()}
         bind:clientWidth={visibleWidth}>
@@ -120,28 +120,28 @@
     align-items: center;
     gap: 6px;
     padding: 4px;
-    background: variables.$background-color;
-    border: 0.5px solid variables.$major-text-color;
+    background: $background-color;
+    border: 0.5px solid $body-text-color;
     max-width: 23em;
-    .player__heading {
-      color: variables.$major-text-color;
+    &__heading {
+      color: $body-text-color;
       width: 100%;
       position: relative;
       display: flex;
       align-items: center;
       justify-content: end;
       gap: 0.1em;
-      .player__heading__title {
+      &-title {
         text-transform: uppercase;
         font-size: 1rem;
         line-height: 1;
-        font-family: variables.$font-monospace;
+        font-family: $font-monospace;
         margin-left: 1em;
       }
-      .player__heading__icon {
+      &-icon {
         height: 1.4rem;
       }
-      .player__heading__x {
+      &-x {
         height: 1.2rem;
         line-height: 1;
         width: 1.2rem;
@@ -150,7 +150,7 @@
         border: none;
         cursor: pointer;
         svg {
-          color: variables.$body-text-color;
+          color: $body-text-color;
           height: 100%;
           position: absolute;
           top: 0;
@@ -158,21 +158,21 @@
         }
       }
     }
-    .player__background {
+    &__body {
       position: relative;
-      border: 0.5px solid variables.$major-text-color;
+      border: 0.5px solid $body-text-color;
       width: 100%;
       display: flex;
       gap: 1em;
       padding: 1em;
       overflow: hidden;
-      .player__text {
+      &-text {
         display: grid;
         gap: 0.25em;
         width: calc(12em - 6px);
         align-content: end;
-        .player__text__title {
-          text-decoration: none;
+        &-title {
+          color: $button-color;
           overflow: hidden;
           text-overflow: ellipsis;
           display: -webkit-box;
@@ -181,13 +181,10 @@
           line-clamp: 2;
           line-height: 1.5em;
           max-height: 3em;
-          &:hover {
-            text-decoration: underline;
-          }
         }
-        .player__text__artist {
+        &-artist {
           overflow: hidden;
-          color: variables.$body-text-color;
+          color: $body-text-color;
           display: -webkit-box;
           -webkit-box-orient: vertical;
           -webkit-line-clamp: 1;
@@ -211,7 +208,7 @@
           background-image: linear-gradient(
             to right,
             rgba(255, 0, 0, 0),
-            variables.$background-color
+            $background-color
           );
         }
         &:hover {
@@ -220,10 +217,10 @@
           }
         }
       }
-      .player__img {
+      &-cover {
         height: 6em;
         aspect-ratio: 1/1;
-        border: 0.5px solid variables.$body-text-color;
+        border: 0.5px solid $body-text-color;
         filter: grayscale(50%);
         background-size: cover;
         background-position: 50% 50%;

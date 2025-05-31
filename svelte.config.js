@@ -7,22 +7,19 @@ import { createHighlighter } from 'shiki'
 
 const config = {
   preprocess: [
-    vitePreprocess({ sass: false }),
+    vitePreprocess(),
     mdsvex({
       extensions: ['.md'],
       remarkPlugins: [externalLinks, toc],
       highlight: {
         highlighter: async (code, lang = 'text') => {
           const highlighter = await createHighlighter({
-            themes: ['gruvbox-dark-medium'],
+            themes: ['vesper'],
             langs: ['python', 'shellscript', 'toml'],
           })
           await highlighter.loadLanguage('python', 'shellscript', 'toml')
           const html = escapeSvelte(
-            highlighter.codeToHtml(code, {
-              lang,
-              theme: 'gruvbox-dark-medium',
-            }),
+            highlighter.codeToHtml(code, { lang, theme: 'vesper' }),
           )
           return `{@html \`${html}\` }`
         },

@@ -1,9 +1,9 @@
-<div class="crt-effect"></div>
+<div class="effect"></div>
 
 <style lang="scss">
   @use '$lib/scss/_animations';
 
-  .crt-effect {
+  .effect {
     position: fixed;
     top: -4px;
     right: 0;

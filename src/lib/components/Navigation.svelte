@@ -52,20 +52,16 @@
 <svelte:window on:keypress={e => handleKeypress(e)} bind:innerWidth />
 
 <div class="nav">
-  <div class="nav__content">
-    <div class="nav__links">
-      {#each pages as page, i}
-        <a
-          class={['nav__link', page.active && 'active']}
-          href={page.href}
-          target={!page.local ? '_blank' : null}
-          onclick={page.local ? () => toggleActive(i) : null}
-          data-sveltekit-preload-data>
-          {innerWidth >= 992
-            ? `[${page.keypress}] ${page.name}`
-            : page.name}</a>
-      {/each}
-    </div>
+  <div class="nav__links">
+    {#each pages as page, i}
+      <a
+        class={['nav__links-link', page.active && 'nav__links-link--active']}
+        href={page.href}
+        target={!page.local ? '_blank' : null}
+        onclick={page.local ? () => toggleActive(i) : null}
+        data-sveltekit-preload-data>
+        {innerWidth >= 992 ? `[${page.keypress}] ${page.name}` : page.name}</a>
+    {/each}
   </div>
 </div>
 
@@ -79,45 +75,41 @@
     top: 0;
     left: 0;
     width: 100%;
+    display: grid;
     margin: 0 auto;
     padding: 1em;
-    justify-content: center;
     background-image: linear-gradient(
       to bottom,
-      variables.$background-color,
+      $background-color,
       rgba(0, 0, 0, 0)
     );
     pointer-events: none;
-    .nav__content {
-      width: 100%;
-      display: grid;
-      .nav__links {
+    &__links {
+      display: flex;
+      justify-content: start;
+      &-link {
+        pointer-events: auto;
         display: flex;
-        justify-content: start;
-        .nav__link {
-          pointer-events: auto;
-          display: flex;
-          background: variables.$button-demph-color;
-          font-size: 1.2rem;
-          line-height: 1.2;
-          text-decoration: none;
-          color: variables.$button-color;
-          padding: 0.5rem 0.8rem;
-          text-transform: uppercase;
-          font-family: variables.$font-monospace;
-          letter-spacing: -0.3px;
-          border-radius: 2px;
-          &:hover {
-            background: variables.$highlight-color;
-            color: variables.$text-inverted-color;
-          }
-          &.active {
-            color: variables.$text-inverted-color;
-            background: variables.$button-color;
-          }
-          &:not(:last-child) {
-            margin-right: 0.3rem;
-          }
+        background: $button-demph-color;
+        font-size: 1.2rem;
+        line-height: 1.2;
+        text-decoration: none;
+        color: $button-color;
+        padding: 0.5rem 0.8rem;
+        text-transform: uppercase;
+        font-family: $font-monospace;
+        letter-spacing: -0.3px;
+        border-radius: 2px;
+        &--active {
+          color: $text-inverted-color;
+          background: $button-color;
+        }
+        &:hover {
+          background: $highlight-color;
+          color: $text-inverted-color;
+        }
+        &:not(:last-child) {
+          margin-right: 0.3rem;
         }
       }
     }

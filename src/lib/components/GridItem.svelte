@@ -2,14 +2,14 @@
   let { heading, noGap = false, fn = null, fnName = null, children } = $props()
 </script>
 
-<div class={['grid__item', !noGap && 'grid__item--gap']}>
-  <div class="grid__item__header minor-text">
-    <span class="grid__item__header__text">/ {heading}</span>
+<div class={['item', !noGap && 'item--gap']}>
+  <div class="item__header minor-text">
+    <span class="item__header__text">/ {heading}</span>
     {#if fn}
-      <button onclick={fn} class="grid__item__header__button">{fnName}</button>
+      <button onclick={fn} class="item__header-button">{fnName}</button>
     {/if}
   </div>
-  <div class="grid__item__text">
+  <div class="item__text">
     {@render children()}
   </div>
 </div>
@@ -17,19 +17,19 @@
 <style lang="scss">
   @use '../scss/_variables';
 
-  .grid__item {
+  .item {
     display: flex;
     flex-direction: column;
-    &--gap {
+    &#{&}--gap {
       row-gap: 2.4rem;
     }
-    .grid__item__header {
-      color: variables.$body-text-color;
+    &__header {
+      color: $body-text-color;
       display: flex;
       justify-content: space-between;
       padding-bottom: 0.6rem;
-      border-bottom: 0.5px solid variables.$body-text-color;
-      .grid__item__header__button {
+      border-bottom: 0.5px solid $body-text-color;
+      &-button {
         cursor: pointer;
         background: none;
         border: none;
@@ -40,7 +40,7 @@
       }
     }
 
-    .grid__item__text {
+    &__text {
       line-height: 1.5;
     }
   }

@@ -16,11 +16,11 @@
     display: flex;
     align-items: start;
     h1 {
-      color: variables.$major-text-color;
-      font-size: variables.$section-title-font-size;
+      color: $major-text-color;
+      font-size: $section-title-font-size;
     }
     small {
-      color: variables.$graphic-color;
+      color: $graphic-color;
       font-size: 2.2rem;
     }
   }

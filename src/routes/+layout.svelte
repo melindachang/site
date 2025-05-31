@@ -17,16 +17,18 @@
 
 <!-- <CrtLines /> -->
 <Navigation />
-<main>
+<main class="wrapper">
   <div class="header">
     <Header title={page.data.title} amount={page.data.amount} />
   </div>
-  {@render children()}
+  <div class="content">
+    {@render children()}
+  </div>
 </main>
 
 <style lang="scss">
   @use '$lib/scss/_breakpoints';
-  main {
+  .wrapper {
     width: 100%;
     padding: 4em 1em;
     .header {

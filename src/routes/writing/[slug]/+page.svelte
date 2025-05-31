@@ -100,14 +100,14 @@
 
   article {
     display: grid;
-    @include breakpoints.lg {
+    @include breakpoint-lg {
       grid-template-columns: 6fr 17fr;
       column-gap: 3em;
     }
     .metadata {
       height: fit-content;
       will-change: auto;
-      @include breakpoints.lg {
+      @include breakpoint-lg {
         position: sticky;
         top: 4em;
       }
@@ -119,18 +119,18 @@
         }
       }
       .metadata__content {
-        color: variables.$minor-text-color;
+        color: $minor-text-color;
         transform: translateY(0);
         text-transform: uppercase;
         font-size: 1.2rem;
-        font-family: variables.$font-monospace;
+        font-family: $font-monospace;
         letter-spacing: -0.04em;
         .metadata__item {
           grid-column: 1 / -1;
           display: grid;
           grid-template-columns: 1fr 1fr;
           padding: 1.2rem 0;
-          border-bottom: 0.5px solid variables.$body-text-color;
+          border-bottom: 0.5px solid $body-text-color;
           .metadata__item__value {
             display: flex;
             align-content: flex-start;
@@ -143,14 +143,14 @@
             text-decoration: none;
             font-size: 1.2rem;
             text-transform: uppercase;
-            font-family: variables.$font-monospace;
-            color: variables.$tag-text-color;
-            border: 0.5px dotted variables.$tag-text-color;
+            font-family: $font-monospace;
+            color: $tag-text-color;
+            border: 0.5px dotted $tag-text-color;
             padding: 1px 4px 3px 4px;
             border-radius: 4px;
             &:hover {
-              color: variables.$text-inverted-color;
-              background: variables.$tag-text-color;
+              color: $text-inverted-color;
+              background: $tag-text-color;
             }
           }
         }

@@ -1,7 +1,8 @@
-@use '$lib/scss/_variables';
+@use '$lib/scss/_variables' as v;
 @use '$lib/scss/_breakpoints';
 @use '$lib/scss/_fonts';
 @use '$lib/scss/_utilities';
+@use '$lib/scss/_animations';
 
 *,
 *::before,
@@ -21,46 +22,54 @@ body {
   padding: 0;
   overflow-x: hidden;
   font-size: 1.6rem;
-  color: variables.$body-text-color;
-  background-color: variables.$background-color;
-  font-family: variables.$font-sans-serif;
+  color: v.$body-text-color;
+  background-color: v.$background-color;
+  font-family: v.$font-sans-serif;
 }
 
 ::selection {
-  background: variables.$highlight-color;
-  color: variables.$text-inverted-color;
+  background: v.$highlight-color;
+  color: v.$text-inverted-color;
 }
 
 a {
-  color: variables.$body-text-color;
+  color: v.$body-text-color;
 }
 
 p {
   font-size: 1.8rem;
   margin: 0;
   a {
-    color: variables.$button-color;
+    color: v.$button-color;
     &:hover {
-      color: variables.$text-inverted-color;
-      background: variables.$highlight-color;
+      color: v.$text-inverted-color;
+      background: v.$highlight-color;
     }
   }
+
+  span.highlight {
+    color: v.$major-text-color;
+  }
+
+  // strong {
+  //   color: v.$major-text-color;
+  // }
 }
 
 code {
   font-size: 0.85em;
-  font-family: variables.$font-monospace;
+  font-family: v.$font-monospace;
   &:not(pre code) {
-    background: variables.$button-demph-color;
+    background: v.$button-demph-color;
     padding: 0 4px;
     margin: 0 2px;
-    border: 0.5px solid variables.$dotted-border-color;
+    border: 0.5px solid v.$body-text-color;
     border-radius: 4px;
   }
 }
 
 :is(h1, h2, h3, h4, h5, h6) {
-  color: variables.$major-text-color;
+  color: v.$major-text-color;
   font-weight: 400;
   letter-spacing: -0.06em;
   line-height: 92%;
@@ -73,12 +82,12 @@ code {
 
 ::-webkit-scrollbar {
   &-track {
-    background: variables.$background-color;
+    background: v.$background-color;
   }
   &-thumb {
-    background: variables.$body-text-color;
+    background: v.$body-text-color;
     &:hover {
-      background: variables.$major-text-color;
+      background: v.$major-text-color;
     }
   }
 }
@@ -89,27 +98,27 @@ code {
   display: grid;
   position: relative;
   grid-template-columns: minmax(0, 1fr);
-  @include breakpoints.lg {
+  @include breakpoint-lg {
     grid-template-columns: 2fr 1fr;
   }
 
-  %heading-shared {
+  %heading {
     margin-top: 4rem;
     line-height: 100%;
   }
 
   h1 {
-    @extend %heading-shared;
+    @extend %heading;
     font-size: 4.8rem;
   }
 
   h2 {
-    @extend %heading-shared;
+    @extend %heading;
     font-size: 3.6rem;
   }
 
   h3 {
-    @extend %heading-shared;
+    @extend %heading;
     font-size: 2.8rem;
   }
 
@@ -134,8 +143,8 @@ code {
     overflow-x: auto;
     padding: 1rem;
     border-radius: 8px;
-    border: 0.5px solid variables.$dotted-border-color;
-    font-family: variables.$font-monospace;
+    border: 0.5px solid v.$body-text-color;
+    font-family: v.$font-monospace;
     tab-size: 2;
   }
 }
@@ -144,5 +153,5 @@ button {
   background: none;
   cursor: pointer;
   border: none;
-  font-family: variables.$font-sans-serif;
+  font-family: v.$font-sans-serif;
 }

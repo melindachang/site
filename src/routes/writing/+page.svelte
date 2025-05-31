@@ -17,7 +17,7 @@
 
   const tl = gsap.timeline()
 
-  let activeFilters = $derived(tags.filter(t => t.checked).map(t => t.name))
+  let activeFilter = $derived(tags.filter(t => t.checked).map(t => t.name))
 
   $effect(() => {
     open ? tl.reverse() : tl.play()
@@ -33,25 +33,26 @@
 </script>
 
 <div class="grid">
-  <div class="filters__wrapper">
-    <GridItem heading="Filters">
-      <div class="filters" bind:this={filter_wrapper}>
-        <div class="filters__folder" bind:clientHeight={titleHeight}>
-          <button
-            class="filters__folder__button"
-            onclick={() => (open = !open)}>
+  <div class="wrapper">
+    <GridItem heading="filter">
+      <div class="filter" bind:this={filter_wrapper}>
+        <div class="filter__folder" bind:clientHeight={titleHeight}>
+          <button class="filter__folder-button" onclick={() => (open = !open)}>
             <PlusMinusIcon expanded={open} width={14} height={14} />
           </button>
           <FolderIcon {open} width="22" height="22" />
-          <span class="filters__folder__label">Topics</span>
+          <span class="filter__folder-label">Topics</span>
         </div>
-        <div class="filters__list" bind:clientHeight={bodyHeight}>
+        <div class="filter__list" bind:clientHeight={bodyHeight}>
           {#each tags as tag}
             <button
-              class={['filters__list__item', tag.checked && 'highlight']}
+              class={[
+                'filter__list-item',
+                tag.checked && 'filter__list-item--highlight',
+              ]}
               onclick={() => (tag.checked = !tag.checked)}>
               <Checkbox bind:checked={tag.checked} width={20} height={20} />
-              <span class="filters__list__item__label minor-text"
+              <span class="filter__list-item-label minor-text"
                 >{tag.name} ({tag.amount})</span>
             </button>
           {/each}
@@ -61,7 +62,7 @@
   </div>
   <GridItem heading="Entries" noGap>
     {#each data.articles as article}
-      {#if !activeFilters.length || activeFilters.some( f => article.tags.includes(f), )}
+      {#if !activeFilter.length || activeFilter.some( f => article.tags.includes(f), )}
         <Entry data={map_to_entry(article)} isFailure={false} />
       {/if}
     {/each}
@@ -69,65 +70,64 @@
 </div>
 
 <style lang="scss">
-  @use '$lib/scss/_breakpoints';
-  @use '$lib/scss/_variables';
-
   .grid {
     display: grid;
     gap: 5.6rem;
-    @include breakpoints.lg {
+    @include breakpoint-lg {
       grid-template-columns: 1fr 3fr;
     }
-    .filters__wrapper {
-      display: none;
-      @include breakpoints.lg {
-        display: block;
+  }
+
+  .wrapper {
+    display: none;
+    @include breakpoint-lg {
+      display: block;
+    }
+  }
+
+  .filter {
+    color: $button-color;
+    display: grid;
+    row-gap: 8px;
+    overflow-y: hidden;
+    &__folder {
+      display: flex;
+      justify-content: flex-start;
+      gap: 6px;
+      align-items: center;
+      &-button {
+        color: inherit;
+        background: none;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
       }
-      .filters {
-        color: variables.$button-color;
-        display: grid;
-        row-gap: 8px;
-        overflow-y: hidden;
-        .filters__folder {
-          display: flex;
-          justify-content: flex-start;
-          gap: 6px;
-          align-items: center;
-          .filters__folder__button {
-            color: inherit;
-            background: none;
-            border: none;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-          }
+    }
+    &__list {
+      position: relative;
+      margin-left: 1.4rem;
+      padding-left: 1.8rem;
+      display: grid;
+      row-gap: 8px;
+      border-left: 0.5px solid $body-text-color;
+      &-item {
+        padding: 0;
+        background: none;
+        border: none;
+        color: inherit;
+        opacity: 0.5;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        &:hover {
+          opacity: 1;
         }
-        .filters__list {
-          position: relative;
-          margin-left: 1.4rem;
-          padding-left: 1.8rem;
-          display: grid;
-          row-gap: 8px;
-          border-left: 0.5px solid variables.$dotted-border-color;
-          .filters__list__item {
-            padding: 0;
-            background: none;
-            border: none;
-            color: inherit;
-            opacity: 0.5;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            &:hover {
-              opacity: 1;
-            }
-            &.highlight {
-              opacity: 1;
-              .filters__list__item__label {
-                color: variables.$text-inverted-color;
-                background-color: variables.$highlight-color;
-              }
-            }
+        &#{&}--highlight {
+          opacity: 1;
+          .filter__list-item-label {
+            color: $text-inverted-color;
+            background-color: $highlight-color;
           }
         }
       }

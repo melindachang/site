@@ -7,7 +7,7 @@
 
 {#snippet arrowIcon()}
   <svg
-    class="entry__action__icon--arrow"
+    class="entry__actions-item-icon--arrow"
     width="24"
     height="24"
     fill="none"
@@ -36,9 +36,9 @@
       <a
         href={link.href}
         target={link.external ? '_blank' : undefined}
-        class="entry__action">
-        <div class="entry__action__left">
-          <i class="entry__action__icon--square"></i>{link.type}
+        class="entry__actions-item">
+        <div class="entry__actions-item-text">
+          <i class="entry__actions-item-icon--square"></i>{link.type}
         </div>
         {@render arrowIcon()}
       </a>
@@ -51,32 +51,32 @@
   @use '../scss/_breakpoints';
 
   .entry {
-    // color: variables.$major-
+    // color: $major-
     display: flex;
     flex-direction: column;
     column-gap: 2.4rem;
-    border-bottom: 0.5px solid variables.$body-text-color;
+    border-bottom: 0.5px solid $body-text-color;
     padding-bottom: 2.4rem;
-    @include breakpoints.lg {
+    @include breakpoint-lg {
       gap: 5.6rem;
       flex-direction: row;
     }
-    .entry__info {
+    &__info {
       display: flex;
       flex-direction: column;
       gap: 0.8em;
-      @include breakpoints.lg {
+      @include breakpoint-lg {
         flex: 3;
       }
     }
-    .entry__actions {
+    &__actions {
       display: flex;
       flex-direction: column;
-      @include breakpoints.lg {
+      @include breakpoint-lg {
         flex: 2;
       }
-      .entry__action {
-        color: variables.$minor-text-color;
+      &-item {
+        color: $minor-text-color;
         text-decoration: none;
         display: flex;
         justify-content: space-between;
@@ -85,36 +85,37 @@
         font-size: 1.2rem;
         line-height: 100%;
         text-transform: uppercase;
-        font-family: variables.$font-monospace;
+        font-family: $font-monospace;
+
         &:not(:last-child) {
-          border-bottom: 0.5px solid variables.$body-text-color;
+          border-bottom: 0.5px solid $body-text-color;
         }
         &:hover {
           cursor: pointer;
-          color: variables.$text-inverted-color;
-          background: variables.$highlight-color;
-          .entry__action__icon {
+          color: $text-inverted-color;
+          background: $highlight-color;
+          .entry__actions-item-icon {
             &--square {
-              background: variables.$text-inverted-color;
+              background: $text-inverted-color;
             }
             &--arrow {
-              color: variables.$text-inverted-color;
+              color: $text-inverted-color;
             }
           }
         }
-        .entry__action__icon {
+        &-icon {
           &--square {
             display: inline-flex;
-            height: 0.6rem;
-            width: 0.6rem;
-            background: variables.$minor-text-color;
+            height: 0.8rem;
+            width: 0.8rem;
+            background: $minor-text-color;
             margin-right: 1rem;
           }
           &--arrow {
             display: inline-flex;
             height: 1.4em;
             width: 1.4em;
-            color: variables.$minor-text-color;
+            color: $minor-text-color;
           }
         }
       }
