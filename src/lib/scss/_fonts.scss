@@ -1,3 +1,11 @@
+
+/////// Libre Caslon Condensed ///////
+
+@use "@fontsource/libre-caslon-condensed";
+
+
+/////// LOCAL MIXIN ///////
+
 @mixin font-face($font-name, $path, $weight: normal, $style: normal) {
   @font-face {
     font-family: $font-name;
@@ -6,7 +14,9 @@
     font-weight: $weight;
     font-style: $style;
   }
-} /////// Untitled Sans ///////
+}
+
+/////// Untitled Sans ///////
 
 @include font-face(
   'Untitled Sans',
@@ -66,19 +76,6 @@
   'Untitled Sans',
   'untitled_sans/UntitledSans-LightItalic',
   300,
-  italic
-);
-
-@include font-face(
-  'Untitled Serif',
-  'untitled_serif/UntitledSerif-Regular',
-  400,
-  regular
-);
-@include font-face(
-  'Untitled Serif',
-  'untitled_serif/UntitledSerif-RegularItalic',
-  400,
   italic
 );
 

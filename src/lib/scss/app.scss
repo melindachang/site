@@ -47,9 +47,9 @@ p {
     }
   }
 
-  // span.highlight {
-  //   color: v.$major-text-color;
-  // }
+  span.highlight {
+    font-family: v.$font-sans-serif;
+  }
 }
 
 code {
@@ -65,11 +65,16 @@ code {
 }
 
 :is(h1, h2, h3, h4, h5, h6) {
+  font-family: v.$font-serif;
   color: v.$major-text-color;
-  font-weight: 400;
-  letter-spacing: -0.06em;
+  font-weight: 500;
+  // letter-spacing: -0.06em;
   line-height: 92%;
   margin: 0;
+}
+
+h1 {
+  letter-spacing: -0.06em;
 }
 
 ::-webkit-scrollbar {

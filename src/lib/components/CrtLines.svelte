@@ -9,7 +9,7 @@
     right: 0;
     bottom: 0;
     left: 0;
-    background: linear-gradient(180deg, #323232 2px, #dcdcdc 0);
+    background: linear-gradient(180deg, $body-text-color 2px, $background-color 0);
     z-index: 999;
     background-size: 100% 4px;
     opacity: 0.07;

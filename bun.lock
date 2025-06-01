@@ -4,6 +4,7 @@
     "": {
       "name": "site",
       "dependencies": {
+        "@fontsource/libre-caslon-condensed": "^5.2.5",
         "@lottiefiles/dotlottie-svelte": "^0.5.3",
         "gsap": "^3.13.0",
         "remark-toc": "^9.0.0",
@@ -79,6 +80,8 @@
     "@esbuild/win32-ia32": ["@esbuild/win32-ia32@0.25.4", "", { "os": "win32", "cpu": "ia32" }, "sha512-i1sW+1i+oWvQzSgfRcxxG2k4I9n3O9NRqy8U+uugaT2Dy7kLO9Y7wI72haOahxceMX8hZAzgGou1FhndRldxRg=="],
 
     "@esbuild/win32-x64": ["@esbuild/win32-x64@0.25.4", "", { "os": "win32", "cpu": "x64" }, "sha512-nOT2vZNw6hJ+z43oP1SPea/G/6AbN6X+bGNhNuq8NtRHy4wsMhw765IKLNmnjek7GvjWBYQ8Q5VBoYTFg9y1UQ=="],
+
+    "@fontsource/libre-caslon-condensed": ["@fontsource/libre-caslon-condensed@5.2.5", "", {}, "sha512-waWWFDvVn3KF1K2yTfz5acNBK163x4mlhTpfjm+vAyDeCA1ZXQ64XonSAOoOlFov1UgzW7rQ9fSfyFYp80fRPg=="],
 
     "@isaacs/cliui": ["@isaacs/cliui@8.0.2", "", { "dependencies": { "string-width": "^5.1.2", "string-width-cjs": "npm:string-width@^4.2.0", "strip-ansi": "^7.0.1", "strip-ansi-cjs": "npm:strip-ansi@^6.0.1", "wrap-ansi": "^8.1.0", "wrap-ansi-cjs": "npm:wrap-ansi@^7.0.0" } }, "sha512-O8jcjabXaleOG9DQ0+ARXWZBTfnP4WNAqzuiJK7ll44AmxGKv/J2M4TPjxjY3znBCfvBXFzucm1twdyFybFqEA=="],
 

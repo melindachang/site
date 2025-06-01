@@ -71,7 +71,8 @@
         <span>{data.title.date}</span>
       </div>
     </div>
-    <a class="title__text" href={data.title.href}>{@html data.title.title}</a>
+    <a class="title__link" href={data.title.href}
+      ><h3 class="title__link-text">{@html data.title.title}</h3></a>
     <button class="title__icon" onclick={() => (expanded = !expanded)}>
       <PlusMinusIcon {expanded} width={18} height={18} />
     </button>
@@ -111,7 +112,7 @@
         &__date-text-icon {
           background: $graphic-color;
         }
-        &__text {
+        &__link-text {
           color: $graphic-color;
         }
       }
@@ -132,13 +133,29 @@
       &:hover {
         background: $highlight-color;
 
-        & > * {
-          color: $text-inverted-color;
+        .title {
+          &__date {
+            color: $text-inverted-color;
+
+            &-text-icon {
+              background: $text-inverted-color;
+            }
+          }
+          &__link-text, &__icon {
+            color: $text-inverted-color;
+          }
         }
 
-        .title__date-text-icon {
-          background: $text-inverted-color;
-        }
+        /* &__date {
+           color: $text-inverted-color;
+           &-text-icon {
+           background: $text-inverted-color;
+           }
+           }
+
+           &__link-text {
+           color: $text-inverted-color;
+           } */
       }
 
       &__date {
@@ -161,13 +178,14 @@
         }
       }
 
-      &__text {
-        color: $major-text-color;
-        padding: 1.3rem 0;
-        font-size: 2.2rem;
-        line-height: 100%;
-        @include breakpoint-md {
-          font-size: 2.5rem;
+      &__link {
+        &-text {
+          padding: 1.3rem 0;
+          font-size: 2.2rem;
+          line-height: 100%;
+          @include breakpoint-md {
+            font-size: 2.5rem;
+          }
         }
       }
       &__icon {

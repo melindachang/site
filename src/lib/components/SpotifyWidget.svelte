@@ -207,7 +207,7 @@
           width: 2em;
           background-image: linear-gradient(
             to right,
-            rgba(255, 0, 0, 0),
+            rgba(0, 0, 0, 0),
             $background-color
           );
         }
