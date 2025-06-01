@@ -1,7 +1,7 @@
 import type { Article, Tag } from '$lib/utils/interfaces.js'
 
 export const load = async ({ fetch }) => {
-  const response = await fetch('/api/writing')
+  const response = await fetch('/api/notes')
   let articles: Article[] = await response.json()
   let tags: Tag[] = []
   for (const a of articles) {
@@ -13,5 +13,5 @@ export const load = async ({ fetch }) => {
     }
   }
 
-  return { title: 'Writing', amount: articles.length, articles, tags }
+  return { title: 'Notes', amount: articles.length, articles, tags }
 }

@@ -20,6 +20,9 @@
       font-size: $section-title-font-size;
     }
     small {
+      margin-left: 4px;
+      font-family: $font-monospace;
+      letter-spacing: -0.08em;
       color: $graphic-color;
       font-size: 2.2rem;
     }

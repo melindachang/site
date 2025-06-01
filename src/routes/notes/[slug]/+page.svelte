@@ -95,11 +95,9 @@
 </article>
 
 <style lang="scss">
-  @use '$lib/scss/_breakpoints';
-  @use '$lib/scss/_variables';
-
   article {
     display: grid;
+    row-gap: 2.8em;
     @include breakpoint-lg {
       grid-template-columns: 6fr 17fr;
       column-gap: 3em;
@@ -117,6 +115,10 @@
       font-size: 2.8rem;
       h2 {
         margin-bottom: 2.4rem;
+      }
+      display: none;
+      @include breakpoint-lg {
+        display: block;
       }
     }
     &__content {

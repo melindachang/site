@@ -6,10 +6,10 @@
   const pages = $state([
     { name: 'About', keypress: 'A', local: true, href: '/', active: false },
     {
-      name: 'Writing',
-      keypress: 'W',
+      name: 'Notes',
+      keypress: 'N',
       local: true,
-      href: '/writing',
+      href: '/notes',
       active: false,
     },
     {

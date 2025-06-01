@@ -89,7 +89,7 @@
           { type: 'Writing', href: '/writing', external: false },
         ]}>
         <p>
-          Hello! I'm a rising second-year student at Northwestern majoring in <span
+          Hello! I'm a first-year student at Northwestern majoring in <span
             class="highlight">Computer Science</span>
           and <span class="highlight">Comparative Literary Studies</span>.
         </p>

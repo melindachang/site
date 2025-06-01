@@ -201,7 +201,7 @@
       padding: 2.4rem 0;
       display: grid;
       grid-template-columns: subgrid;
-      font-size: 2rem;
+      font-size: 1.8rem;
 
       &__item {
         &:not(:last-child) {

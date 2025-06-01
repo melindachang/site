@@ -51,14 +51,13 @@
   @use '../scss/_breakpoints';
 
   .entry {
-    // color: $major-
     display: flex;
     flex-direction: column;
-    column-gap: 2.4rem;
+    row-gap: 2.4rem;
     border-bottom: 0.5px solid $body-text-color;
     padding-bottom: 2.4rem;
     @include breakpoint-lg {
-      gap: 5.6rem;
+      column-gap: 5.6rem;
       flex-direction: row;
     }
     &__info {
