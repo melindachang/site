@@ -44,19 +44,6 @@
           target="_blank">
           Email
         </a>
-
-        <a
-          class="grid__item--social-link tag"
-          href="https:/letterboxd.com/hychang"
-          target="_blank">
-          Letterboxd
-        </a>
-        <a
-          class="grid__item--social-link tag"
-          href="https://goodreads.com/hychang"
-          target="_blank">
-          Goodreads
-        </a>
         <a
           class="grid__item--social-link tag"
           href="https://codeberg.org/melindachang"
@@ -74,6 +61,18 @@
           href="https://instagram.com/changrybird"
           target="_blank">
           Instagram
+        </a>
+        <a
+          class="grid__item--social-link tag"
+          href="https:/letterboxd.com/hychang"
+          target="_blank">
+          Letterboxd
+        </a>
+        <a
+          class="grid__item--social-link tag"
+          href="https://goodreads.com/hychang"
+          target="_blank">
+          Goodreads
         </a>
       </p>
     </GridItem>
@@ -95,13 +94,13 @@
           and <span class="highlight">Comparative Literary Studies</span>.
         </p>
         <p>
-          My research interests span natural language processing (NLP), computer
-          vision, and cultural analytics. That is, I want to leverage <em
-            >humanistic</em>
-          theoretical resources to develop
-          <em>computational</em>
-          tools and methods, as well as explore their affordances in the study of
-          cultural objects and cultural production broadly defined.
+          My research interests span <span class="highlight"
+            >natural language processing</span
+          >, <span class="highlight">computer vision</span>, and
+          <span class="highlight">cultural analytics</span>. That is, I want to
+          leverage humanistic theoretical resources to develop computational
+          tools and methods, as well as explore their affordances in the study
+          of cultural objects and cultural production broadly defined.
         </p>
         <p>
           Elsewhere: 19th- and 20th-century European literature, Sinophone

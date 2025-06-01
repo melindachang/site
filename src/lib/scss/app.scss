@@ -1,8 +1,5 @@
-@use '$lib/scss/_variables' as v;
-@use '$lib/scss/_breakpoints';
 @use '$lib/scss/_fonts';
 @use '$lib/scss/_utilities';
-@use '$lib/scss/_animations';
 
 *,
 *::before,
@@ -22,53 +19,53 @@ body {
   padding: 0;
   overflow-x: hidden;
   font-size: 1.6rem;
-  color: v.$body-text-color;
-  background-color: v.$background-color;
-  font-family: v.$font-sans-serif;
+  color: $body-text-color;
+  background-color: $background-color;
+  font-family: $font-sans-serif;
 }
 
 ::selection {
-  background: v.$highlight-color;
-  color: v.$text-inverted-color;
+  background: $highlight-color;
+  color: $text-inverted-color;
 }
 
 a {
-  color: v.$body-text-color;
+  color: $body-text-color;
 }
 
 p {
   font-size: 1.8rem;
   margin: 0;
   a {
-    color: v.$button-color;
+    color: $button-color;
     &:hover {
-      color: v.$text-inverted-color;
-      background: v.$highlight-color;
+      color: $text-inverted-color;
+      background: $highlight-color;
     }
   }
 
   span.highlight {
-    font-family: v.$font-sans-serif;
+    font-family: $font-serif;
+    color: $major-text-color;
   }
 }
 
 code {
   font-size: 0.85em;
-  font-family: v.$font-monospace;
+  font-family: $font-monospace;
   &:not(pre code) {
-    background: v.$button-demph-color;
+    background: $button-demph-color;
     padding: 0 4px;
     margin: 0 2px;
-    border: 0.5px solid v.$body-text-color;
+    border: 0.5px solid $body-text-color;
     border-radius: 4px;
   }
 }
 
 :is(h1, h2, h3, h4, h5, h6) {
-  font-family: v.$font-serif;
-  color: v.$major-text-color;
+  font-family: $font-serif;
+  color: $major-text-color;
   font-weight: 500;
-  // letter-spacing: -0.06em;
   line-height: 92%;
   margin: 0;
 }
@@ -83,12 +80,12 @@ h1 {
 
 ::-webkit-scrollbar {
   &-track {
-    background: v.$background-color;
+    background: $background-color;
   }
   &-thumb {
-    background: v.$body-text-color;
+    background: $body-text-color;
     &:hover {
-      background: v.$major-text-color;
+      background: $major-text-color;
     }
   }
 }
@@ -144,8 +141,8 @@ h1 {
     overflow-x: auto;
     padding: 1rem;
     border-radius: 8px;
-    border: 0.5px solid v.$body-text-color;
-    font-family: v.$font-monospace;
+    border: 0.5px solid $body-text-color;
+    font-family: $font-monospace;
     tab-size: 2;
   }
 }
@@ -154,5 +151,5 @@ button {
   background: none;
   cursor: pointer;
   border: none;
-  font-family: v.$font-sans-serif;
+  font-family: $font-sans-serif;
 }

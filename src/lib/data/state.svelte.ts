@@ -38,7 +38,7 @@ export let userState = $state<{
       date: '2025.05',
       title: 'Rejected from Weinberg Summer Research Grant',
       description:
-        "This is more of an inconvenience than anything else, because it means I need to work an extra 20 hours a week on the side to make rent. But it's the consequence of my failing to apply to Northwestern's Summer URG first, which has a higher hit rate&mdash;they pitch this program as a backup.",
+      "I didn't have much hope for this particular grant, given that (a) they prioritize seniors and (b) you're supposed to apply for and be rejected from the Summer URG first. That I ended up in a position where I had to apply in the first place might be the bigger failure.",
       tags: ['research'],
     },
     {
@@ -54,18 +54,18 @@ export let userState = $state<{
       date: '2025.05',
       title: 'Rejected from Block Museum Student Associate program',
       description:
-        "I was excited about this, too, but there's always next year. Not the first time I've accidentally slept through my interview timeslot. Hopefully will be the last...",
+        "Don't sleep through your interview timeslot...",
       tags: ['job'],
     },
-    {
-      isFailure: false,
-      date: '2025.04 - Now',
-      title:
-        'Founder, Editor-in-Chief @ Critical Culture Undergraduate Journal',
-      description:
-        "Northwestern's premier undergraduate venue for critical writing.",
-      tags: ['student org', 'cultural studies'],
-    },
+    // {
+    //   isFailure: false,
+    //   date: '2025.04 - Now',
+    //   title:
+    //     'Founder, Editor-in-Chief @ Critical Culture Undergraduate Journal',
+    //   description:
+    //     "Northwestern's premier undergraduate venue for critical writing.",
+    //   tags: ['student org', 'cultural studies'],
+    // },
     {
       isFailure: false,
       date: '2025.04 - Now',
@@ -79,7 +79,7 @@ export let userState = $state<{
       date: '2025.03',
       title: 'Rejected from every REU I applied for',
       description:
-        "This was unfortunate, not the least because I thought I was a really good fit for my top choice. Also a blessing in disguise&mdash;I'm participating in a much more compelling and technically involved project than I would have otherwise.",
+        "This was unfortunate, not the least because I thought I was a really good fit for my top choice. Still, a good reminder that the mechanics of getting research positions outside of these programs is the same as it ever was.",
       tags: ['research'],
     },
     {
@@ -95,7 +95,7 @@ export let userState = $state<{
       date: '2024.05',
       title: 'Worst grades of my life; almost rescinded from college',
       description:
-        'Tell your teachers about your mental ailments and you will not end up in this situation! I now genuinely believe Northwestern will only rescind your offer if you burn down Ryan Field.',
+        'Tell your teachers about your mental ailments and you will not end up in this situation!',
       tags: ['academics'],
     },
     {
@@ -111,16 +111,16 @@ export let userState = $state<{
       date: '2023.01 - 12',
       title: 'Founder, Director @ Hack the Wave',
       description:
-        "San Diego County's biggest-ever hackathon run for high schoolers, by high schoolers.",
-      tags: ['independent'],
+        "San Diego County's biggest-ever hackathon run for high schoolers, by high schoolers. Sponsored by Cloudflare, ClickUp, StackBlitz, Ulysses, others.",
+      tags: ['independent', 'software engineering'],
     },
     {
       isFailure: false,
       date: '2022.08 - 2023.04',
       title: 'Built Albio.js, a compiler-powered reactivity library',
       description:
-        'Lightweight JavaScript compiler to enable reactive web programming directly in markdown. Outperforms Virtual DOM-based frameworks like React, Vite in key benchmarks',
-      tags: ['independent'],
+        'Lightweight JavaScript compiler to enable reactive web programming directly in your markdown.',
+      tags: ['independent', 'software engineering'],
     },
     {
       isFailure: false,
