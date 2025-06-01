@@ -124,7 +124,6 @@
     border: 0.5px solid $body-text-color;
     max-width: 23em;
     &__heading {
-      color: $body-text-color;
       width: 100%;
       position: relative;
       display: flex;
@@ -207,7 +206,7 @@
           width: 2em;
           background-image: linear-gradient(
             to right,
-            rgba(0, 0, 0, 0),
+            rgba(0,0,0, 0),
             $background-color
           );
         }
