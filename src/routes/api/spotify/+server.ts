@@ -30,6 +30,7 @@ const get_access_token = async (): Promise<AccessToken> => {
 
 export const GET: RequestHandler = async () => {
   const access_token = await get_access_token()
+
   const sdk = SpotifyApi.withAccessToken(client_id, access_token)
   let res =
     (await sdk.player.getCurrentlyPlayingTrack()) satisfies PlaybackState
