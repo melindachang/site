@@ -4,8 +4,17 @@
   import Header from '$lib/components/Header.svelte'
   import Navigation from '$lib/components/Navigation.svelte'
   import '$lib/scss/app.scss'
+  import { onMount } from 'svelte'
+
+  let theme = $state()
 
   let { children } = $props()
+
+  onMount(() => {
+    theme = window.matchMedia('(prefers-color-scheme: dark)').matches
+      ? '_light'
+      : ''
+  })
 </script>
 
 <svelte:head>
@@ -13,6 +22,11 @@
   <meta charset="utf-8" />
   <meta http-equiv="x-ua-compatible" content="ie=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link
+    rel="icon"
+    href={`/favicon_48x48${theme}.ico`}
+    media="screen"
+    type="image/x-icon" />
 </svelte:head>
 
 <CrtLines />
