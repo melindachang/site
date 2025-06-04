@@ -74,6 +74,7 @@
           target="_blank">
           Goodreads
         </a>
+        <a class="grid__item--social-link"> 🍉 </a>
       </p>
     </GridItem>
   </div>
@@ -171,6 +172,9 @@
         display: flex;
         flex-wrap: wrap;
         gap: 4px;
+        &-link {
+          font-size: 1.2rem;
+        }
       }
     }
   }
