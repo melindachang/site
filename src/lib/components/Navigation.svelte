@@ -16,7 +16,7 @@
       name: 'CV',
       keypress: 'C',
       local: false,
-      href: 'https://melindachang.codeberg.page/cv-latex/output.pdf',
+      href: 'https://melindachang.codeberg.page/cv-typst/cv.pdf',
       active: false,
     },
   ])
