@@ -18,7 +18,8 @@
 </script>
 
 <svelte:head>
-  <title>{page.data.title} &mdash; Melinda Chang</title>
+  <title
+    >{page.url.pathname === '/' ? '' : `${page.data.title} | `}Melinda Chang</title>
   <meta charset="utf-8" />
   <meta http-equiv="x-ua-compatible" content="ie=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -41,7 +42,6 @@
 </main>
 
 <style lang="scss">
-  @use '$lib/scss/_breakpoints';
   .wrapper {
     width: 100%;
     padding: 4em 1em;
