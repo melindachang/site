@@ -74,7 +74,7 @@
           target="_blank">
           Goodreads
         </a>
-        <a class="grid__item--social-link"> 🍉 </a>
+        <span class="grid__item--social-link"> 🍉 </span>
       </p>
     </GridItem>
   </div>
