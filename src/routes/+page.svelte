@@ -28,11 +28,34 @@
   <title>Melinda Chang</title>
 </svelte:head>
 
+{#snippet detail()}
+  <svg
+    class="grid__item--info-icon"
+    width="13"
+    height="14"
+    viewBox="0 0 13 14"
+    xmlns="http://www.w3.org/2000/svg"
+    ><path d="M5.2 10.883H2.6v2.588h2.6v-2.588Z"></path><path
+      d="M5.2 5.708H2.6v2.588h2.6V5.708Z"></path
+    ><path d="M2.6 8.296H0v2.587h2.6V8.296Z"></path><path
+      d="M5.2.53H2.6v2.587h2.6V.529Z"></path
+    ><path d="M2.6 3.12H0v2.588h2.6V3.121Z"></path><path
+      d="M13 3.12h-2.6v2.588H13V3.121Z"></path
+    ><path d="M7.801 3.12h-2.6v2.588h2.6V3.121Z"></path><path
+      d="M10.399.53h-2.6v2.587h2.6V.529Z"></path
+    ><path d="M7.801 8.296h-2.6v2.587h2.6V8.296Z"></path><path
+      d="M13 8.296h-2.6v2.587H13V8.296Z"></path
+    ><path d="M10.399 10.883h-2.6v2.588h2.6v-2.588Z"></path><path
+      d="M10.399 5.708h-2.6v2.588h2.6V5.708Z"></path
+    ></svg>
+{/snippet}
+
 <div class="grid">
   <div class="grid__column--left">
     <GridItem heading="Info">
-      <p class="grid__item--info-text">
-        It is <span>{locale_str}</span> in Evanston, IL
+      <p class="grid__item--info-locale minor-text">
+        {@render detail()}
+        <span>It is {locale_str} in Evanston, IL.</span>
       </p>
       <SpotifyWidget />
     </GridItem>
@@ -129,7 +152,11 @@
             <h2 class="publication__title">{title}</h2>
             <p class="publication__subtitle">
               {@html `${authors
-                .map(a => (a === 'Melinda Chang' ? `<em>${a}</em>` : a))
+                .map(a =>
+                  a === 'Melinda Chang'
+                    ? `<span class="highlight">${a}</span>`
+                    : a,
+                )
                 .join(', ')} &mdash; ${venue}`}
             </p>
           </LinkEntry>
@@ -165,8 +192,13 @@
 
     &__item {
       &--info {
-        &-text {
-          color: $major-text-color;
+        &-locale {
+          display: flex;
+          align-items: center;
+          gap: 1em;
+        }
+        &-icon {
+          fill: $body-text-color;
         }
       }
       &--social {

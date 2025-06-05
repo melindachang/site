@@ -9,22 +9,20 @@
   <svg
     class="entry__actions-item-icon--arrow"
     width="24"
-    height="24"
+    height="19"
+    viewBox="0 0 24 19"
     fill="none"
-    viewBox="0 0 24 24">
-    <path
+    xmlns="http://www.w3.org/2000/svg"
+    ><path
+      class="brackets"
+      d="M3.36682 3.63257H6.05571V4.55688H4.42317V13.5118H6.05571V14.4361H3.36682V3.63257ZM17.7753 3.63257H20.4642V14.4361H17.7753V13.5118H19.4079V4.55688H17.7753V3.63257Z"
+      fill="currentColor"></path
+    ><path
+      class="arrow"
+      d="M14.4732 6.8833V10.7027M14.4732 6.8833H10.6538M14.4732 6.8833L9.5625 11.794"
       stroke="currentColor"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      stroke-width="1.5"
-      d="M17.25 15.25V6.75H8.75"></path>
-    <path
-      stroke="currentColor"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      stroke-width="1.5"
-      d="M17 7L6.75 17.25"></path>
-  </svg>
+      stroke-width="1.09127"></path
+    ></svg>
 {/snippet}
 
 <div class="entry">
@@ -113,7 +111,6 @@
           &--arrow {
             display: inline-flex;
             height: 1.4em;
-            width: 1.4em;
             color: $minor-text-color;
           }
         }

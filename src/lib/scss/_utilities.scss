@@ -3,8 +3,8 @@
 %minor-text {
   font-family: v.$font-monospace;
   text-transform: uppercase;
-  font-size: 1.2rem;
-  line-height: 100%;
+  font-size: 1.3rem;
+  line-height: 1.4;
 }
 
 .minor-text {
@@ -18,8 +18,9 @@
   text-decoration: none;
   color: v.$tag-text-color;
   border: 1px dotted v.$tag-text-color;
-  padding: 1px 4px 3px 4px;
+  padding: 0 4px;
   border-radius: 4px;
+
   &:hover {
     color: v.$text-inverted-color;
     background: v.$tag-text-color;

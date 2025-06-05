@@ -2,6 +2,7 @@
 
 @use "@fontsource/libre-caslon-condensed";
 
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,200..900;1,200..900&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&display=swap');
 /////// LOCAL MIXIN ///////
 
 @mixin font-face($font-name, $path, $weight: normal, $style: normal) {
