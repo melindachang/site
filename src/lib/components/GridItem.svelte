@@ -40,8 +40,8 @@
       }
     }
 
-    &__text {
-      line-height: 1.5;
-    }
+    /* &__text {
+       line-height: 1.5;
+       } */
   }
 </style>
