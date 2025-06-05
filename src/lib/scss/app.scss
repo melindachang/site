@@ -34,10 +34,11 @@ a {
 }
 
 p {
-  font-size: 1.8rem;
   margin: 0;
+
   a {
     color: $button-color;
+
     &:hover {
       color: $text-inverted-color;
       background: $highlight-color;
@@ -53,6 +54,7 @@ p {
 code {
   font-size: 0.85em;
   font-family: $font-monospace;
+
   &:not(pre code) {
     background: $button-demph-color;
     padding: 0 4px;
@@ -63,7 +65,7 @@ code {
 }
 
 :is(h1, h2, h3, h4, h5, h6) {
-  font-family: $font-serif;
+  font-family: $font-display;
   color: $major-text-color;
   font-weight: 500;
   line-height: 92%;
@@ -86,8 +88,10 @@ h2 {
   &-track {
     background: $background-color;
   }
+
   &-thumb {
     background: $body-text-color;
+
     &:hover {
       background: $major-text-color;
     }
@@ -100,6 +104,7 @@ h2 {
   display: grid;
   position: relative;
   grid-template-columns: minmax(0, 1fr);
+
   @include breakpoint-lg {
     grid-template-columns: 2fr 1fr;
   }
@@ -126,7 +131,7 @@ h2 {
 
   p {
     margin: 2.4rem 0 0;
-    line-height: 130%;
+
     &:first-child {
       margin: 0;
     }
@@ -134,12 +139,12 @@ h2 {
 
   ul {
     margin: 2.4rem 0 0;
+
     li {
       margin: 1.6rem 0 0;
-      font-size: 1.8rem;
-      line-height: 130%;
     }
   }
+
   pre {
     font-size: 1.8rem;
     overflow-x: auto;
@@ -155,5 +160,5 @@ button {
   background: none;
   cursor: pointer;
   border: none;
-  font-family: $font-sans-serif;
+  font-family: $font-serif;
 }

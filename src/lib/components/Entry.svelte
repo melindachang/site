@@ -104,7 +104,7 @@
       margin: 0;
       padding: 0;
       color: inherit;
-      letter-spacing: -0.04em;
+      // letter-spacing: -0.04em;
     }
 
     &#{&}--failure {
@@ -141,7 +141,8 @@
               background: $text-inverted-color;
             }
           }
-          &__link-text, &__icon {
+          &__link-text,
+          &__icon {
             color: $text-inverted-color;
           }
         }
@@ -201,7 +202,6 @@
       padding: 2.4rem 0;
       display: grid;
       grid-template-columns: subgrid;
-      font-size: 1.8rem;
 
       &__item {
         &:not(:last-child) {
@@ -213,28 +213,13 @@
         row-gap: 1rem;
         line-height: 1.3;
         &-caption {
-          display: flex;
-          align-items: flex-start;
           grid-column: 1 / -1;
           @include breakpoint-lg {
             grid-column: 1;
           }
-          &-text {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            &::after {
-              content: 'A';
-              visibility: hidden;
-              font-size: 2rem;
-            }
-          }
         }
 
         &__value {
-          &--text {
-            font-size: 2rem;
-          }
           &--tags {
             display: flex;
             align-items: flex-start;

@@ -1,8 +1,7 @@
-
 /////// Libre Caslon Condensed ///////
 
 @use "@fontsource/libre-caslon-condensed";
-
+@import url('https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&display=swap');
 
 /////// LOCAL MIXIN ///////
 
@@ -18,88 +17,62 @@
 
 /////// Untitled Sans ///////
 
-@include font-face(
-  'Untitled Sans',
+@include font-face('Untitled Sans',
   'untitled_sans/UntitledSans-Regular',
   400,
-  normal
-);
-@include font-face(
-  'Untitled Sans',
+  normal);
+@include font-face('Untitled Sans',
   'untitled_sans/UntitledSans-RegularItalic',
   400,
-  italic
-);
-@include font-face(
-  'Untitled Sans',
-  'untitled_sans/UntitledSans-Medium',
+  italic);
+@include font-face('Untitled Sans',
+  'untitled_sans/untitledsans-medium',
   500,
-  normal
-);
-@include font-face(
-  'Untitled Sans',
+  normal);
+@include font-face('Untitled Sans',
   'untitled_sans/UntitledSans-MediumItalic',
   500,
-  italic
-);
-@include font-face(
-  'Untitled Sans',
+  italic);
+@include font-face('Untitled Sans',
   'untitled_sans/UntitledSans-Bold',
   700,
-  normal
-);
-@include font-face(
-  'Untitled Sans',
+  normal);
+@include font-face('Untitled Sans',
   'untitled_sans/UntitledSans-BoldItalic',
   700,
-  italic
-);
-@include font-face(
-  'Untitled Sans',
+  italic);
+@include font-face('Untitled Sans',
   'untitled_sans/UntitledSans-Black',
   900,
-  normal
-);
-@include font-face(
-  'Untitled Sans',
+  normal);
+@include font-face('Untitled Sans',
   'untitled_sans/UntitledSans-BlackItalic',
   900,
-  italic
-);
-@include font-face(
-  'Untitled Sans',
+  italic);
+@include font-face('Untitled Sans',
   'untitled_sans/UntitledSans-Light',
   300,
-  normal
-);
-@include font-face(
-  'Untitled Sans',
+  normal);
+@include font-face('Untitled Sans',
   'untitled_sans/UntitledSans-LightItalic',
   300,
-  italic
-);
+  italic);
 
 /////// Commit Mono ////////
 
-@include font-face(
-  'Commit Mono',
+@include font-face('Commit Mono',
   'commit_mono/CommitMono-Regular',
   400,
-  normal
-);
+  normal);
 
-@include font-face(
-  'Commit Mono',
+@include font-face('Commit Mono',
   'commit_mono/CommitMono-RegularItalic',
   400,
-  italic
-);
+  italic);
 
 @include font-face('Commit Mono', 'commit_mono/CommitMono-Bold', 700, normal);
 
-@include font-face(
-  'Commit Mono',
+@include font-face('Commit Mono',
   'commit_mono/CommitMono-BoldItalic',
   700,
-  italic
-);
+  italic);
