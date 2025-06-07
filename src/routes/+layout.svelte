@@ -31,6 +31,7 @@
 </svelte:head>
 
 <CrtLines />
+
 <Navigation />
 <main class="wrapper">
   <div class="header">

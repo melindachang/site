@@ -9,9 +9,9 @@ tags:
 published: true
 ---
 
-I have attempted by this point to install Arch Linux on campus Wi-Fi twice. Unfortunately, the guest network is not an option&mdash;the only browser included in the installation medium is the text-based `lynx`, which fails to get me through authentication. The `iwd` network daemon is the recommended way to connect to Internet during installation, if you're going by the excellent [Arch Wiki](https://wiki.archlinux.org/title/Installation_guide#Connect_to_the_internet).
+I have attempted by this point to install Arch Linux on campus Wi-Fi twice. Unfortunately, the guest network is not an option&mdash;the only browser included in the installation medium is Lynx, which is text-based and doesn't quite manage to get me through authentication. The `iwd` network daemon is the recommended way to connect to Internet during installation, if you're going by the excellent [Arch Wiki](https://wiki.archlinux.org/title/Installation_guide#Connect_to_the_internet).
 
-That leaves eduroam! This is a Northwestern-specific guide, which I mention because the network configuration profile for eduroam varies somewhat by school. If (a) you have any way to use your phone's Wi-Fi tethering or (b) the Ethernet port in your dorm room actually functions, either option may save you a few hours.
+That leaves eduroam! This is a Northwestern-specific guide, which I mention because the network configuration profile for eduroam varies somewhat by school. If (a) you have any way to use your phone's Wi-Fi tethering or (b) the Ethernet port in your dorm room actually functions, either option may save you some time.
 
 ## Getting started
 
@@ -83,14 +83,22 @@ And you're in!
 
 ## Tips and troubleshooting
 
-If you used `archinstall` and chose the minimal option, consider copying this config file to the external device you mounted earlier. This way, you can copy it and the certificate again to `/var/lib/iwd` when you chroot into your new system. Remember to install `iwd` and a text editor like `vim` at this stage, because there won't be any way for you to do so once you've restarted your computer.
+If you used `archinstall` and chose the minimal option, consider copying this config file to the external device you mounted earlier. This way, you can copy it and the certificate again to `/var/lib/iwd` when you chroot into your new system. Remember to install `iwd` and a text editor like Vim at this stage, because there won't be any way for you to do so once you reboot.
 
-Check to make sure you've spelled everything correctly. If your configuration file is using the wrong protocol, you will see an error that reads something like this:
+To view relevant entries in the system journal, execute the following:
+
+```shellscript
+journalctl -u iwd.service
+```
+
+If your configuration file specifies the wrong protocol, like PEAP-TLS instead of PEAP-MSCHAPV2, you will see an error that reads something like this:
 
 ```
 EAP server tried method X while client was configured for method Y
 EAP completed with eapFail
 4-Way handshake failed for ...
 ```
+
+I wasn't able to find any documentation online describing which method code corresponds to which protocol. This message is fairly inscrutable, also, because I've noticed that it is occasionally thrown if you've provided an incorrect value for a valid protocol (e.g., misspelled password).
 
 The [Arch Wiki](https://wiki.archlinux.org/title/Iwd#eduroam) has a section on using eduroam with `iwd`. It's not comprehensive, but there are some helpful tips available for you to reference.

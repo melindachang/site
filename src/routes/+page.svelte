@@ -122,10 +122,9 @@
             >natural language processing</span
           >, <span class="highlight">computer vision</span>, and
           <span class="highlight">cultural analytics</span>. That is, I want to
-          leverage <em>humanistic</em> theoretical resources to develop
-          <em>computational</em>
-          tools and methods, as well as explore their affordances in the study of
-          cultural objects and cultural production broadly defined.
+          leverage humanistic theoretical resources to develop computational
+          tools and methods, as well as explore their affordances in the study
+          of cultural objects and cultural production broadly defined.
         </p>
         <p>
           Elsewhere: 19th- and 20th-century European literature, Sinophone

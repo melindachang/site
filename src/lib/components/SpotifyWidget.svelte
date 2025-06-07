@@ -88,7 +88,7 @@
         target="_blank"
         class="player__body-text-title">{userState.playback_state!.name}</a>
       <div
-        class="player__body-text-artist"
+        class="player__body-text-artist minor-text"
         onmouseover={() => tl.play()}
         onmouseleave={() => tl.seek(0).pause()}
         bind:clientWidth={visibleWidth}>
@@ -171,6 +171,7 @@
         width: calc(12em - 6px);
         align-content: end;
         &-title {
+          font-family: $font-display;
           color: $button-color;
           overflow: hidden;
           text-overflow: ellipsis;
@@ -206,7 +207,7 @@
           width: 2em;
           background-image: linear-gradient(
             to right,
-            rgba(0,0,0, 0),
+            rgba(0, 0, 0, 0),
             $background-color
           );
         }

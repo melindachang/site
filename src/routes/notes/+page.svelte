@@ -41,7 +41,7 @@
             <PlusMinusIcon expanded={open} width={14} height={14} />
           </button>
           <FolderIcon {open} width="22" height="22" />
-          <span class="filter__folder-label">Topics</span>
+          <span class="filter__folder-label minor-text">Topics</span>
         </div>
         <div class="filter__list" bind:clientHeight={bodyHeight}>
           {#each tags as tag}
