@@ -1,8 +1,7 @@
 ---
 title: Using iwd to Connect to Northwestern Eduroam Wi-Fi
 author: Melinda Chang
-description:
-  Eduroam has a lot of irritatingly opaque config options that you need to specify to get online during an Arch Linux installation. This documentation is for the Northwestern network, but it might still be useful if you're trying to replicate these methods elsewhere.
+description: Eduroam has a lot of irritatingly opaque config options that you need to specify to get online during an Arch Linux installation. This documentation is for the Northwestern network, but it might still be useful if you're trying to replicate these methods elsewhere.
 date: '2025.05.09'
 tags:
   - Linux
@@ -10,7 +9,7 @@ tags:
 published: true
 ---
 
-I have attempted by this point to install Arch Linux on campus Wi-Fi twice. Unfortunately, the `Guest-Northwestern` network is not an option&mdash;the only browser included in the installation medium is the text-based `lynx`, which fails to get you all the way through authentication for some reason. The `iwd` network daemon is the recommended way to connect to Internet during installation, if you're going by the excellent [Arch Wiki](https://wiki.archlinux.org/title/Installation_guide#Connect_to_the_internet).
+I have attempted by this point to install Arch Linux on campus Wi-Fi twice. Unfortunately, the guest network is not an option&mdash;the only browser included in the installation medium is the text-based `lynx`, which fails to get me through authentication. The `iwd` network daemon is the recommended way to connect to Internet during installation, if you're going by the excellent [Arch Wiki](https://wiki.archlinux.org/title/Installation_guide#Connect_to_the_internet).
 
 That leaves eduroam! This is a Northwestern-specific guide, which I mention because the network configuration profile for eduroam varies somewhat by school. If (a) you have any way to use your phone's Wi-Fi tethering or (b) the Ethernet port in your dorm room actually functions, either option may save you a few hours.
 
