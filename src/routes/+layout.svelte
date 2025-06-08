@@ -25,7 +25,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link
     rel="icon"
-    href={`/favicon_48x48${theme}.ico`}
+    href={`/favicon_48x48{theme}.ico`}
     media="screen"
     type="image/x-icon" />
 </svelte:head>
