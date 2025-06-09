@@ -6,14 +6,13 @@
   import '$lib/scss/app.scss'
   import { onMount } from 'svelte'
 
-  let theme = $state()
+  let theme = $state('')
 
   let { children } = $props()
 
   onMount(() => {
-    theme = window.matchMedia('(prefers-color-scheme: dark)').matches
-      ? '_light'
-      : ''
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches)
+      theme = '_light'
   })
 </script>
 
@@ -25,7 +24,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link
     rel="icon"
-    href={`/favicon_48x48{theme}.ico`}
+    href={`/favicon_48x48${theme}.ico`}
     media="screen"
     type="image/x-icon" />
 </svelte:head>

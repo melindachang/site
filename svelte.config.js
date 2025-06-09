@@ -14,12 +14,16 @@ const config = {
       highlight: {
         highlighter: async (code, lang = 'text') => {
           const highlighter = await createHighlighter({
-            themes: ['vesper'],
-            langs: ['python', 'shellscript', 'toml'],
+            themes: ['ayu-dark'],
+            langs: ['python', 'scss', 'shellscript'],
           })
-          await highlighter.loadLanguage('python', 'shellscript', 'toml')
+          await highlighter.loadLanguage(
+            'python',
+            'scss',
+            'shellscript',
+          )
           const html = escapeSvelte(
-            highlighter.codeToHtml(code, { lang, theme: 'vesper' }),
+            highlighter.codeToHtml(code, { lang, theme: 'ayu-dark' }),
           )
           return `{@html \`${html}\` }`
         },

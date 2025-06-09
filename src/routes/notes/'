@@ -13,7 +13,9 @@ export const load = async ({ fetch }) => {
     }
   }
 
-  tags.sort((a, b) => a.name.localeCompare(b.name))
+  tags.sort((a, b) => a.name.localeCompare(b.name) < 0)
 
+  console.log(tags)
+  
   return { title: 'Notes', amount: articles.length, articles, tags }
 }
