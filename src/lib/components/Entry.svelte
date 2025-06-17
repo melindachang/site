@@ -100,6 +100,7 @@
 
     p,
     a {
+			text-indent: 0;
       text-decoration: none;
       margin: 0;
       padding: 0;

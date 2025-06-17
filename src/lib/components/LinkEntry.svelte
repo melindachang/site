@@ -61,7 +61,7 @@
     &__info {
       display: flex;
       flex-direction: column;
-      gap: 0.8em;
+      /* gap: 0.8em; */
       @include breakpoint-lg {
         flex: 3;
       }

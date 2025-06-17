@@ -9,9 +9,13 @@ tags:
 published: true
 ---
 
-CSS without a preprocessor is borderline unusable, but `@font-face` declarations are tedious even with. I usually end up pasting this snippet into every project.
-
-This relies on a string replace utility function I took from [CSS Tricks](https://css-tricks.com/snippets/sass/str-replace-function/), which I modified for the latest Dart Sass specification. Here's what that looks like:
+CSS without a preprocessor is borderline unusable, but `@font-face`
+declarations are tedious even with. I usually end up pasting this
+snippet into every project. It relies on a string replace utility
+function I took from [CSS
+Tricks](https://css-tricks.com/snippets/sass/str-replace-function/),
+which I modified for the latest Dart Sass specification. Here's what
+that looks like:
 
 ```scss
 @use 'sass:string';
@@ -30,9 +34,11 @@ This relies on a string replace utility function I took from [CSS Tricks](https:
 }
 ```
 
-I would personally stick this in a different SASS file for general purpose utilities and import it with `@use` rules, but that isn't necessary if you don't intend to use it elsewhere.
-
-I use SvelteKit for apps that would require this much boilerplate most of the time, so this will assume a SvelteKit-esque directory structure for imports. This is easy enough to modify yourself if your `fonts/` folder is located elsewhere. I also find SCSS slightly easier to read and maintain than the equivalent indented syntax, so I'll use it here.
+I use SvelteKit for apps that would require this much boilerplate most
+of the time, so this will assume a SvelteKit-esque directory structure
+for imports. This is easy enough to modify yourself if your `fonts/`
+folder is located elsewhere. I also find SCSS slightly easier to read
+and maintain than the equivalent indented syntax, so I'll use it here.
 
 ```scss
 @use 'sass:map';
@@ -61,9 +67,16 @@ $font-weights: (
 }
 ```
 
-This makes the following assumptions:
+Because we're performing string manipulation to minimize the number of
+parameters I have to input later when I'm declaring my fonts, this
+snippet makes the following assumptions:
 
-- You use the following name scheme for fonts: If I'm using the font Commit Mono, for instance, I would store in `$lib/assets/fonts/` a subdirectory `CommitMono/` with each file named `CommitMono-WeightStyle.ext`. If, say, you would rather have a font folder called `commit_mono/`, you can perform a bit of string manipulation, like this:
+- You use the following name scheme for fonts: If I'm using the font
+  Commit Mono, for instance, I would store in `$lib/assets/fonts/` a
+  subdirectory `CommitMono/` with each file named
+  `CommitMono-WeightStyle.ext`. If, say, you would rather have a font
+  folder called `commit_mono/`, you can perform a bit of string
+  manipulation, like this:
 
   ```scss
   @use 'sass:string';
@@ -73,17 +86,26 @@ This makes the following assumptions:
   // snip
   ```
 
-- You only want to load in webfonts (which you can generate on [Font Squirrel](https://www.fontsquirrel.com/tools/webfont-generator)). Change the file formats from WOFF/WOFF2 to TTF or OTF or whatever else, if you'd like.
-- You're making use only of the weights in the map `$font-weights`. If you need a Black option, for instance, you could add the entry `'Black': 900`.
+- You only want to load in webfonts (which you can generate on [Font
+  Squirrel](https://www.fontsquirrel.com/tools/webfont-generator)). Change
+  the file formats from WOFF/WOFF2 to TTF or OTF or whatever else, if
+  you'd like. If you want to import a whole bunch of different file
+  types, you could consider creating another SASS map and iterating
+  through them within the mixin.
+- You're making use only of the weights in the map `$font-weights`. If
+  you need a Black option, for instance, you could add the entry `900:
+  'Black'`.
 
-Now, for a font with a regular weight in regular and italic styles, I can write the following:
+Now, for a font with a regular weight in regular and italic styles, I
+can write the following:
 
 ```scss
 @include font-face('Commit Mono');
 @include font-face('Commit Mono', 400, italic);
 ```
 
-Or, if I have a font I need at every weight listed in `$font-weights` in both regular and italic forms, I can use another SASS rule:
+Or, if I have a font I need at every weight listed in `$font-weights`
+in both regular and italic forms, I can use another SASS rule:
 
 ```scss
 @each $weight, $name in $font-weights {

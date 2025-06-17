@@ -39,9 +39,5 @@
         font-size: inherit;
       }
     }
-
-    /* &__text {
-       line-height: 1.5;
-       } */
   }
 </style>
