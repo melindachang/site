@@ -63,7 +63,7 @@ The contents of this file were extracted from the [eduroam CAT installer for Lin
   ```python
   Config.servers = ['DNS:netauth2.northwestern.edu']
   ```
-  Just use the URI that follows and discard the `DNS:`, or it won't work.
+  <span>Just use the URI that follows and discard the `DNS:`, or it won't work.</span>.
 
 ## Connect to Wi-Fi
 

@@ -17,16 +17,16 @@ This relies on a string replace utility function I took from [CSS Tricks](https:
 @use 'sass:string';
 
 @function str-replace($string, $search, $replace: '') {
-  $index: string.index($string, $search);
+	$index: string.index($string, $search);
 
-  @if $index {
-    @return string.slice($string, 1, $index - 1) + $replace +
-      str-replace(
-        string.slice($string, $index + string.length($search)),
-        $search,
-        $replace
-      );
-  }
+	@if $index {
+		@return string.slice($string, 1, $index - 1) + $replace +
+			str-replace(
+				string.slice($string, $index + string.length($search)),
+				$search,
+				$replace
+			);
+	}
 }
 ```
 
@@ -38,39 +38,38 @@ I use SvelteKit for apps that would require this much boilerplate most of the ti
 @use 'sass:map';
 // snip
 $font-weights: (
-  400: 'Regular',
-  500: 'Medium',
-  600: 'Semibold',
-  700: 'Bold',
+	400: 'Regular',
+	500: 'Medium',
+	600: 'Semibold',
+	700: 'Bold',
 );
 
 @mixin font-face($name, $weight: 400, $style: regular) {
-  $name-path: str-replace($name, ' ', '');
-  $style-path: if($style == 'italic', 'Italic', '');
+	$name-path: str-replace($name, ' ', '');
+	$style-path: if($style == 'italic', 'Italic', '');
 
-  $path: $name-path + '/' + $name-path + '-' + map.get($font-weights, $weight) +
-    $style-path;
+	$path: $name-path + '/' + $name-path + '-' + map.get($font-weights, $weight) +
+		$style-path;
 
-  @font-face {
-    font-family: $name;
-    src: url('$lib/assets/fonts/' + $path + '.woff2') format('woff2');
-    src: url('$lib/assets/fonts/' + $path + '.woff') format('woff');
-    font-weight: $weight;
-    font-style: $style;
-  }
+	@font-face {
+		font-family: $name;
+		src: url('$lib/assets/fonts/' + $path + '.woff2') format('woff2');
+		src: url('$lib/assets/fonts/' + $path + '.woff') format('woff');
+		font-weight: $weight;
+		font-style: $style;
+	}
 }
 ```
 
 This makes the following assumptions:
 
-- You use my (fairly opinionated) directory name scheme. If I'm using the font Commit Mono, for instance, I would store in `$lib/assets/fonts/` a subdirectory `CommitMono/` with each file named `CommitMono-WeightStyle.ext`. If, say, you would rather have a font folder called `commit_mono/`, you can perform a bit of string manipulation, like this:
+- You use the following name scheme for fonts: If I'm using the font Commit Mono, for instance, I would store in `$lib/assets/fonts/` a subdirectory `CommitMono/` with each file named `CommitMono-WeightStyle.ext`. If, say, you would rather have a font folder called `commit_mono/`, you can perform a bit of string manipulation, like this:
 
   ```scss
   @use 'sass:string';
-
   // snip
   $path: string.to-lower-case(str-replace($name, ' ', '_')) + '/' +
-    str-replace($name, ' ', '') + map.get($font-weights, $weight) + $style-path;
+  	str-replace($name, ' ', '') + map.get($font-weights, $weight) + $style-path;
   // snip
   ```
 
@@ -88,7 +87,7 @@ Or, if I have a font I need at every weight listed in `$font-weights` in both re
 
 ```scss
 @each $weight, $name in $font-weights {
-  @include font-face('EB Garamond', $weight);
-  @include font-face('EB Garamond', $weight, italic);
+	@include font-face('EB Garamond', $weight);
+	@include font-face('EB Garamond', $weight, italic);
 }
 ```
