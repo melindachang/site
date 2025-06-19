@@ -75,6 +75,7 @@
 		</div>
 		<div class="metadata__content" bind:this={content}>
 			<GridItem heading="Metadata" noGap>
+				{@render metadataItem('Date', data.meta.title.date, text)}
 				{#each Object.entries(data.meta.body).filter(el => el[0] != 'description' && typeof el[1] != 'boolean') as [key, value]}
 					{@render metadataItem(
 						key,
@@ -143,5 +144,4 @@
 			}
 		}
 	}
-
 </style>

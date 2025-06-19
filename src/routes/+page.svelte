@@ -10,7 +10,7 @@
 	let showFailures = $state(false)
 	let time = $state(new Date()),
 		locale_str = $derived(
-			time.toLocaleTimeString('en-US', { timeZone: 'America/Chicago' }),
+			time.toLocaleTimeString('en-US', { timeZone: 'America/Los_Angeles' }),
 		)
 
 	onMount(() => {
@@ -55,7 +55,7 @@
 		<GridItem heading="Info">
 			<p class="grid__item--info-locale minor-text">
 				{@render detail()}
-				<span>It is {locale_str} in Evanston, IL.</span>
+				<span>It is {locale_str} in San Diego, CA.</span>
 			</p>
 			<SpotifyWidget />
 		</GridItem>
@@ -110,7 +110,7 @@
 						href: 'https://www.codeberg.org/melindachang',
 						external: true,
 					},
-					{ type: 'Notes', href: '/notes', external: false },
+					{ type: 'Writing', href: '/notes', external: false },
 				]}>
 				<p>
 					Hello! I'm a rising second-year student at Northwestern majoring in <span
@@ -127,9 +127,13 @@
 					of cultural objects and cultural production broadly defined.
 				</p>
 				<p>
-					Elsewhere: 19th- and 20th-century European literature, Sinophone
-					cinema, aesthetics, global modernism. I also take pictures of Chicago
-					and write whatever I want.
+					A few secondary interests: the theory and practice of (<a
+						href="https://www.gnu.org/philosophy/free-sw.en.html#four-freedoms"
+						target="_blank">free</a
+					>) software engineering&mdash;programming language design, compilers,
+					type systems. Defensive computing, including information security and
+					adversarial machine learning techniques. 19th- and 20th-century
+					European literature, Sinophone cinema, aesthetics, global modernism.
 				</p>
 			</LinkEntry>
 		</GridItem>

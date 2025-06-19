@@ -1,10 +1,10 @@
 ---
 title: Easier @font-face Declarations in SASS
 author: Melinda Chang
-description: Here's a snippet that I copy-paste everywhere.
+description: Snippets to make your life a little easier.
 date: '2025.06.08'
 tags:
-  - SASS
+  - Snippet
   - Web
 published: true
 ---
@@ -67,15 +67,20 @@ $font-weights: (
 }
 ```
 
-Because we're performing string manipulation to minimize the number of
-parameters I have to input later when I'm declaring my fonts, this
-snippet makes the following assumptions:
+<!-- Because we're performing string manipulation to minimize the number of -->
+<!-- parameters I have to input later when I'm declaring my fonts, this -->
+<!-- snippet makes the following assumptions: -->
 
-- You use the following name scheme for fonts: If I'm using the font
-  Commit Mono, for instance, I would store in `$lib/assets/fonts/` a
-  subdirectory `CommitMono/` with each file named
-  `CommitMono-WeightStyle.ext`. If, say, you would rather have a font
-  folder called `commit_mono/`, you can perform a bit of string
+My intent in the first place is to minimize the number of repetitive
+parameters that I must input later when I declare specific fonts. As
+such, the mixin (and especially the string manipulation we're
+performing within) makes the following assumptions:
+
+- You use a consistent name scheme for fonts and directories. If I'm
+  using the font Commit Mono, for instance, I would store in
+  `$lib/assets/fonts/` a subdirectory `CommitMono/` with each file
+  named `CommitMono-WeightStyle.ext`. If, say, you would rather have a
+  font folder called `commit_mono/`, you can perform a bit of string
   manipulation, like this:
 
   ```scss
@@ -87,25 +92,25 @@ snippet makes the following assumptions:
   ```
 
 - You only want to load in webfonts (which you can generate on [Font
-  Squirrel](https://www.fontsquirrel.com/tools/webfont-generator)). Change
-  the file formats from WOFF/WOFF2 to TTF or OTF or whatever else, if
-  you'd like. If you want to import a whole bunch of different file
-  types, you could consider creating another SASS map and iterating
-  through them within the mixin.
+  Squirrel](https://www.fontsquirrel.com/tools/webfont-generator)). This
+  is easy enough to rectify, but if you want to import a whole bunch
+  of different file types, consider creating another SASS map and
+  iterating through them within the mixin.
 - You're making use only of the weights in the map `$font-weights`. If
   you need a Black option, for instance, you could add the entry `900:
-  'Black'`.
+'Black'`.
 
-Now, for a font with a regular weight in regular and italic styles, I
-can write the following:
+We're all set up. Now I can import fonts by writing something like the
+following:
 
 ```scss
-@include font-face('Commit Mono');
+@include font-face('Commit Mono'); // default args: ...400, regular
 @include font-face('Commit Mono', 400, italic);
 ```
 
 Or, if I have a font I need at every weight listed in `$font-weights`
-in both regular and italic forms, I can use another SASS rule:
+in both regular and italic forms, I can use another SASS rule to
+iterate through them:
 
 ```scss
 @each $weight, $name in $font-weights {
