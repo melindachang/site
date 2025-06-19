@@ -4,7 +4,7 @@ import { error } from '@sveltejs/kit'
 
 export const load = async ({ params }) => {
   try {
-    const article = await import(`$articles/${params.slug}.md`)
+    const article = await import(`$notes/${params.slug}.md`)
     const meta = map_to_entry(article.metadata as Article)
 
     return { content: article.default, meta, title: article.metadata.title }

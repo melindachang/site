@@ -18,9 +18,10 @@ $font-weights: (
 
 @mixin font-face($name, $weight: 400, $style: regular) {
   $name-path: str-replace($name, ' ', '');
-  $style-path: if($style =='italic', 'Italic', '');
+  $style-path: if($style == 'italic', 'Italic', '');
 
-  $path: $name-path + '/' + $name-path + '-' + map.get($font-weights, $weight) + $style-path;
+  $path: $name-path + '/' + $name-path + '-' + map.get($font-weights, $weight) +
+    $style-path;
 
   @font-face {
     font-family: $name;

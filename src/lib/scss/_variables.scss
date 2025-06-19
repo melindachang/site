@@ -1,18 +1,18 @@
 /// GENERAL PURPOSE
 
 $section-title-font-size: calc(
-    54px + ((114 - 54) * (100vw - 390px) / (1728 - 390))
+  54px + ((114 - 54) * (100vw - 390px) / (1728 - 390))
 );
 $section-subtitle-font-size: calc(14.5px + 0.78125vw);
 
 $font-sans-serif:
-    'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue',
-    Helvetica, Arial, 'Lucida Grande', sans-serif;
+  'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica,
+  Arial, 'Lucida Grande', sans-serif;
 $font-monospace: 'Commit Mono', 'Courier New', monospace;
 $font-display:
-    'Libre Caslon Condensed',
-    Times New Roman,
-    serif;
+  'Libre Caslon Condensed',
+  Times New Roman,
+  serif;
 $font-serif: 'Tiempos Text', 'Source Serif 4', serif;
 // COLORS - SOLARIZED_DARK
 $background-color: #011627;

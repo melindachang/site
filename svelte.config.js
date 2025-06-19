@@ -1,9 +1,7 @@
-import { mdsvex, escapeSvelte } from 'mdsvex'
+import { mdsvex } from 'mdsvex'
+import mdsvexConfig from './mdsvex.config.js'
 import adapter from '@sveltejs/adapter-vercel'
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte'
-import externalLinks from 'rehype-external-links'
-import wrapListText from './src/lib/plugins/wrap-list-text.js'
-import { createHighlighter } from 'shiki'
 import { dirname } from 'path'
 import { fileURLToPath } from 'url'
 
@@ -24,25 +22,9 @@ const config = {
         },
       },
     }),
-    mdsvex({
-      extensions: ['.md'],
-      rehypePlugins: [externalLinks, wrapListText],
-      highlight: {
-        highlighter: async (code, lang = 'text') => {
-          const highlighter = await createHighlighter({
-            themes: ['ayu-dark'],
-            langs: ['python', 'scss', 'shellscript'],
-          })
-          await highlighter.loadLanguage('python', 'scss', 'shellscript')
-          const html = escapeSvelte(
-            highlighter.codeToHtml(code, { lang, theme: 'ayu-dark' }),
-          )
-          return `{@html \`${html}\` }`
-        },
-      },
-    }),
+    mdsvex(mdsvexConfig),
   ],
-  kit: { adapter: adapter(), alias: { $articles: 'src/articles' } },
+  kit: { adapter: adapter(), alias: { $notes: 'src/notes' } },
   extensions: ['.svelte', '.md'],
 }
 

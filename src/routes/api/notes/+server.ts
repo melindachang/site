@@ -4,7 +4,7 @@ import type { Article } from '$lib/utils/interfaces'
 const get_articles = async () => {
   let articles: Article[] = []
 
-  const paths = import.meta.glob('/src/articles/*.md', { eager: true })
+  const paths = import.meta.glob('/src/notes/*.md', { eager: true })
 
   for (const path in paths) {
     const file = paths[path]

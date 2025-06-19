@@ -21,16 +21,16 @@ that looks like:
 @use 'sass:string';
 
 @function str-replace($string, $search, $replace: '') {
-	$index: string.index($string, $search);
+  $index: string.index($string, $search);
 
-	@if $index {
-		@return string.slice($string, 1, $index - 1) + $replace +
-			str-replace(
-				string.slice($string, $index + string.length($search)),
-				$search,
-				$replace
-			);
-	}
+  @if $index {
+    @return string.slice($string, 1, $index - 1) + $replace +
+      str-replace(
+        string.slice($string, $index + string.length($search)),
+        $search,
+        $replace
+      );
+  }
 }
 ```
 
@@ -44,26 +44,26 @@ and maintain than the equivalent indented syntax, so I'll use it here.
 @use 'sass:map';
 // snip
 $font-weights: (
-	400: 'Regular',
-	500: 'Medium',
-	600: 'Semibold',
-	700: 'Bold',
+  400: 'Regular',
+  500: 'Medium',
+  600: 'Semibold',
+  700: 'Bold',
 );
 
 @mixin font-face($name, $weight: 400, $style: regular) {
-	$name-path: str-replace($name, ' ', '');
-	$style-path: if($style == 'italic', 'Italic', '');
+  $name-path: str-replace($name, ' ', '');
+  $style-path: if($style == 'italic', 'Italic', '');
 
-	$path: $name-path + '/' + $name-path + '-' + map.get($font-weights, $weight) +
-		$style-path;
+  $path: $name-path + '/' + $name-path + '-' + map.get($font-weights, $weight) +
+    $style-path;
 
-	@font-face {
-		font-family: $name;
-		src: url('$lib/assets/fonts/' + $path + '.woff2') format('woff2');
-		src: url('$lib/assets/fonts/' + $path + '.woff') format('woff');
-		font-weight: $weight;
-		font-style: $style;
-	}
+  @font-face {
+    font-family: $name;
+    src: url('$lib/assets/fonts/' + $path + '.woff2') format('woff2');
+    src: url('$lib/assets/fonts/' + $path + '.woff') format('woff');
+    font-weight: $weight;
+    font-style: $style;
+  }
 }
 ```
 
@@ -87,7 +87,7 @@ performing within) makes the following assumptions:
   @use 'sass:string';
   // snip
   $path: string.to-lower-case(str-replace($name, ' ', '_')) + '/' +
-  	str-replace($name, ' ', '') + map.get($font-weights, $weight) + $style-path;
+    str-replace($name, ' ', '') + map.get($font-weights, $weight) + $style-path;
   // snip
   ```
 
@@ -114,7 +114,7 @@ iterate through them:
 
 ```scss
 @each $weight, $name in $font-weights {
-	@include font-face('EB Garamond', $weight);
-	@include font-face('EB Garamond', $weight, italic);
+  @include font-face('EB Garamond', $weight);
+  @include font-face('EB Garamond', $weight, italic);
 }
 ```

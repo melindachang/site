@@ -38,7 +38,7 @@ export let userState = $state<{
       date: '2025.05',
       title: 'Rejected from Weinberg Summer Research Grant',
       description:
-      "I didn't have much hope for this particular grant, given that (a) they prioritize seniors and (b) you're supposed to apply for and be rejected from the Summer URG first. That I ended up in a position where I had to apply in the first place might be the bigger failure.",
+        "I didn't have much hope for this particular grant, given that (a) they prioritize seniors and (b) you're supposed to apply for and be rejected from the Summer URG first. That I ended up in a position where I had to apply in the first place might be the bigger failure.",
       tags: ['research'],
     },
     {
@@ -53,8 +53,7 @@ export let userState = $state<{
       isFailure: true,
       date: '2025.05',
       title: 'Rejected from Block Museum Student Associate program',
-      description:
-        "Don't sleep through your interview timeslot...",
+      description: "Don't sleep through your interview timeslot...",
       tags: ['job'],
     },
     // {
@@ -79,7 +78,7 @@ export let userState = $state<{
       date: '2025.03',
       title: 'Rejected from every REU I applied for',
       description:
-        "This was unfortunate, not the least because I thought I was a really good fit for my top choice. Still, a good reminder that the mechanics of getting research positions outside of these programs is the same as it ever was.",
+        'This was unfortunate, not the least because I thought I was a really good fit for my top choice. Still, a good reminder that the mechanics of getting research positions outside of these programs is the same as it ever was.',
       tags: ['research'],
     },
     {
