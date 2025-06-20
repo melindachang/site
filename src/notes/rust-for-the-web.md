@@ -6,7 +6,7 @@ author: Melinda Chang
 tags:
   - Rust
   - Web
-published: true
+published: false
 ---
 
 I have been engineering software in some form for something like nine
