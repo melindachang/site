@@ -9,13 +9,10 @@ tags:
 published: true
 ---
 
-CSS without a preprocessor is borderline unusable, but `@font-face`
-declarations are tedious even with. I usually end up pasting this
-snippet into every project. It relies on a string replace utility
-function I took from [CSS
+This mixin relies on a string replace utility function I took from
+[CSS
 Tricks](https://css-tricks.com/snippets/sass/str-replace-function/),
-which I modified for the latest Dart Sass specification. Here's what
-that looks like:
+modified for the latest Dart Sass specification. It looks like this:
 
 ```scss
 @use 'sass:string';
@@ -34,11 +31,8 @@ that looks like:
 }
 ```
 
-I use SvelteKit for apps that would require this much boilerplate most
-of the time, so this will assume a SvelteKit-esque directory structure
-for imports. This is easy enough to modify yourself if your `fonts/`
-folder is located elsewhere. I also find SCSS slightly easier to read
-and maintain than the equivalent indented syntax, so I'll use it here.
+I find SCSS slightly easier to read and maintain than the equivalent
+indented syntax, so I'll use it here.
 
 ```scss
 @use 'sass:map';
@@ -59,46 +53,31 @@ $font-weights: (
 
   @font-face {
     font-family: $name;
-    src: url('$lib/assets/fonts/' + $path + '.woff2') format('woff2');
-    src: url('$lib/assets/fonts/' + $path + '.woff') format('woff');
+    src: url('/path/to/fonts/' + $path + '.woff2') format('woff2');
+    src: url('/path/to/fonts/' + $path + '.woff') format('woff');
     font-weight: $weight;
     font-style: $style;
   }
 }
 ```
 
-<!-- Because we're performing string manipulation to minimize the number of -->
-<!-- parameters I have to input later when I'm declaring my fonts, this -->
-<!-- snippet makes the following assumptions: -->
-
 My intent in the first place is to minimize the number of repetitive
 parameters that I must input later when I declare specific fonts. As
-such, the mixin (and especially the string manipulation we're
-performing within) makes the following assumptions:
+such, I (kind of hackily) manipulate the font name into a valid path
+according to some agreed-upon name scheme. If I import the font Commit
+Mono, for instance, I would store in `/path/to/fonts/` a subdirectory
+`CommitMono/` with each file named `CommitMono-WeightStyle.ext`. This
+can be reconfigured. If, say, you would rather have a font folder
+called `commit_mono/`, you can perform a bit of string manipulation,
+like this:
 
-- You use a consistent name scheme for fonts and directories. If I'm
-  using the font Commit Mono, for instance, I would store in
-  `$lib/assets/fonts/` a subdirectory `CommitMono/` with each file
-  named `CommitMono-WeightStyle.ext`. If, say, you would rather have a
-  font folder called `commit_mono/`, you can perform a bit of string
-  manipulation, like this:
-
-  ```scss
-  @use 'sass:string';
-  // snip
-  $path: string.to-lower-case(str-replace($name, ' ', '_')) + '/' +
-    str-replace($name, ' ', '') + map.get($font-weights, $weight) + $style-path;
-  // snip
-  ```
-
-- You only want to load in webfonts (which you can generate on [Font
-  Squirrel](https://www.fontsquirrel.com/tools/webfont-generator)). This
-  is easy enough to rectify, but if you want to import a whole bunch
-  of different file types, consider creating another SASS map and
-  iterating through them within the mixin.
-- You're making use only of the weights in the map `$font-weights`. If
-  you need a Black option, for instance, you could add the entry `900:
-'Black'`.
+```scss
+@use 'sass:string';
+// snip
+$path: string.to-lower-case(str-replace($name, ' ', '_')) + '/' +
+  str-replace($name, ' ', '') + map.get($font-weights, $weight) + $style-path;
+// snip
+```
 
 We're all set up. Now I can import fonts by writing something like the
 following:
