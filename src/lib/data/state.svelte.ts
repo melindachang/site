@@ -34,6 +34,14 @@ export let userState = $state<{
   ],
   work_timeline: [
     {
+      isFailure: false,
+      date: '2025.06 - Now',
+      title: 'Undergraduate Researcher @ UC Berkeley School of Information',
+      description:
+        'Advised by Prof. Tim Tangherlini (Dept. of Scandanavian Studies; Center for Cultural Analytics). Apprehending narrative in the Icelandic saga with literary-theoretical and computational methods.',
+      tags: ['research', 'computational humanities'],
+    },
+    {
       isFailure: true,
       date: '2025.05',
       title: 'Rejected from Weinberg Summer Research Grant',
@@ -66,19 +74,11 @@ export let userState = $state<{
     //   tags: ['student org', 'cultural studies'],
     // },
     {
-      isFailure: false,
-      date: '2025.04 - Now',
-      title: 'Undergraduate Researcher @ UC Berkeley School of Information',
-      description:
-        'Advised by Prof. Tim Tangherlini (Dept. of Scandanavian Studies; Center for Cultural Analytics). Apprehending narrative in the Icelandic saga with literary-theoretical and computational methods.',
-      tags: ['research', 'computational humanities'],
-    },
-    {
       isFailure: true,
       date: '2025.03',
       title: 'Rejected from every REU I applied for',
       description:
-        'This was unfortunate, not the least because I thought I was a really good fit for my top choice. Still, a good reminder that the mechanics of getting research positions outside of these programs is the same as it ever was.',
+        'I thought I was a really good fit for my top choice. Still, a good reminder that the mechanics of getting research positions outside of these programs is the same as it ever was.',
       tags: ['research'],
     },
     {

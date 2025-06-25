@@ -131,9 +131,9 @@
             href="https://www.gnu.org/philosophy/free-sw.en.html#four-freedoms"
             target="_blank">free</a
           >) software engineering&mdash;programming language design, compilers,
-          type systems. Defensive computing, including information security and
-          adversarial machine learning techniques. 19th- and 20th-century
-          European literature, Sinophone cinema, aesthetics, global modernism.
+          type systems, language-based security, defensive computing. 19th- and
+          20th-century European literature, Sinophone cinema, aesthetics, global
+          modernism.
         </p>
       </LinkEntry>
     </GridItem>
