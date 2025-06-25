@@ -21,20 +21,20 @@
     "eslint-plugin-svelte": "^3.9.3",
     "hast": "^1.0.0",
     "mdsvex": "^0.12.6",
-    "prettier": "^3.5.3",
+    "prettier": "^3.6.1",
     "prettier-plugin-svelte": "^3.4.0",
     "rehype-external-links": "^3.0.0",
     "rehype-wrap-li": "^0.0.3",
     "sass-embedded": "^1.89.2",
     "shiki": "^3.7.0",
-    "svelte": "^5.34.7",
+    "svelte": "^5.34.8",
     "svelte-check": "^4.2.2",
     "typescript": "^5.8.3",
     "vite": "^6.3.5"
   },
   "dependencies": {
     "@fontsource/libre-caslon-condensed": "^5.2.5",
-    "@lottiefiles/dotlottie-svelte": "^0.6.1",
+    "@lottiefiles/dotlottie-svelte": "^0.6.2",
     "gsap": "^3.13.0"
   }
 }
