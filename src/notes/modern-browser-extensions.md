@@ -59,7 +59,9 @@ until someone can convince me that there is a real reason to use Bun
 over Vite.
 
 If you don't feel like following along, here are the links to the
-template repositories on Codeberg and GitHub.
+template repositories on
+[Codeberg](https://codeberg.org/melindachang/wxt-injection-starter)
+and [GitHub](https://github.com/melindachang/wxt-injection-starter).
 
 ## Getting started with WXT
 
