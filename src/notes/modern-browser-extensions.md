@@ -52,54 +52,34 @@ stylesheet injections). For my sanity, it must support the following:
 
 No tool presently offers a pipeline for (3) out of the box. After
 trying something like ten different build tools and wrangling together
-my own with Bun, I can say definitively that [WXT](https://wxt.dev/)
-is the most comprehensive offering available. It is also in
-pre-release and has the bugs to show for it. We're sticking with it
-until someone can convince me that there is a real reason to use Bun
-over Vite.
+my own with Bun, I begrudgingly accept that [WXT](https://wxt.dev/) is
+the most comprehensive offering available. It is also in pre-release
+and has all of the bugs to show for it.
 
-If you don't feel like following along, here are the links to the
-template repositories on
+I have made template repositories for myself on
 [Codeberg](https://codeberg.org/melindachang/wxt-injection-starter)
-and [GitHub](https://github.com/melindachang/wxt-injection-starter).
+and [GitHub](https://github.com/melindachang/wxt-injection-starter),
+but this implementation and WXT are both so unstable that I do not
+think anyone should use them in their current state besides me.
 
 ## Getting started with WXT
 
-We can bootstrap the project relatively easily, because it doesn't
-matter which frontend framework you use for this task.
+We can bootstrap the project relatively easily, because frontend
+frameworks do not matter for this task. I use Svelte and Bun.
 
 ```shellscript
 bunx wxt@latest init
 ```
 
-I'm using Svelte and Bun in this example. We should see that this
-bootstrapped project assumes a layout that approximates this one:
-
-```
-├── package.json
-├── public/
-├── README.md
-├── src/
-│   ├── assets/
-│   ├── entrypoints/
-│   │   ├── background.ts
-│   │   ├── content.ts
-│   │   └── popup/
-│   └── lib/
-├── tsconfig.json
-├── wxt.config.ts
-└── wxt-env.d.ts
-```
-
-Let's set up a basic stylesheet. It can contain any rule for testing
-purposes, but as we should be able to leverage all typical SASS
-features, I'll create a file that imports a partial with the `@use`
-rule:
+The base stylesheet we attempt to inject can contain any rule for
+testing purposes, but as we should be able to leverage all typical
+SASS features, I'll create a file that imports a partial with the
+`@use` rule:
 
 ```scss
-// src/assets/injection.scss
+// src/entrypoints/injection.scss
 
-@use 'styles/_variables';
+@use '../lib/styles/_variables';
 
 body {
   background: variables.$color;
@@ -110,29 +90,22 @@ Then, we can create the corresponding definition at this path that we
 specified:
 
 ```scss
-// src/assets/styles/_variables.scss
+// src/lib/styles/_variables.scss
 
 $color: blue;
 ```
 
-There are a few reasons why I opt to place our styles in the
-`src/assets/` directory. The idiomatic way to include unlisted CSS
-files in the final build is within `src/entrypoints/`, but we're
-actually working around a bug in WXT where only `.css` files (as
-opposed to `.sass`, `.scss`, etc.) are detected and included in the
-bundle. [This issue](https://github.com/wxt-dev/wxt/issues/1580) is
-open as of June 2025. I also cannot find a way to watch said files for
-changes during development without importing them into another script,
-which produces an extra CSS file in the build directory.
+WXT is supposed to treat a certain subset of files in
+`src/entrypoints`, including stylesheets of any kind, as items to be
+processed and included in the final build. As of June 2025, this is
+broken for all stylesheets that do not have a `.css`
+extension. [Here's the
+issue](https://github.com/wxt-dev/wxt/issues/1580). And [here's the
+patch](https://codeberg.org/melindachang/wxt-injection-starter/src/branch/main/patches/wxt@0.20.7.patch).
 
 ## Writing injection logic
 
-I'll assume for our basic implementation that we do not need to store
-long-term state, so we can keep our code in the content script as
-opposed to the background script.
-
-The default content script in your starter should look something like
-this:
+By default, the content script looks something like this:
 
 ```ts
 // src/entrypoints/content.ts
@@ -147,7 +120,7 @@ export default defineContentScript({
 
 You can reference more of the options that `defineContentScript()`
 accepts
-[here](https://wxt.dev/api/reference/wxt/type-aliases/ContentScriptDefinition.html#type-alias-contentscriptdefinition). Our
+[here](https://wxt.dev/api/reference/wxt/type-aliases/ContentScriptDefinition.html#type-alias-contentscriptdefinition). The
 injection goes in the `main()` function, which will run when our
 route's domain matches `google.com`. Let's define a function that
 creates a DOM node that links to our style resource.
@@ -156,7 +129,7 @@ creates a DOM node that links to our style resource.
 // src/entrypoints/content.ts
 
 const inject_style_and_repaint = (): void => {
-  const href = browser.runtime.getURL('content-scripts/content.css')
+  const href = browser.runtime.getURL('assets/injection.css')
 
   const prev = document.querySelector('link[data-extension-style]')
   if (prev) prev.remove()
@@ -174,22 +147,6 @@ export default defineContentScript({
   // ...
 })
 ```
-
-A quick walkthrough:
-
-- We use the cross-platform `browser` API in order to access the URL
-  of a web-accessible resource. You may notice that the path we define
-  here is not to an `assets/injection.css` file&mdash;this is a side
-  effect that I will explain later.
-- As this script may re-run during either development or production
-  without a page reload, we remove any existing `link` node associated
-  with our extension that may already exist in the document.
-- We create a `<link>` element that points to the URL we acquire at
-  runtime. Specifying `link.dataset.extensionStyle` outputs a link
-  with a non-null property `data-extension-style`, which is useful for
-  the previous instruction.
-- We append this element to `<head>` if it exists, and `<html>` if
-  not.
 
 Next, we write our logic in the `main()` function, which will simply
 call the function `inject_style_and_repaint()` on document load.
@@ -218,71 +175,18 @@ export default defineContentScript({
 
 ## Bundle configuration
 
-We want to include our stylesheet in the dependency graph&mdash;as an
-asset, it will be excluded from the bundle otherwise. We'll import it
-here:
-
-```ts
-// src/entrypoints/content.ts
-
-import '../assets/injection.scss'
-```
-
 WXT is based off of Vite, so we don't need to include any additional
-configuration in order for our stylesheet to be pre-processed. Just
-make sure to install your preprocessor:
+configuration in order for our stylesheet to be pre-processed:
 
 ```shellscript
 bun add -D sass-embedded
 ```
 
-When we run Vite either to build for production or to start the
-development environment, WXT treats any stylesheet imported by
-`content.ts` as a content script in and of itself. This also means
-that the sheet is renamed to `content-scripts/content.css` in the
-output bundle, hence the URL we passed in from earlier. We don't want
-all of this behavior, because the entire purpose of programmatic
-injection is to surgically manipulate and refresh styles during
-runtime. This we can correct by passing in an additional option to
-`defineContentScript()`:
-
-```ts
-// src/entrypoints/content.ts
-
-// ...
-export default defineContentScript({
-  matches: ['*://*.google.com/*'],
-  cssInjectionMode: 'manual', // 'manifest' | 'ui'
-  main() {
-    // ...
-  },
-})
-```
-
-You can read more about this option in the [WXT
-docs](https://wxt.dev/api/reference/wxt/interfaces/MainWorldContentScriptDefinition.html#cssinjectionmode).
-
 WXT generates our manifest at build time according to the target
 (Chrome or Firefox) that we specify, but we want to explicitly
 hard-code our stylesheet as a web-accessible resource so that we can
 retrieve it via `browser.runtime.getURL()`. We can define these
-options in the WXT config at the base of our project directory.
-
-By default, it will look something like this:
-
-```ts
-// wxt.config.ts
-import { defineConfig } from 'wxt'
-
-export default defineConfig({
-  srcDir: 'src',
-  modules: ['@wxt-dev/module-svelte'],
-})
-```
-
-We can pass an object into a `manifest` option that contains the
-information we want. By default, this will assume the structure of a
-typical Manifest V3 document:
+options in the WXT config at the base of our project directory:
 
 ```ts
 // wxt.config.ts
@@ -293,10 +197,7 @@ export default defineConfig({
   modules: ['@wxt-dev/module-svelte'],
   manifest: {
     web_accessible_resources: [
-      {
-        matches: ['*://*.google.com/*'],
-        resources: ['content-scripts/content.css'],
-      },
+      { matches: ['*://*.google.com/*'], resources: ['assets/injection.css'] },
     ],
   },
 })
@@ -307,49 +208,107 @@ make the conversion automatically.
 
 ## Enabling hot repaint
 
-We're ready to test out our program. This should be functional on
-either Chrome or Firefox, but I'll use the latter to demonstrate. Run
-the development server:
+The basic injection functionality will work without any further
+intervention. I can run the development server with my preferred
+browser target:
 
 ```shellscript
 bun run dev:firefox
 ```
 
-This should open a browser window with all user settings erased and
-the extension installed. We've set this project up so that the content
-script and stylesheet resource only match the `google.com` domain, so
-let's navigate there.
+After navigating to a URL under the matching domain (that is,
+`google.com`) search engine has changed to the color we
+specified&mdash;in my case, blue&mdash;in
+`src/assets/styles/_variables.scss`.
 
-If all goes well, you should see that the background of the search
-engine has changed to the color we specified&mdash;in my case,
-blue&mdash;in `src/assets/styles/_variables.scss`. You can open up
-DevTools to find the `<link>` element and take a look at the compiled
-stylesheet.
+By default, neither the unlisted styles included in the bundle via
+`src/entrypoints` nor the SASS dependencies they `@use` or `@forward`
+are included in the dependency graph. WXT exposes a somewhat limited
+API that allows us to rectify this behavior at build time via modules.
 
-Try making an edit to your raw stylesheet, though, and you may notice
-some peculiar behavior. I'll declare the variable as something else:
+Any script we include in the `modules/` folder WXT will automatically
+try to include. Let's make it:
+
+```ts
+// modules/scss-deps-hmr.ts
+
+import { defineWxtModule } from 'wxt/modules'
+import path from 'path'
+import fs from 'fs'
+
+export default defineWxtModule({
+  setup(wxt) {
+    wxt.hook('server:started', (wxt, server) => {
+      const injection = path.resolve(
+        wxt.config.root,
+        'src/entrypoints/injection.scss',
+      )
+      const themes_dir = path.resolve(wxt.config.root, 'src/lib/themes')
+      server.watcher.add(themes_dir)
+      server.watcher.on('change', async file => {
+        if (file.endsWith('.scss')) {
+          console.log(
+            '[scss-hmr] Invalidating module: ',
+            path.relative(wxt.config.root, injection),
+          )
+
+          await wxt.builder.build({
+            type: 'unlisted-style',
+            name: 'injection',
+            options: {},
+            inputPath: injection,
+            outputDir: path.resolve(wxt.config.outDir, 'assets'),
+          })
+
+          server.reloadExtension()
+        }
+      })
+    })
+  },
+})
+```
+
+A quick walkthrough of what this accomplishes:
+
+- WXT exposes a number of build events that we can hook into to
+  perform modifications; in our case, we wait for the development
+  server to initialize.
+- WXT uses Vite uses the Chokidar file watcher under the hood. Our
+  base injection file is included in the watchlist by virtue of being
+  in `src/entrypoints`, but not the modules it imports. I've
+  inelegantly hard-coded a directory in which all of them live that
+  the watcher will search, because I doubt it's possible to step
+  through specific chains of dependency between SASS files without
+  writing a Vite plugin.
+- We add an event listener that invalidates `injection.scss` if any
+  watched `.scss` file is written to. As we need preprocessors to
+  fire, this means sending it through the WXT builder. We need,
+  finally, to reload the entire extension (not a terribly expensive
+  operation) to get the content script to run again without a refresh.
+
+HMR for our unlisted stylesheet is now functional. Try making an edit
+to it, though, and you may notice some peculiar behavior. I'll declare
+the variable as something else:
 
 ```scss
-// src/assets/styles/_variables.scss
+// src/lib/styles/_variables.scss
 
 $color: red;
 ```
 
-If we look back at our browser window, we should see in DevTools that
-the style resource has hot-reloaded accordingly; it will show up
-correctly if you navigate again to the URL in `<link>`. But the
-changes do not show up on the screen unless we manually tick the box
-next to our applied style with Inspect Element, and our changes
-disappear even then upon a refresh.
+We should see in DevTools that the style resource has hot-reloaded
+accordingly; it will show up correctly if you navigate again to the
+URL in `<link>`. But the changes do not show up on the screen unless
+we manually tick the box next to our applied style with Inspect
+Element, and our changes disappear even then upon a refresh.
 
 This is because the new `<link>` element that we've created points to
 the same URL as the one we delete with `node.remove()` each time the
-content script re-runs. Firefox caches this asset and does not re-read
+extension reloads. Firefox caches this asset and does not re-read
 its contents.
 
-As a solution, we can add a unique tag to the end of each URL we
-generate that forces the hot reload. Return to your content script and
-make the following modification:
+As a solution, we can add a unique tag to the end of each URL that
+forces the hot reload during development:
 
 ```ts
 // src/entrypoints/content.ts
@@ -364,7 +323,8 @@ const inject_style_and_repaint = (): void => {
 
 We never read this option ourselves, but Firefox registers it as a URL
 that differs from the one stored in cache and will trigger the
-repaint. Your complete content script file should look like this:
+repaint. This leaves us with a complete content script that looks like
+this:
 
 ```ts
 // src/entrypoints/content.ts
@@ -405,7 +365,7 @@ export default defineContentScript({
 })
 ```
 
-Now try hot reloading the styles again. It should function perfectly.
+And we're done.
 
 ## Enhancements
 
