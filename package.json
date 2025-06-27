@@ -20,7 +20,6 @@
     "@sveltejs/kit": "^2.22.2",
     "@sveltejs/vite-plugin-svelte": "^5.1.0",
     "eslint-plugin-svelte": "^3.10.0",
-    "hast": "^1.0.0",
     "mdsvex": "^0.12.6",
     "prettier": "^3.6.1",
     "prettier-plugin-svelte": "^3.4.0",
@@ -36,7 +35,6 @@
   "dependencies": {
     "@fontsource/libre-caslon-condensed": "^5.2.5",
     "@lottiefiles/dotlottie-svelte": "^0.6.2",
-    "all": "^0.0.0",
     "gsap": "^3.13.0"
   }
 }

@@ -1,6 +1,6 @@
 import { mdsvex } from 'mdsvex'
 import mdsvexConfig from './mdsvex.config.js'
-import adapter from '@sveltejs/adapter-vercel'
+import vercel from '@sveltejs/adapter-vercel'
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte'
 import { dirname } from 'path'
 import { fileURLToPath } from 'url'
@@ -24,7 +24,7 @@ const config = {
     }),
     mdsvex(mdsvexConfig),
   ],
-  kit: { adapter: adapter(), alias: { $notes: 'src/notes' } },
+  kit: { adapter: vercel(), alias: { $notes: 'src/notes' } },
   extensions: ['.svelte', '.md'],
 }
 
