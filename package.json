@@ -26,12 +26,12 @@
     "prettier-plugin-svelte": "^3.4.0",
     "rehype-external-links": "^3.0.0",
     "rehype-wrap-li": "^0.0.3",
-    "sass": "^1.89.2",
+    "sass-embedded": "^1.89.2",
     "shiki": "^3.7.0",
     "svelte": "^5.34.8",
     "svelte-check": "^4.2.2",
     "typescript": "^5.8.3",
-    "vite": "^6.3.5"
+    "vite": "^7.0.0"
   },
   "dependencies": {
     "@fontsource/libre-caslon-condensed": "^5.2.5",
