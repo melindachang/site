@@ -6,7 +6,7 @@ description: On achieving (slightly more) ergonomic browser extension developmen
 tags:
   - Web
   - Extensions
-published: true
+published: false
 ---
 
 I regularly develop Chromium- and Firefox-compatible browser
